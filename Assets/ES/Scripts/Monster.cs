@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        monsterData.SetData("Dragon", 100, 5, 5, 30, "S_Fireball_01", "w");
+        monsterData.SetData("Dragon", 100, 15, 15, 30, "S_Fireball_01", "w");
         projectile = Resources.Load<Projectile>(monsterData.projectile);
     }
     private void OnEnable()
