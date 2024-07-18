@@ -1,11 +1,16 @@
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
+using Firebase.Firestore;
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FirebaseWriteExample : MonoBehaviour
 {
     private DatabaseReference databaseReference;
+    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
     void Start()
     {
@@ -27,8 +32,7 @@ public class FirebaseWriteExample : MonoBehaviour
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         Debug.Log("Firebase initialized");
 
-        // 예제 데이터 쓰기
-        WriteNewUser("2", "MR", "john.doe@example.com");
+        GetDataFromTable("Monster");
     }
 
     private void WriteNewUser(string userId, string name, string email)
@@ -47,6 +51,35 @@ public class FirebaseWriteExample : MonoBehaviour
             }
         });
     }
+
+    public void GetDataFromTable(string tableName)
+    {
+        databaseReference.Child(tableName).GetValueAsync().ContinueWithOnMainThread(task => {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("Error retrieving data from Firebase.");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                Debug.Log(snapshot.GetRawJsonValue());
+
+                snapshot.GetRawJsonValue();
+                Debug.Log(JsonUtility.ToJson(snapshot));
+                // Parse and use the data from snapshot
+                //foreach (var child in snapshot.Children)
+                //{
+                //    string itemKey = child.Key;
+                //
+                //    MonsterData item = JsonUtility.FromJson<MonsterData>(child.GetRawJsonValue());
+                //    
+                //    Debug.Log(item.name + item.Index + item.projectile);
+                //    
+                //}
+            }
+        });
+    }
+
 }
 
 [System.Serializable]
