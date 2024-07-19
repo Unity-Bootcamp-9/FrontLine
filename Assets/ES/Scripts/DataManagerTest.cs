@@ -2,14 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager
+public class DataManagerTest : MonoBehaviour
 {
+    public FirebaseWriteExample firebaseWriteExample;
+
     public List<MonsterData> monsterDatas;
-    public List<WeaponData> weaponDatas;
-    public void Initialize()
+    public List<WeaponData> weaponData;
+
+    private void Start()
     {
-        Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
-        Managers.FirebaseManager.GetDataFromTable("Weapon", LoadData<WeaponData>);
+        StartCoroutine(TestCo());
+    }
+
+    IEnumerator TestCo()
+    {
+        yield return new WaitForSeconds(1);
+
+        firebaseWriteExample.GetDataFromTable("Monster", LoadData<MonsterData>);
+        firebaseWriteExample.GetDataFromTable("Weapon", LoadData<WeaponData>);
+    }
+
+    public void Init()
+    {
+        firebaseWriteExample.GetDataFromTable("Monster", LoadData<MonsterData>);
+        firebaseWriteExample.GetDataFromTable("Weapon", LoadData<WeaponData>);
     }
 
     public void LoadData<T>(List<string> datas) where T : struct
@@ -31,7 +47,7 @@ public class DataManager
         }
         else if (typeof(T) == typeof(WeaponData))
         {
-            weaponDatas = datas as List<WeaponData>;
+            weaponData = datas as List<WeaponData>;
         }
     }
 }
