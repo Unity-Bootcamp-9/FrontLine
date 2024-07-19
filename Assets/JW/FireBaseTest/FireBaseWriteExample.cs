@@ -1,7 +1,6 @@
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
-using Firebase.Firestore;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,7 +9,6 @@ using UnityEngine;
 public class FirebaseWriteExample : MonoBehaviour
 {
     private DatabaseReference databaseReference;
-    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
     void Start()
     {
