@@ -4,10 +4,10 @@ using System;
 [System.Serializable]
 public struct MonsterData
 {
-    public string Index;
-    public float attackDamage;
+    public int index;
+    public int attackDamage;
     public float attackRange;
-    public float hp;
+    public int hp;
     public float moveSpeed;
     public string name;
     public string projectile;
@@ -18,7 +18,7 @@ public struct MonsterData
 public struct WeaponData
 {
     public string weaponName;
-    public float attackDamage;
+    public int attackDamage;
     public float reloadTime;
     public float fireDelay;
     public int bulletCount;
