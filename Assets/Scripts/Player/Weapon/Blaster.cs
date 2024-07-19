@@ -34,6 +34,7 @@ public class Blaster : Weapon
         if (Mouse.current.leftButton.wasPressedThisFrame && shootReady) 
         {
             Fire();
+            Managers.Instance.Initialize();
         }
     }
 
