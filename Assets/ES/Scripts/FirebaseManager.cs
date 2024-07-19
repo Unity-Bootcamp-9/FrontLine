@@ -10,7 +10,7 @@ public class FirebaseManager
 {
     private DatabaseReference databaseReference;
 
-    public void Initialize()
+    public void Initialize(Action initDBManager)
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
             if (task.Result == DependencyStatus.Available)
@@ -19,6 +19,8 @@ public class FirebaseManager
 
                 databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
                 Debug.Log("Firebase initialized");
+
+                initDBManager?.Invoke();
             }
             else
             {

@@ -1,8 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
+    public List<MonsterData> monsterDatas;
+    public List<WeaponData> weaponDatas;
+
     private static Managers _instance;
+
+    private static FirebaseManager firebaseManager = new FirebaseManager();
+    private static DataManager dataManager = new DataManager();
+
+    public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
+    public static DataManager DataManager { get { return dataManager; } }
 
     public static Managers Instance
     {
@@ -33,10 +44,19 @@ public class Managers : MonoBehaviour
         }
 
         Initialize();
+
+        StartCoroutine(Test());
     }
 
     public void Initialize()
     {
-    
+        firebaseManager.Initialize(() => dataManager.Initialize());
+    }
+
+    IEnumerator Test()
+    {
+        yield return new WaitForSeconds(2f);
+        monsterDatas = dataManager.monsterDatas;
+        weaponDatas = dataManager.weaponDatas;
     }
 }

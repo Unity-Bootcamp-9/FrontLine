@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class DataManager
 {
-    public FirebaseWriteExample firebaseWriteExample;
-
     public List<MonsterData> monsterDatas;
-    public List<WeaponData> weaponData;
+    public List<WeaponData> weaponDatas;
     public void Initialize()
     {
-        firebaseWriteExample.GetDataFromTable("Monster", LoadData<MonsterData>);
-        firebaseWriteExample.GetDataFromTable("Weapon", LoadData<WeaponData>);
+        Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
+        Managers.FirebaseManager.GetDataFromTable("Weapon", LoadData<WeaponData>);
     }
 
     public void LoadData<T>(List<string> datas) where T : struct
@@ -33,7 +31,7 @@ public class DataManager
         }
         else if (typeof(T) == typeof(WeaponData))
         {
-            weaponData = datas as List<WeaponData>;
+            weaponDatas = datas as List<WeaponData>;
         }
     }
 }
