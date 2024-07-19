@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 7453880565517695122}
   - component: {fileID: 8934153303995129997}
   m_Layer: 0
-  m_Name: Blaster
+  m_Name: blaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,8 +550,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2645137152646346152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000038087364, y: -0.00051646953, z: -0.000104205385, w: 0.9999999}
-  m_LocalPosition: {x: -0.0003521684, y: -1.6901001, z: -0.00012901847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -597,10 +597,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f439a875cd5e0458201463a96bd3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7453880565517695122}
-  bulletPrefab: {fileID: 4795683133691389418, guid: 2e5cb9d97396157439256d6b1e47ac39,
+  weaponName: 
+  attackDamage: 0
+  reloadTime: 0
+  fireDelay: 0
+  bulletCount: 0
+  bulletPrefab: 
+  soundFX: 
+  visualFX: 
+  bulletSpeed: 0
+  range: 0
+  bulletVisualFX: 
+  method: 0
+  bulletPrefabTest: {fileID: 4795683133691389418, guid: 2e5cb9d97396157439256d6b1e47ac39,
     type: 3}
+  player: {fileID: 0}
+  animator: {fileID: 7453880565517695122}
   gunMuzzle: {fileID: 984194233468105201}
+  rayCastTarget: {fileID: 0}
+  isShootReady: 1
 --- !u!1 &2786074466316409423
 GameObject:
   m_ObjectHideFlags: 0

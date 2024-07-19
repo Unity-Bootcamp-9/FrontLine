@@ -8,12 +8,8 @@ public class Managers : MonoBehaviour
     public List<WeaponData> weaponDatas;
 
     private static Managers _instance;
-
     private static FirebaseManager firebaseManager = new FirebaseManager();
     private static DataManager dataManager = new DataManager();
-
-    public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
-    public static DataManager DataManager { get { return dataManager; } }
 
     public static Managers Instance
     {
@@ -30,6 +26,9 @@ public class Managers : MonoBehaviour
             return _instance;
         }
     }
+    public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
+    public static DataManager DataManager { get { return dataManager; } }
+
 
     private void Awake()
     {
