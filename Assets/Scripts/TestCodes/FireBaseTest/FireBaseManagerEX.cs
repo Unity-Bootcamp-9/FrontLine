@@ -16,6 +16,7 @@ public class FirebaseManager : MonoBehaviour
             if (task.Result == DependencyStatus.Available)
             {
                 InitializeFirebase();
+                
                 Debug.Log("Init DB");
             }
             else
