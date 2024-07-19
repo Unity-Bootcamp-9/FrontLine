@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class PoolManager :MonoBehaviour
 {
-    public bool collectionChecks = true;
+    private bool collectionChecks = true;
     private int maxPoolSize = 10;
 
     public Dictionary<string, IObjectPool<MonoBehaviour>> pools = new Dictionary<string, IObjectPool<MonoBehaviour>>();
