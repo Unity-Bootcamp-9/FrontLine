@@ -27,7 +27,7 @@ public class DataManagerEX : MonoBehaviour
 
         foreach (T data in allData)
         {
-            Debug.Log(JsonUtility.ToJson(data, true)); // JSON 형식으로 데이터 출력
+            Debug.Log(JsonUtility.ToJson(data)); // JSON 형식으로 데이터 출력
         }
     }
 
