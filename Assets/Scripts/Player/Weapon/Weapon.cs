@@ -4,26 +4,34 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 
+
+
 public class Weapon : MonoBehaviour
 {
     [Header ("DataField")]
-    [SerializeField] private WeaponData weaponData;
-    [SerializeField] WaitForSeconds waitForFireDelay;
+    private WeaponData weaponData;
+    private WaitForSeconds waitForFireDelay;
+    private ObjectPool<GameObject> bullets;
+    private enum Method
+    {
+        hitScan = 1, 
+        projectile = 2
+    }
 
     [Header("TestField")]
     public GameObject bulletPrefabTest;
 
-    [SerializeField] Transform player;
-    [SerializeField] private Animator animator;
-    [SerializeField] Transform gunMuzzle;
-    [SerializeField] Transform rayCastTarget;
-    [SerializeField] private bool isShootReady = false;
-    [SerializeField] private bool isHitScan = false;
+     private Transform player;
+     private Animator animator;
+     private Transform gunMuzzle;
+     private bool isShootReady = false;
+     private bool isHitScan = false;
 
     private void Awake()
     {
         player = Camera.main.transform;
         animator = GetComponent<Animator>();
+        bullets = new ObjectPool<GameObject>(() => new GameObject());
     }
 
 
@@ -33,10 +41,6 @@ public class Weapon : MonoBehaviour
         bulletPrefabTest = Resources.Load<GameObject>(weaponData.bulletPrefab);
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
         isShootReady = true;
-        if(weaponData.method == 1)
-        {
-            isHitScan = true;
-        }
     }
 
     private void Update()

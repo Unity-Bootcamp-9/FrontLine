@@ -22,6 +22,7 @@ public struct WeaponData
     public float reloadTime;
     public float fireDelay;
     public int bulletCount;
+    public string weaponPrefab;
     public string bulletPrefab;
     public string soundFX;
     public string visualFX;

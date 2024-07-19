@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlasterProjectile : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public float bulletSpeed = 1f;
     private Vector3 shootDirection;

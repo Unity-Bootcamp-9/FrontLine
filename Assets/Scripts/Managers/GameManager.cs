@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
         player = Camera.main.transform.GetChild(0).gameObject;
     }
 
+    private void Update()
+    {
+        Debug.Log(Managers.Instance.weaponDatas[0].weaponPrefab);
+    }
+
     public void SetWeapon()
     {
         string path = Managers.Instance.weaponDatas[0].weaponPrefab;
