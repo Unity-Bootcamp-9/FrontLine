@@ -74,3 +74,6 @@ crashlytics-build.properties
 # Firebase SDK
 /[Aa]ssets/Firebase/
 /[Aa]ssets/Plugins/Firebase/
+
+# Test
+/[Aa]ssets/Test
