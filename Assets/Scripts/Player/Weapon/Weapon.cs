@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Weapon : MonoBehaviour
     private WeaponData weaponData;
     private WaitForSeconds waitForFireDelay;
     private ObjectPool<GameObject> bullets;
+    private Method currentMethod;
     private enum Method
     {
         hitScan = 1, 
@@ -21,11 +23,10 @@ public class Weapon : MonoBehaviour
     [Header("TestField")]
     public GameObject bulletPrefabTest;
 
-     private Transform player;
-     private Animator animator;
-     private Transform gunMuzzle;
-     private bool isShootReady = false;
-     private bool isHitScan = false;
+     [SerializeField] private Transform player;
+     [SerializeField] private Animator animator;
+     [SerializeField] private Transform gunMuzzle;
+     [SerializeField] private bool isShootReady = false;
 
     private void Awake()
     {
@@ -40,20 +41,33 @@ public class Weapon : MonoBehaviour
         weaponData = weapon;
         bulletPrefabTest = Resources.Load<GameObject>(weaponData.bulletPrefab);
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
+        SetFireMethod(weaponData.method);
         isShootReady = true;
+    }
+
+    private void SetFireMethod(int methodValue)
+    {
+        if(Enum.IsDefined(typeof(Method), methodValue))
+        {
+            currentMethod = (Method)methodValue;
+        }
     }
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame && isShootReady) 
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Fire();
+            Debug.Log("Fire");
         }
     }
 
-    public void Fire()
+    private void Fire()
     {
-        StartCoroutine(FireCoroutine());
+        if (isShootReady)
+        {
+            StartCoroutine(FireCoroutine());
+        }
     }
 
     private IEnumerator FireCoroutine()
@@ -64,7 +78,7 @@ public class Weapon : MonoBehaviour
 
         Instantiate(bulletPrefabTest, gunMuzzle.position, Quaternion.identity);
 
-        if(isHitScan) 
+        if(currentMethod == Method.hitScan) 
         {
             RaycastHit hit;
 
