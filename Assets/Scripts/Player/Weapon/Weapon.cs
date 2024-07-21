@@ -1,70 +1,80 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
-
-
+using UnityEngine.UIElements;
 
 public class Weapon : MonoBehaviour
 {
-    [Header ("DataField")]
-    private WeaponData weaponData;
+    [Header("DataField")]
+    [SerializeField] private WeaponData weaponData;
     private WaitForSeconds waitForFireDelay;
-    private ObjectPool<GameObject> bullets;
     private Method currentMethod;
+
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform gunMuzzle;
+    [SerializeField] private Animator animator;
+    [SerializeField] private bool isReadyToFire = false;
+
     private enum Method
     {
-        hitScan = 1, 
+        hitScan = 1,
         projectile = 2
     }
 
     [Header("TestField")]
-    public GameObject bulletPrefabTest;
-
-     [SerializeField] private Transform player;
-     [SerializeField] private Animator animator;
-     [SerializeField] private Transform gunMuzzle;
-     [SerializeField] private bool isShootReady = false;
+    [SerializeField] public GameObject bulletPrefab;
+    private ObjectPool<GameObject> bulletPool;
 
     private void Awake()
     {
         player = Camera.main.transform;
         animator = GetComponent<Animator>();
-        bullets = new ObjectPool<GameObject>(() => new GameObject());
-    }
 
+        bulletPool = new ObjectPool<GameObject>(
+            createFunc: CreateBullet,
+            actionOnGet: ActivateBullet,
+            actionOnRelease: DeactivateBullet,
+            actionOnDestroy: DestroyBullet,
+            collectionCheck: false,
+            defaultCapacity: 10,
+            maxSize: 20
+        );
+    }
 
     public void Initialize(WeaponData weapon)
     {
         weaponData = weapon;
-        bulletPrefabTest = Resources.Load<GameObject>(weaponData.bulletPrefab);
-        waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
-        SetFireMethod(weaponData.method);
-        isShootReady = true;
-    }
+        bulletPrefab = Resources.Load<GameObject>(weaponData.bulletPrefab);
 
-    private void SetFireMethod(int methodValue)
-    {
-        if(Enum.IsDefined(typeof(Method), methodValue))
+        if (bulletPrefab == null)
         {
-            currentMethod = (Method)methodValue;
+            Debug.LogError("bulletPrefab을 로드할 수 없습니다: " + weaponData.bulletPrefab);
+            return;
         }
+
+        waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
+        currentMethod = (Method)weaponData.method;
+        isReadyToFire = true;
     }
 
     private void Update()
     {
+        // 테스트용도
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Fire();
-            Debug.Log("Fire");
         }
+
+        Debug.Log(weaponData.method + "method");
+        Debug.Log(weaponData.bulletPrefab +"prefab");
+        Debug.Log(weaponData.attackDamage + "Dmg");
     }
 
     private void Fire()
     {
-        if (isShootReady)
+        if (isReadyToFire)
         {
             StartCoroutine(FireCoroutine());
         }
@@ -72,13 +82,13 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator FireCoroutine()
     {
-        isShootReady = false;
+        isReadyToFire = false;
 
         animator.Play("Shot", 0, 0);
 
-        Instantiate(bulletPrefabTest, gunMuzzle.position, Quaternion.identity);
+        GameObject bullet = bulletPool.Get();
 
-        if(currentMethod == Method.hitScan) 
+        if (currentMethod == Method.hitScan)
         {
             RaycastHit hit;
 
@@ -92,13 +102,35 @@ public class Weapon : MonoBehaviour
 
         yield return waitForFireDelay;
 
-        isShootReady = true;
+        isReadyToFire = true;
     }
 
-    
+    private GameObject CreateBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed);
+        return bullet;
+    }
+
+    private void ActivateBullet(GameObject bullet)
+    {
+        bullet.SetActive(true);
+        bullet.transform.position = gunMuzzle.position;
+        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward);
+    }
+
+    private void DeactivateBullet(GameObject bullet)
+    {
+        bullet.SetActive(false);
+    }
+
+    private void DestroyBullet(GameObject bullet)
+    {
+        Destroy(bullet);
+    }
 
     public void Reload()
     {
-
+        // Reload logic
     }
 }

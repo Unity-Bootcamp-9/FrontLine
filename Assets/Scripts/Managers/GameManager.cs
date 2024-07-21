@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
+    public WeaponData weaponData;
     
     private void Start()
     {
@@ -11,12 +12,26 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Managers.Instance.weaponDatas[0].weaponPrefab);
+
+    }
+
+    public void GetData()
+    {
+        if(Managers.Instance.weaponDatas.Count == 0)
+        {
+            Debug.LogError("No WeaponDatas");
+        }
+        else
+        {
+            weaponData = Managers.Instance.weaponDatas[0];
+        }
     }
 
     public void SetWeapon()
     {
-        string path = Managers.Instance.weaponDatas[0].weaponPrefab;
+        GetData();
+
+        string path = weaponData.weaponPrefab;
 
         GameObject gunPrefab = Resources.Load<GameObject>(path);
 
@@ -24,11 +39,11 @@ public class GameManager : MonoBehaviour
         {
             GameObject newGun = Instantiate(gunPrefab);
 
-            Weapon weapon = gunPrefab.GetComponent<Weapon>();
+            Weapon weapon = newGun.GetComponent<Weapon>();
 
-            weapon.Initialize(Managers.Instance.weaponDatas[0]);
+            weapon.Initialize(weaponData);
 
-            newGun.name = "blaster";
+            newGun.name = weaponData.weaponName;
 
             newGun.transform.parent = player.transform; 
             newGun.transform.localPosition = Vector3.zero;

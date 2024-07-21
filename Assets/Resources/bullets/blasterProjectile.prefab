@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4795683133691389397}
-  - component: {fileID: -7018113121049045277}
+  - component: {fileID: -1286295360255503477}
   m_Layer: 0
   m_Name: blasterProjectile
   m_TagString: Untagged
@@ -235,7 +235,7 @@ Transform:
   - {fileID: 1902166205236133416}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7018113121049045277
+--- !u!114 &-1286295360255503477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,4 +247,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b814580bf945c459433009de056849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 50
+  bulletSpeed: 0
+  shootDirection: {x: 0, y: 0, z: 0}
