@@ -7,25 +7,24 @@ public class Weapon : MonoBehaviour
 {
     [Header("DataField")]
     [SerializeField] private WeaponData weaponData;
-    private WaitForSeconds waitForFireDelay;
-    private WaitForSeconds waitForReloadTime;
-    private Method currentMethod;
+
+    [SerializeField] private WaitForSeconds waitForFireDelay;
+    [SerializeField] private WaitForSeconds waitForReloadTime;
+    [SerializeField] private Method currentMethod;
     [SerializeField] private int currentBulletsCount;
     [SerializeField] private Transform gunMuzzle;
 
     [SerializeField] private Transform player;
     [SerializeField] private Animator animator;
     [SerializeField] private bool isReadyToFire = true; 
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private ObjectPool<GameObject> bulletPool;
 
     private enum Method
     {
         hitScan = 1,
         projectile = 2
     }
-
-    [Header("TestField")]
-    [SerializeField] public GameObject bulletPrefab;
-    private ObjectPool<GameObject> bulletPool;
 
     private void Awake()
     {
