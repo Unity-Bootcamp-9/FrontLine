@@ -10,11 +10,17 @@ public class SpawnManager
     private readonly int maxPoolSize = 10;
     private readonly int maxMonster = 4;
 
-    IObjectPool<Monster>[] monsterPools;
+    private IObjectPool<Monster>[] monsterPools;
+    private Transform[] PoolContainers;
 
     public void Initialize()
     {
         monsterPools = new IObjectPool<Monster>[maxMonster];
+        PoolContainers = new Transform[maxMonster];
+        for (int i = 1; i < PoolContainers.Length; i++)
+        {
+            PoolContainers[i] = new GameObject($"MonsterPool[{i}]").transform;
+        }
     }
 
     public void MakeObjectPool(Monster prefab)
@@ -33,7 +39,9 @@ public class SpawnManager
 
     private Monster CreateObject(Monster prefab)
     {
-        return Object.Instantiate(prefab);
+        Monster newMonster = Object.Instantiate(prefab);
+        newMonster.transform.SetParent(PoolContainers[newMonster.monsterData.index]);
+        return newMonster;
     }
 
     private void OnTakeFromPool(Monster obj)
@@ -51,9 +59,16 @@ public class SpawnManager
         Object.Destroy(obj.gameObject);
     }
 
-    public void Spawn(Transform spawnTransform, int index)
+    public Monster Spawn(Vector3 position, Quaternion rotation, int index)
     {
-        monsterPools[index].Get().transform.position = spawnTransform.position;
-        monsterPools[index].Get().transform.rotation = spawnTransform.rotation;
+        Monster monster = monsterPools[index].Get();
+        monster.transform.position = position;
+        monster.transform.rotation = rotation;
+        return monster;
+    }
+
+    public void ReturnToPool(Monster element, int index)
+    {
+        monsterPools[index].Release(element);
     }
 }
