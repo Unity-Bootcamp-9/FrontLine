@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private WeaponData weaponData;
 
     [SerializeField] private WaitForSeconds waitForFireDelay;
-    [SerializeField] private WaitForSeconds waitForReloadTime;
+    [SerializeField] private WaitForSeconds delayAfterReload;
     [SerializeField] private Method currentMethod;
     [SerializeField] private int currentBulletsCount;
     [SerializeField] private Transform gunMuzzle;
@@ -54,14 +54,14 @@ public class Weapon : MonoBehaviour
         }
 
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
-        waitForReloadTime = new WaitForSeconds(weaponData.reloadTime);
+        delayAfterReload = new WaitForSeconds(0.3f);
         currentMethod = (Method)weaponData.method;
         currentBulletsCount = weaponData.bulletCount;
     }
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.isPressed)
         {
             Fire();
         }
@@ -100,6 +100,7 @@ public class Weapon : MonoBehaviour
         }
 
         Handheld.Vibrate();
+
         currentBulletsCount--;
 
         Debug.Log(currentBulletsCount);
@@ -119,8 +120,8 @@ public class Weapon : MonoBehaviour
         Vector3 loweredPosition = originalPosition + new Vector3(0.1f, -0.5f, 0);
 
         float elapsedTime = 0f;
-        float duration = weaponData.reloadTime / 3; 
-        while (elapsedTime < duration)
+        float duration = weaponData.reloadTime / 3; // 장전시간을 3으로 나눠서 장전 애니메이션 실행
+        while (elapsedTime < duration) // 총 내리는 보간
         {
             transform.localPosition = Vector3.Lerp(originalPosition, loweredPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
@@ -130,9 +131,9 @@ public class Weapon : MonoBehaviour
 
         elapsedTime = 0f;
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration); //내리고 기다리기
 
-        while (elapsedTime < duration)
+        while (elapsedTime < duration) // 올리는 보간
         {
             transform.localPosition = Vector3.Lerp(loweredPosition, originalPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
@@ -140,7 +141,7 @@ public class Weapon : MonoBehaviour
         }
         transform.localPosition = originalPosition;
 
-        //yield return waitForReloadTime;
+        yield return delayAfterReload; // 올리고 0.3초 대기
 
         currentBulletsCount = weaponData.bulletCount;
 
@@ -159,8 +160,8 @@ public class Weapon : MonoBehaviour
     private void ActivateBullet(GameObject bullet)
     {
         bullet.SetActive(true);
-        bullet.transform.position = gunMuzzle.position;
-        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward);
+        bullet.transform.position = gunMuzzle.position; // 총알 Get할 때 위치 설정 
+        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
     }
 
     private void DeactivateBullet(GameObject bullet)

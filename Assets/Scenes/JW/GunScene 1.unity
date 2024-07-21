@@ -385,6 +385,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  weaponData:
+    weaponName: 
+    attackDamage: 0
+    reloadTime: 0
+    fireDelay: 0
+    bulletCount: 0
+    weaponPrefab: 
+    bulletPrefab: 
+    soundFX: 
+    visualFX: 
+    bulletSpeed: 0
+    range: 0
+    bulletVisualFX: 
+    method: 0
 --- !u!114 &617950024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,9 +1243,9 @@ RectTransform:
   - {fileID: 186732021}
   m_Father: {fileID: 1351888080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 236.2, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -100, y: 100}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1117677379
