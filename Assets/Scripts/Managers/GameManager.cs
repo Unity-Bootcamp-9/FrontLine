@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         if(Managers.Instance.weaponDatas.Count == 0)
         {
-            Debug.LogError("No WeaponDatas");
+            Debug.LogError("No WeaponData");
         }
         else
         {
