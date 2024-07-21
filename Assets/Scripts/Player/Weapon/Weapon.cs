@@ -1,21 +1,21 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
-using UnityEngine.UIElements;
 
 public class Weapon : MonoBehaviour
 {
     [Header("DataField")]
     [SerializeField] private WeaponData weaponData;
     private WaitForSeconds waitForFireDelay;
+    private WaitForSeconds waitForReloadTime;
     private Method currentMethod;
+    [SerializeField] private int currentBulletsCount;
+    [SerializeField] private Transform gunMuzzle;
 
     [SerializeField] private Transform player;
-    [SerializeField] private Transform gunMuzzle;
     [SerializeField] private Animator animator;
-    [SerializeField] private bool isReadyToFire = false;
+    [SerializeField] private bool isReadyToFire = true; 
 
     private enum Method
     {
@@ -55,34 +55,37 @@ public class Weapon : MonoBehaviour
         }
 
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
+        waitForReloadTime = new WaitForSeconds(weaponData.reloadTime);
         currentMethod = (Method)weaponData.method;
-        isReadyToFire = true;
+        currentBulletsCount = weaponData.bulletCount;
     }
 
     private void Update()
     {
-        // 테스트용도
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Fire();
         }
-
-        Debug.Log(weaponData.method + "method");
-        Debug.Log(weaponData.bulletPrefab +"prefab");
-        Debug.Log(weaponData.attackDamage + "Dmg");
     }
 
     private void Fire()
     {
         if (isReadyToFire)
         {
-            StartCoroutine(FireCoroutine());
+            if (currentBulletsCount > 0)
+            {
+                StartCoroutine(FireCoroutine());
+            }
+            else
+            {
+                StartCoroutine(ReloadCoroutine());
+            }
         }
     }
 
     private IEnumerator FireCoroutine()
     {
-        isReadyToFire = false;
+        isReadyToFire = false; 
 
         animator.Play("Shot", 0, 0);
 
@@ -91,7 +94,6 @@ public class Weapon : MonoBehaviour
         if (currentMethod == Method.hitScan)
         {
             RaycastHit hit;
-
             if (Physics.Raycast(player.position, player.forward, out hit, 20f))
             {
                 Debug.Log(hit.transform.gameObject.name);
@@ -99,12 +101,55 @@ public class Weapon : MonoBehaviour
         }
 
         Handheld.Vibrate();
+        currentBulletsCount--;
 
-        yield return waitForFireDelay;
+        Debug.Log(currentBulletsCount);
+
+        yield return waitForFireDelay; 
+
+        isReadyToFire = true; 
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        isReadyToFire = false;
+
+        Debug.Log("isReloading");
+
+        Vector3 originalPosition = transform.localPosition;
+        Vector3 loweredPosition = originalPosition + new Vector3(0.1f, -0.5f, 0);
+
+        float elapsedTime = 0f;
+        float duration = weaponData.reloadTime / 3; 
+        while (elapsedTime < duration)
+        {
+            transform.localPosition = Vector3.Lerp(originalPosition, loweredPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = loweredPosition; 
+
+        elapsedTime = 0f;
+
+        yield return new WaitForSeconds(duration);
+
+        while (elapsedTime < duration)
+        {
+            transform.localPosition = Vector3.Lerp(loweredPosition, originalPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = originalPosition;
+
+        //yield return waitForReloadTime;
+
+        currentBulletsCount = weaponData.bulletCount;
 
         isReadyToFire = true;
     }
 
+
+    #region bulletPool
     private GameObject CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab);
@@ -128,9 +173,5 @@ public class Weapon : MonoBehaviour
     {
         Destroy(bullet);
     }
-
-    public void Reload()
-    {
-        // Reload logic
-    }
+    #endregion
 }

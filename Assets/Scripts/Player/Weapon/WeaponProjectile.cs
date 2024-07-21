@@ -26,6 +26,7 @@ public class WeaponProjectile : MonoBehaviour
     void Update()
     {
         transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime > lifeTime)
