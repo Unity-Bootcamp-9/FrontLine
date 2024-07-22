@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 020b7b80d2e562d4ba003c0ed3437b9f
+guid: 64c43837553166847bd23a630a8ca39d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Switch/SwitchManagerEditor.cs
+  uploadId: 628721

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96faa2b2eaffcd749b81d59fa16a3d6e
+guid: b13417f09235b7c4f9e87f29093da488
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Slider/RadialSliderEditor.cs
+  uploadId: 628721

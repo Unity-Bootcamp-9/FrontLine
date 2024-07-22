@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 7fb12cf9527788b448ffefa4d5921b03
+guid: 731973609e4a7a94aa4d2f33c86dc13f
+timeCreated: 1493639454
+licenseType: Store
 MonoImporter:
-  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
@@ -9,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Demo/LaunchURL.cs
+  uploadId: 628721

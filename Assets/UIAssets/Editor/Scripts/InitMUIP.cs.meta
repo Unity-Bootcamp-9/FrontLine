@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 675a4f7e1c5f6ec418a8fead1524a622
+guid: b7ab3ee8e977e594387fbced988525d3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Editor/Scripts/InitMUIP.cs
+  uploadId: 628721
