@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "936954116268",
+    "firebase_url": "https://frontline-fcd7e-default-rtdb.firebaseio.com",
+    "project_id": "frontline-fcd7e",
+    "storage_bucket": "frontline-fcd7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936954116268:android:84a0838646493916fc8709",
+        "android_client_info": {
+          "package_name": "com.unity.template.ar_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt1aD-7XFE2W_4pEy1PAMTp2Vpl56yhy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
