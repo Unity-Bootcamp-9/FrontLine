@@ -11,9 +11,11 @@ public class Managers : MonoBehaviour
 
     private static FirebaseManager firebaseManager = new FirebaseManager();
     private static DataManager dataManager = new DataManager();
+    private static UIManager uiManager = new UIManager();
 
     public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
     public static DataManager DataManager { get { return dataManager; } }
+    public static UIManager UI { get { return uiManager; } }
 
     public static Managers Instance
     {
