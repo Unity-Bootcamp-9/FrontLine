@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d64c7e6de9db454697514136fdc78c8
+guid: e373f9a5f6c9bab449c78beab64a8d53
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Demo/DemoListShadow.cs
+  uploadId: 628721

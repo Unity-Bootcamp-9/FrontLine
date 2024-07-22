@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 40786adb92066c140912e493a7e4659c
+guid: a6980d488c131db45829d12b148fbb13
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/ListView/ListViewRow.cs
+  uploadId: 628721

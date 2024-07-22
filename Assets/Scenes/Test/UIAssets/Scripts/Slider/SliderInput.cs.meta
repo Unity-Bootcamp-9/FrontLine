@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf1aedd947bf3134680a33d7d345aafb
+guid: 092a466539ee62b49bab58774f2e4d46
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Slider/SliderInput.cs
+  uploadId: 628721

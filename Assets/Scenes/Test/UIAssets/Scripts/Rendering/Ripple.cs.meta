@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7fbc47876ead75f4e8e8ff6961c65b3a
+guid: b0695615d5ce0f8469eb9b553116c527
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Rendering/Ripple.cs
+  uploadId: 628721

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ab93b224adec08a4b949a866997c50f6
+guid: 70f5754df995225418ec38b440b4e75d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Slider/SliderManagerEditor.cs
+  uploadId: 628721

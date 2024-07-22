@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a58db1f3e0a65d4bae3b987a87ec97a
+guid: a7afc8c12ad2e104ebc86906fc37ec31
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201717
+  packageName: Modern UI Pack
+  packageVersion: 5.5.19
+  assetPath: Assets/Modern UI Pack/Scripts/Demo/DemoElementSway.cs
+  uploadId: 628721
