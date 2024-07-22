@@ -1229,6 +1229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 450752989668570127}
+  - component: {fileID: 652837070360297787}
   m_Layer: 0
   m_Name: Root_Pelvis
   m_TagString: Untagged
@@ -1255,6 +1256,27 @@ Transform:
   - {fileID: 4806336095565181484}
   m_Father: {fileID: 6015536943543477956}
   m_LocalEulerAnglesHint: {x: 0.6553963, y: 89.80838, z: 18.242804}
+--- !u!65 &652837070360297787
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515110265518842268}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 470.6826, y: 482.67896, z: 318.08157}
+  m_Center: {x: -119.99494, y: -70.485664, z: -13.7806835}
 --- !u!1 &4845271612107903518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1402,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4551860804886867249}
@@ -1400,7 +1422,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 124cf670c6ab74d46995cd147a7ec111, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
