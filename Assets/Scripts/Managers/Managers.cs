@@ -7,6 +7,7 @@ public class Managers : MonoBehaviour
     private static Managers _instance;
     private static FirebaseManager firebaseManager = new FirebaseManager();
     private static DataManager dataManager = new DataManager();
+    private static SpawnManager spawnManager = new SpawnManager();
 
 
     public List<MonsterData> monsterDatas;
@@ -29,6 +30,7 @@ public class Managers : MonoBehaviour
     }
     public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
     public static DataManager DataManager { get { return dataManager; } }
+    public static SpawnManager SpawnManager { get { return spawnManager; } }
 
     public void LoadTest()
     {
@@ -60,5 +62,6 @@ public class Managers : MonoBehaviour
     public void Initialize()
     {
         firebaseManager.Initialize(() => dataManager.Initialize());
+        spawnManager.Initialize();
     }
 }
