@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    private int monsterIndex;
-    private WaitForSeconds waitForSpawnDelay;
-
-    public void Initialize(int monsterIndex, float spawnDelay)
+    public void Initialize(List<int> monsterIndexs, List<float> spawnDelays)
     {
-        this.monsterIndex = monsterIndex;
-        waitForSpawnDelay = new WaitForSeconds(spawnDelay);
-        StartCoroutine(SpawnMonster());
+        for(int i = 0; i < monsterIndexs.Count; i++)
+        {
+            StartCoroutine(SpawnMonster(monsterIndexs[i], spawnDelays[i]));
+        }
+    }
+    private IEnumerator SpawnMonster(int index, float delay)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            Managers.SpawnManager.Spawn(transform.position, transform.rotation, index);
+        }
     }
 
-    IEnumerator SpawnMonster()
+    public void StopSpawn()
     {
-        yield return waitForSpawnDelay;
-        
+        StopAllCoroutines();
     }
+
 }
