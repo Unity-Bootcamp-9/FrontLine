@@ -76,4 +76,9 @@ public class Monster : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Debug.Log(name + rigidbody.velocity);
+    }
+
 }

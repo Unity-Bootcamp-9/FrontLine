@@ -13,6 +13,7 @@ public class DragonChase : StateMachineBehaviour
     {
         playerPos = Camera.main.transform.position;
         monster = animator.GetComponent<Monster>();
+        monster.SetVelocityMoveSpeed();
         monster.LerpRotate(playerPos, () => monster.SetVelocityMoveSpeed(), 1f);
     }
 
