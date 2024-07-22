@@ -15,15 +15,27 @@ public class GameManager : MonoBehaviour
 
     }
 
+    int value = -1;
+    public void ChangeValue()
+    {
+        value++;
+
+        if(value > 1) 
+        {
+            value = 0;
+        }
+
+        Debug.Log(value);
+    }
     public void GetData()
     {
-        if(Managers.Instance.weaponDatas.Count == 0)
+        if(Managers.DataManager.weaponDatas.Count == 0)
         {
             Debug.LogError("No WeaponData");
         }
         else
         {
-            weaponData = Managers.Instance.weaponDatas[0];
+            weaponData = Managers.DataManager.weaponDatas[value];
         }
     }
 

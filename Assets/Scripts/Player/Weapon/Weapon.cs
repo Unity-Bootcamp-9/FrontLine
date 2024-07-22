@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private Transform player;
     [SerializeField] private Animator animator;
-    [SerializeField] private bool isReadyToFire = true; 
+    [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ObjectPool<GameObject> bulletPool;
 
@@ -30,16 +30,6 @@ public class Weapon : MonoBehaviour
     {
         player = Camera.main.transform;
         animator = GetComponent<Animator>();
-
-        bulletPool = new ObjectPool<GameObject>(
-            createFunc: CreateBullet,
-            actionOnGet: ActivateBullet,
-            actionOnRelease: DeactivateBullet,
-            actionOnDestroy: DestroyBullet,
-            collectionCheck: false,
-            defaultCapacity: 10,
-            maxSize: 20
-        );
     }
 
     public void Initialize(WeaponData weapon)
@@ -52,6 +42,16 @@ public class Weapon : MonoBehaviour
             Debug.LogError("bulletPrefab을 로드할 수 없습니다: " + weaponData.bulletPrefab);
             return;
         }
+
+        bulletPool = new ObjectPool<GameObject>(
+            createFunc: CreateBullet,
+            actionOnGet: ActivateBullet,
+            actionOnRelease: DeactivateBullet,
+            actionOnDestroy: DestroyBullet,
+            collectionCheck: false,
+            defaultCapacity: 10,
+            maxSize: 20
+        );
 
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
         delayAfterReload = new WaitForSeconds(0.3f);
@@ -84,7 +84,7 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator FireCoroutine()
     {
-        isReadyToFire = false; 
+        isReadyToFire = false;
 
         animator.Play("Shot", 0, 0);
 
@@ -105,9 +105,9 @@ public class Weapon : MonoBehaviour
 
         Debug.Log(currentBulletsCount);
 
-        yield return waitForFireDelay; 
+        yield return waitForFireDelay;
 
-        isReadyToFire = true; 
+        isReadyToFire = true;
     }
 
     private IEnumerator ReloadCoroutine()
@@ -127,7 +127,7 @@ public class Weapon : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        transform.localPosition = loweredPosition; 
+        transform.localPosition = loweredPosition;
 
         elapsedTime = 0f;
 
