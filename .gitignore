@@ -75,5 +75,6 @@ crashlytics-build.properties
 /[Aa]ssets/Firebase/
 /[Aa]ssets/Plugins/Firebase/
 
+
 # TestFolder
 /[Aa]ssets/Test/
