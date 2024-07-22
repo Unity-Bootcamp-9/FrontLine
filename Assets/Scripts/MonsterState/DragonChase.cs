@@ -7,7 +7,7 @@ using UnityEngine;
 public class DragonChase : StateMachineBehaviour
 {
     private Vector3 playerPos;
-    private Monster monster;
+    private Monster monster;        
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
