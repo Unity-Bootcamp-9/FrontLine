@@ -8,18 +8,20 @@ public class SpawnManager
 {
     private readonly bool collectionChecks = true;
     private readonly int maxPoolSize = 10;
-    private readonly int maxMonster = 4;
 
-    private IObjectPool<Monster>[] monsterPools;
-    private Transform[] PoolContainers;
+    private Dictionary<int, Transform> poolContainers;
+    private Dictionary<int, IObjectPool<Monster>> monsterPools;
 
     public void Initialize()
     {
-        monsterPools = new IObjectPool<Monster>[maxMonster];
-        PoolContainers = new Transform[maxMonster];
-        for (int i = 1; i < PoolContainers.Length; i++)
+        monsterPools = new Dictionary<int, IObjectPool<Monster>>();
+        poolContainers = new Dictionary<int, Transform>();
+
+        for (int i = 0; i < Managers.DataManager.monsterDatas.Count; i++)
         {
-            PoolContainers[i] = new GameObject($"MonsterPool[{i}]").transform;
+            Monster loadMonster = Resources.Load<Monster>(Managers.DataManager.monsterDatas[i].name);
+            loadMonster.monsterData = Managers.DataManager.monsterDatas[i];
+            MakeObjectPool(loadMonster);
         }
     }
 
@@ -34,13 +36,17 @@ public class SpawnManager
             10,
             maxPoolSize
         );
-        monsterPools[prefab.monsterData.index] = pool;
+        monsterPools.Add(prefab.monsterData.index, pool);
     }
 
     private Monster CreateObject(Monster prefab)
     {
         Monster newMonster = Object.Instantiate(prefab);
-        newMonster.transform.SetParent(PoolContainers[newMonster.monsterData.index]);
+        if (!poolContainers.ContainsKey(newMonster.monsterData.index))
+        {
+            poolContainers.Add(newMonster.monsterData.index, new GameObject($"Monster[{newMonster.monsterData.index}] Pool").transform);
+        }
+        newMonster.transform.SetParent(poolContainers[newMonster.monsterData.index]);
         return newMonster;
     }
 
@@ -70,5 +76,11 @@ public class SpawnManager
     public void ReturnToPool(Monster element, int index)
     {
         monsterPools[index].Release(element);
+    }
+
+    public void ResetPools()
+    {
+        monsterPools.Clear();
+        poolContainers.Clear();
     }
 }
