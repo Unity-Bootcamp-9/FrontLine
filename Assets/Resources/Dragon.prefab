@@ -1364,7 +1364,7 @@ GameObject:
   - component: {fileID: 6208974421100315719}
   - component: {fileID: 4851648475107541035}
   m_Layer: 0
-  m_Name: DragonSoulEaterGreenHP
+  m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
