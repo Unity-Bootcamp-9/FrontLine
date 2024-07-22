@@ -16,13 +16,6 @@ public class SpawnManager
     {
         monsterPools = new Dictionary<int, IObjectPool<Monster>>();
         poolContainers = new Dictionary<int, Transform>();
-
-        for (int i = 0; i < Managers.DataManager.monsterDatas.Count; i++)
-        {
-            Monster loadMonster = Resources.Load<Monster>(Managers.DataManager.monsterDatas[i].name);
-            loadMonster.monsterData = Managers.DataManager.monsterDatas[i];
-            MakeObjectPool(loadMonster);
-        }
     }
 
     public void MakeObjectPool(Monster prefab)
