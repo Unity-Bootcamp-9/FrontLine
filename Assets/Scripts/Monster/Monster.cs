@@ -9,6 +9,7 @@ public class Monster : MonoBehaviour
     private Vector3 playerPos;
     private Animator animator;
     public MonsterData monsterData;
+    public Portal portal;
     private Projectile projectile;
     private int currentHP;
     [SerializeField] private Transform firePos;
