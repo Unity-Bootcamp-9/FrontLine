@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static Define;
+using Slider = UnityEngine.UI.Slider;
 
 public class UI_IngamePopUp : UI_Popup
 {
-    enum sliders
+    enum Sliders
     {
         PlayerHpSlider,
         BulletCheckSlider
@@ -24,12 +26,18 @@ public class UI_IngamePopUp : UI_Popup
             return false;
 
         BindButton(typeof(Buttons));
-        BindSlider(typeof(sliders));
+        BindSlider(typeof(Sliders));
 
         GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon);
-        GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClieckReloadWeapon);
-        GetSlider((int)sliders.PlayerHpSlider).gameObject.BindEvent(PlayerHPSlider);
-        GetSlider((int)sliders.BulletCheckSlider).gameObject.BindEvent(BulletCheckSlider);
+        GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClickReloadWeapon);
+
+        Slider playerhpSlider = GetSlider((int)Sliders.PlayerHpSlider);
+        if (playerhpSlider != null)
+        {
+            playerhpSlider.value = 1f; //이값을 플레이어의 체력을 받아와서
+            //체력을 바꾸는 메서드
+        }
+
 
         return true;
     }
@@ -39,19 +47,15 @@ public class UI_IngamePopUp : UI_Popup
         
     }
 
-    void OnClieckReloadWeapon()
+    void OnClickReloadWeapon()
     {
 
     }
 
-    void PlayerHPSlider()
+    public void UpdatePlayerHpSlider(float hpRatio) //hpRatio는 플레이어의 현재체력 / 플레이어의 최대체력
     {
-
-    }
-    
-    void BulletCheckSlider()
-    {
-
+        Slider playerhpSlider = GetSlider((int)Sliders.PlayerHpSlider);
+        playerhpSlider.value = hpRatio;
     }
 
 }
