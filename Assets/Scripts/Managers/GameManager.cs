@@ -2,12 +2,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
     public WeaponData weaponData;
+    private Weapon currentWeapon;
+
+    private int hp;
+    private float gameTimer;
+    private int score;
     
     private void Start()
     {
-        player = Camera.main.transform.GetChild(0).gameObject;
+        player = Camera.main.transform.GetChild(0).transform;
+    }
+
+    public void Initialize()
+    {
+        hp = 100;
+        gameTimer = 90f;
     }
 
     private void Update()
@@ -15,55 +26,49 @@ public class GameManager : MonoBehaviour
 
     }
 
-    int value = -1;
-    public void ChangeValue()
+    public void SelectWeapon(WeaponData weaponData)
     {
-        value++;
-
-        if(value > 1) 
-        {
-            value = 0;
-        }
-
-        Debug.Log(value);
-    }
-    public void GetData()
-    {
-        if(Managers.DataManager.weaponDatas.Count == 0)
-        {
-            Debug.LogError("No WeaponData");
-        }
-        else
-        {
-            weaponData = Managers.DataManager.weaponDatas[value];
-        }
+        this.weaponData = weaponData;
+        SetWeapon();
     }
 
     public void SetWeapon()
     {
-        GetData();
-
         string path = weaponData.weaponPrefab;
 
-        GameObject gunPrefab = Resources.Load<GameObject>(path);
+        Weapon gunPrefab = Managers.Resource.Load<Weapon>(path);
 
         if (gunPrefab != null)
         {
-            GameObject newGun = Instantiate(gunPrefab);
+            Weapon newGun = Instantiate(gunPrefab);
 
-            Weapon weapon = newGun.GetComponent<Weapon>();
-
-            weapon.Initialize(weaponData);
+            newGun.Initialize(weaponData);
 
             newGun.name = weaponData.weaponName;
 
-            newGun.transform.parent = player.transform; 
+            newGun.transform.parent = player; 
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
+            currentWeapon = newGun;
         }
         else
         {
             Debug.LogError("Failed to load gun prefab.");
         }
+    }
+
+    public bool WeaponIsNotNull()
+    {
+        return currentWeapon != null;
+    }
+
+    private void Dead()
+    {
+        // 게임오버 UI 불러와 게임 오버 처리하기 
+    }
+
+    private void Win()
+    {
+        // 게임 승리 UI 불러와 게임 승리 처리하기
     }
 }

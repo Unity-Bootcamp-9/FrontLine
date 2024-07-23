@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 
 [System.Serializable]
 public struct MonsterData
@@ -30,4 +31,11 @@ public struct WeaponData
     public float range;
     public string bulletVisualFX;
     public int method;
+}
+
+public struct StageData
+{
+    public int stage;
+    public int[] monsterIndexs;
+    public float[] spawnDelays;
 }
