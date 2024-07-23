@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private readonly int MaxHP = 100;
     private readonly int MaxPlayTime = 90;
     private readonly float PortalSpawnTime = 10f;
+    private readonly float MaxXZ = 40f;
 
     private static GameManager _instance;
 
@@ -59,20 +60,20 @@ public class GameManager : MonoBehaviour
         score = 0;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;
-        SetWeapon(Managers.DataManager.weaponDatas[0]); // 나중에 무기 선택 UI에서 실행
         StopCoroutine(GameStart());
         StartCoroutine(GameStart());
     }
 
     IEnumerator GameStart()
     {
-        float portalSpawnTimer = PortalSpawnTime;
+        float portalSpawnTimer = 0f;
         while (gameTimer > 0)
         {
             if (portalSpawnTimer <= 0)
             {
                 Portal portal = new GameObject("Portal").AddComponent<Portal>();
                 portal.Initialize(currentStage.monsterIndexs, currentStage.spawnDelays);
+                portal.transform.position = new Vector3(Random.Range(-MaxXZ, MaxXZ), 0, Random.Range(-MaxXZ, MaxXZ));
                 portals.Add(portal);
                 portalSpawnTimer = PortalSpawnTime;
             }
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
         currentHP -= damage;
         if (currentHP < 0)
             Dead();
+        Debug.Log("피해 입음");
     }
 
     public void GetScore(int score)
