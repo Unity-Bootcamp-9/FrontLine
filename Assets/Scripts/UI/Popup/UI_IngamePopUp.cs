@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -20,6 +21,8 @@ public class UI_IngamePopUp : UI_Popup
         ReloadButton
     }
 
+    private Slider playerHpSlider;
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -31,13 +34,12 @@ public class UI_IngamePopUp : UI_Popup
         GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClickReloadWeapon);
 
-        Slider playerhpSlider = GetSlider((int)Sliders.PlayerHpSlider);
-        if (playerhpSlider != null)
+        playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
+        if (playerHpSlider != null)
         {
-            playerhpSlider.value = 1f; //이값을 플레이어의 체력을 받아와서
-            //체력을 바꾸는 메서드
+            playerHpSlider.interactable = false; // 슬라이더의 상호작용 비활성화
+            playerHpSlider.value = 1f; // 초기값 설정 (플레이어의 체력으로 대체 가능)
         }
-
 
         return true;
     }
@@ -52,10 +54,12 @@ public class UI_IngamePopUp : UI_Popup
 
     }
 
+
     public void UpdatePlayerHpSlider(float hpRatio) //hpRatio는 플레이어의 현재체력 / 플레이어의 최대체력
     {
         Slider playerhpSlider = GetSlider((int)Sliders.PlayerHpSlider);
         playerhpSlider.value = hpRatio;
+
     }
 
 }
