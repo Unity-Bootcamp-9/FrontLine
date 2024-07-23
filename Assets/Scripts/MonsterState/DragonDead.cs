@@ -7,7 +7,7 @@ public class DragonDead : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Monster myMonster = animator.GetComponent<Monster>();
-        Managers.SpawnManager.ReturnToPool(myMonster, myMonster.monsterData.index);
+        myMonster.portal.ReturnToPool(myMonster, myMonster.monsterData.index);
         animator.SetBool("CanAttack", false);
         animator.SetBool("Move", false);
         animator.SetBool("Chase", false);

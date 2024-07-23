@@ -1,38 +1,88 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     public Transform player;
-    public WeaponData weaponData;
     private Weapon currentWeapon;
+    private StageData currentStage;
+    private List<Portal> portals;
 
-    private int hp;
+    private int currentHP;
     private float gameTimer;
     private int score;
-    
+
+    private readonly int MaxHP = 100;
+    private readonly int MaxPlayTime = 90;
+    private readonly float PortalSpawnTime = 10f;
+
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject singletonObject = new GameObject();
+                _instance = singletonObject.AddComponent<GameManager>();
+                singletonObject.name = typeof(GameManager).ToString();
+
+                DontDestroyOnLoad(singletonObject);
+            }
+            return _instance;
+        }
+    }
+
     private void Start()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        portals = new List<Portal>();
         player = Camera.main.transform.GetChild(0).transform;
     }
 
-    public void Initialize()
+    public void Initialize(StageData stageData)
     {
-        hp = 100;
-        gameTimer = 90f;
+        score = 0;
+        currentHP = MaxHP;
+        gameTimer = MaxPlayTime;
+        SetWeapon(Managers.DataManager.weaponDatas[0]); // 나중에 무기 선택 UI에서 실행
+        StopCoroutine(GameStart());
+        StartCoroutine(GameStart());
     }
 
-    private void Update()
+    IEnumerator GameStart()
     {
-
+        float portalSpawnTimer = PortalSpawnTime;
+        while (gameTimer > 0)
+        {
+            if (portalSpawnTimer <= 0)
+            {
+                Portal portal = new GameObject("Portal").AddComponent<Portal>();
+                portal.Initialize(currentStage.monsterIndexs, currentStage.spawnDelays);
+                portals.Add(portal);
+                portalSpawnTimer = PortalSpawnTime;
+            }
+            yield return null;
+            gameTimer -= Time.deltaTime;
+            portalSpawnTimer -= Time.deltaTime;
+        }
+        Win();
     }
 
-    public void SelectWeapon(WeaponData weaponData)
-    {
-        this.weaponData = weaponData;
-        SetWeapon();
-    }
-
-    public void SetWeapon()
+    private void SetWeapon(WeaponData weaponData)
     {
         string path = weaponData.weaponPrefab;
 
@@ -46,7 +96,7 @@ public class GameManager : MonoBehaviour
 
             newGun.name = weaponData.weaponName;
 
-            newGun.transform.parent = player; 
+            newGun.transform.parent = player;
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
             currentWeapon = newGun;
@@ -62,13 +112,38 @@ public class GameManager : MonoBehaviour
         return currentWeapon != null;
     }
 
+    public void GetDamage(int damage)
+    {
+        currentHP -= damage;
+        if (currentHP < 0)
+            Dead();
+    }
+
+    public void GetScore(int score)
+    {
+        this.score += score;
+    }
+
     private void Dead()
     {
+        for(int i = 0; i < portals.Count; i++)
+        {
+            portals[i].StopSpawn();
+        }
+        portals.Clear();
+
+        StopCoroutine(GameStart());
         // 게임오버 UI 불러와 게임 오버 처리하기 
     }
 
     private void Win()
     {
+        for (int i = 0; i < portals.Count; i++)
+        {
+            portals[i].StopSpawn();
+        }
+        portals.Clear();
+
         // 게임 승리 UI 불러와 게임 승리 처리하기
     }
 }
