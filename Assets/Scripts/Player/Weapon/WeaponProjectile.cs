@@ -8,13 +8,17 @@ public class WeaponProjectile : MonoBehaviour
     private float bulletSpeed;
     private Vector3 shootDirection;
     private ObjectPool<GameObject> pool;
+    private int attackDamage;
     private const float lifeTime = 5f;
     private float elapsedTime;
+    Weapon.Method currentMethod;
 
-    public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed)
+    public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method)
     {
         this.pool = _pool;
         this.bulletSpeed = _bulletSpeed;
+        this.attackDamage = _attackDamage;
+        this.currentMethod = _method;
     }
 
     private void OnEnable()
@@ -32,6 +36,20 @@ public class WeaponProjectile : MonoBehaviour
         if (elapsedTime > lifeTime)
         {
             pool.Release(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(currentMethod == Weapon.Method.projectile)
+        {
+            if(other.CompareTag("Monster"))
+            {
+                if(other.TryGetComponent<Monster>(out Monster hitTarget))
+                {
+                    hitTarget.GetDamage(attackDamage);
+                }
+            }
         }
     }
 }
