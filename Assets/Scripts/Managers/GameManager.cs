@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
         score = 0;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;
-        SetWeapon(Managers.DataManager.weaponDatas[0]); // 나중에 무기 선택 UI에서 실행
         StopCoroutine(GameStart());
         StartCoroutine(GameStart());
     }
@@ -120,6 +119,7 @@ public class GameManager : MonoBehaviour
         currentHP -= damage;
         if (currentHP < 0)
             Dead();
+        Debug.Log("피해 입음");
     }
 
     public void GetScore(int score)
