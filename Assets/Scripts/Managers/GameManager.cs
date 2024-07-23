@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
-    public WeaponData weaponData;
+    public Transform player;
+    public WeaponData weaponData { get; set; }
+    private Weapon currentWeapon;
+    private int hp;
     
     private void Start()
     {
-        player = Camera.main.transform.GetChild(0).gameObject;
+        player = Camera.main.transform.GetChild(0).transform;
+    }
+
+    public void Initialize()
+    {
+        hp = 100;
     }
 
     private void Update()
@@ -15,51 +22,25 @@ public class GameManager : MonoBehaviour
 
     }
 
-    int value = -1;
-    public void ChangeValue()
-    {
-        value++;
-
-        if(value > 1) 
-        {
-            value = 0;
-        }
-
-        Debug.Log(value);
-    }
-    public void GetData()
-    {
-        if(Managers.DataManager.weaponDatas.Count == 0)
-        {
-            Debug.LogError("No WeaponData");
-        }
-        else
-        {
-            weaponData = Managers.DataManager.weaponDatas[value];
-        }
-    }
 
     public void SetWeapon()
     {
-        GetData();
-
         string path = weaponData.weaponPrefab;
 
-        GameObject gunPrefab = Resources.Load<GameObject>(path);
+        Weapon gunPrefab = Resources.Load<Weapon>(path);
 
         if (gunPrefab != null)
         {
-            GameObject newGun = Instantiate(gunPrefab);
+            Weapon newGun = Instantiate(gunPrefab);
 
-            Weapon weapon = newGun.GetComponent<Weapon>();
-
-            weapon.Initialize(weaponData);
+            newGun.Initialize(weaponData);
 
             newGun.name = weaponData.weaponName;
 
-            newGun.transform.parent = player.transform; 
+            newGun.transform.parent = player; 
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
+            currentWeapon = newGun;
         }
         else
         {
