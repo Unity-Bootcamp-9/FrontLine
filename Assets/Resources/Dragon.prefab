@@ -1422,7 +1422,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 124cf670c6ab74d46995cd147a7ec111, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1444,13 +1444,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterData:
     index: 0
-    attackDamage: 0
-    attackRange: 0
-    hp: 0
-    moveSpeed: 0
-    name: 
-    projectile: 
-    sound: 
+    attackDamage: 10
+    attackRange: 30
+    hp: 100
+    moveSpeed: 15
+    name: Dragon
+    projectile: S_Fireball_01
+    sound: None
+  portal: {fileID: 0}
   firePos: {fileID: 5824389741282598595}
 --- !u!54 &4851648475107541035
 Rigidbody:
