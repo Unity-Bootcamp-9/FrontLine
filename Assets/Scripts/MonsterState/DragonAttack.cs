@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class DragonAttack : StateMachineBehaviour
 {
-    private Vector3 playerPos;
     private Monster monster;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerPos = Camera.main.transform.position;
-        monster = animator.GetComponent<Monster>();
-        monster.Attack(playerPos);
-        monster.SetAnimator("Move", true);
+        if (monster == null)
+            monster = animator.GetComponent<Monster>();
+        monster.Attack();
+        animator.SetBool("Move", true);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        monster.SetAnimator("CanAttack", false);
+        animator.SetBool("CanAttack", false);
     }
 
 }

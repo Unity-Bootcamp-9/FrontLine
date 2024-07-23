@@ -9,7 +9,8 @@ public class Projectile : MonoBehaviour
     public float speed;
     private Vector3 targetPos;
     private Vector3 startPos;
-    public float timeCount;
+    private float timeCount;
+    private float lerpT;
 
     private void OnEnable()
     {
@@ -25,8 +26,13 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(startPos, targetPos, timeCount * speed);
+        lerpT = timeCount * speed;
+        transform.position = Vector3.Lerp(startPos, targetPos, lerpT);
         timeCount += Time.deltaTime;
+        if (lerpT >= 1)
+        {
+            Destroy(this);
+        }
     }
 
 }

@@ -6,27 +6,31 @@ using UnityEngine;
 
 public class DragonChase : StateMachineBehaviour
 {
-    private Vector3 playerPos;
-    private Monster monster;        
+    private Monster monster;
+    private Rigidbody rigidbody;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerPos = Camera.main.transform.position;
-        monster = animator.GetComponent<Monster>();
-        monster.LerpRotate(playerPos, () => monster.SetVelocityMoveSpeed(), 1f);
+        if(rigidbody == null)
+            rigidbody = animator.GetComponent<Rigidbody>();
+        if(monster == null)
+            monster = animator.GetComponent<Monster>();
+
+        monster.LerpRotate(Camera.main.transform.position, () =>
+        rigidbody.velocity = monster.transform.forward * monster.monsterData.moveSpeed, 1f);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(monster.CanAttack(playerPos))
+        if(monster.CanAttack())
         {
-            monster.SetAnimator("CanAttack", true);
+            animator.SetBool("CanAttack", true);
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        monster.SetAnimator("Chase", false);
-        monster.SetVelocityZero();
+        animator.SetBool("Chase", false);
+        rigidbody.velocity = Vector3.zero;
     }
 }

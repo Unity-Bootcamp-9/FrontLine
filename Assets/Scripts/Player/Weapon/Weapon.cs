@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
+using UnityEngineInternal;
 
 public class Weapon : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ObjectPool<GameObject> bulletPool;
 
-    private enum Method
+    public enum Method
     {
         hitScan = 1,
         projectile = 2
@@ -93,9 +94,13 @@ public class Weapon : MonoBehaviour
         if (currentMethod == Method.hitScan)
         {
             RaycastHit hit;
+
             if (Physics.Raycast(player.position, player.forward, out hit, 20f))
             {
-                Debug.Log(hit.transform.gameObject.name);
+                if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
+                {
+                    hitTarget.GetDamage(weaponData.attackDamage);
+                }
             }
         }
 
@@ -153,7 +158,7 @@ public class Weapon : MonoBehaviour
     private GameObject CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed);
+        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod);
         return bullet;
     }
 
