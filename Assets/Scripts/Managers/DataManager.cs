@@ -6,6 +6,8 @@ public class DataManager
 {
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
+    public List<StageData> stageDatas;
+
     public void Initialize()
     {
         Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
@@ -32,6 +34,10 @@ public class DataManager
         else if (typeof(T) == typeof(WeaponData))
         {
             weaponDatas = datas as List<WeaponData>;
+        }
+        else if (typeof(T) == typeof(StageData))
+        {
+            stageDatas = datas as List<StageData>;
         }
     }
 }

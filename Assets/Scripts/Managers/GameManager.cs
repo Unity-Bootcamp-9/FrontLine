@@ -1,38 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     public Transform player;
-    public WeaponData weaponData;
-    private Weapon currentWeapon;
 
-    private int hp;
+    private Weapon currentWeapon;
+    private StageData currentStage;
+    private List<Portal> portals;
+
+    private int currentHP;
     private float gameTimer;
     private int score;
-    
+
+    private readonly int MaxHP = 100;
+    private readonly int MaxPlayTime = 90;
+    private readonly float PortalSpawnTime = 10f;
+
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject singletonObject = new GameObject();
+                _instance = singletonObject.AddComponent<GameManager>();
+                singletonObject.name = typeof(GameManager).ToString();
+
+                DontDestroyOnLoad(singletonObject);
+            }
+            return _instance;
+        }
+    }
+
     private void Start()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        portals = new List<Portal>();
         player = Camera.main.transform.GetChild(0).transform;
     }
 
-    public void Initialize()
+    public void Initialize(StageData stageData)
     {
-        hp = 100;
-        gameTimer = 90f;
+        score = 0;
+        currentHP = MaxHP;
+        gameTimer = MaxPlayTime;
+        SetWeapon(Managers.DataManager.weaponDatas[0]); // ë‚˜ì¤‘ì— ë¬´ê¸° ì„ íƒ UIì—ì„œ ì‹¤í–‰
+        StopCoroutine(GameStart());
+        StartCoroutine(GameStart());
     }
 
-    private void Update()
-    {
-
-    }
-
-    public void SelectWeapon(WeaponData weaponData)
-    {
-        this.weaponData = weaponData;
-        SetWeapon();
-    }
-
-    public void SetWeapon()
+    IEnumerator GameStart()
     {
         string path = weaponData.weaponPrefab;
 
@@ -46,7 +78,6 @@ public class GameManager : MonoBehaviour
 
             newGun.name = weaponData.weaponName;
 
-            newGun.transform.parent = player; 
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
             currentWeapon = newGun;
@@ -62,13 +93,11 @@ public class GameManager : MonoBehaviour
         return currentWeapon != null;
     }
 
-    private void Dead()
-    {
-        // °ÔÀÓ¿À¹ö UI ºÒ·¯¿Í °ÔÀÓ ¿À¹ö Ã³¸®ÇÏ±â 
+        // ê²Œì„ì˜¤ë²„ UI ë¶ˆëŸ¬ì™€ ê²Œì„ ì˜¤ë²„ ì²˜ë¦¬í•˜ê¸° 
     }
 
     private void Win()
     {
-        // °ÔÀÓ ½Â¸® UI ºÒ·¯¿Í °ÔÀÓ ½Â¸® Ã³¸®ÇÏ±â
+        // ê²Œì„ ìŠ¹ë¦¬ UI ë¶ˆëŸ¬ì™€ ê²Œì„ ìŠ¹ë¦¬ ì²˜ë¦¬í•˜ê¸°
     }
 }
