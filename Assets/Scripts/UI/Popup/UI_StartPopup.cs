@@ -25,8 +25,7 @@ public class UI_StartPopUp : UI_Popup
 
     void OnClickStartButton()
     {
-        Debug.Log("게임시작");
         Managers.UI.ClosePopupUI(this); // UI_TitlePopup
-        Managers.UI.ShowPopupUI<UI_IngamePopUp>();
+        Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
     }
 }
