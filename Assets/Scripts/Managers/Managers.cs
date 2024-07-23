@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
 
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
+    public List<StageData> stageDatas;
 
     public static Managers Instance
     {
@@ -59,6 +60,7 @@ public class Managers : MonoBehaviour
         yield return new WaitForSeconds(5f);
         monsterDatas = DataManager.monsterDatas;
         weaponDatas = DataManager.weaponDatas;
+        stageDatas = DataManager.stageDatas;
     }
 
     public void Initialize()

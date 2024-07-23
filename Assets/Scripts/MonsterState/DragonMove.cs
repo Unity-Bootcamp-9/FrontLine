@@ -21,8 +21,8 @@ public class DragonMove : StateMachineBehaviour
 
         moveVector = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.1f, 0.1f), Random.Range(-0.3f, 0.3f));
         timeCount = 0f;
-        moveDuration = Random.Range(0.5f, 1.5f);
-        monster.LerpRotate(monster.transform.position + moveVector, () =>
+        moveDuration = Random.Range(1f, 1.5f);
+        monster.LerpRotate(monster.transform.position + moveVector.normalized, () =>
         rigidbody.velocity = monster.transform.forward * monster.monsterData.moveSpeed, 1f);
     }
 
