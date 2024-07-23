@@ -3,9 +3,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Transform player;
-    public WeaponData weaponData { get; set; }
+    public WeaponData weaponData;
     private Weapon currentWeapon;
+
     private int hp;
+    private float gameTimer;
+    private int score;
     
     private void Start()
     {
@@ -15,6 +18,7 @@ public class GameManager : MonoBehaviour
     public void Initialize()
     {
         hp = 100;
+        gameTimer = 90f;
     }
 
     private void Update()
@@ -22,12 +26,17 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SelectWeapon(WeaponData weaponData)
+    {
+        this.weaponData = weaponData;
+        SetWeapon();
+    }
 
     public void SetWeapon()
     {
         string path = weaponData.weaponPrefab;
 
-        Weapon gunPrefab = Resources.Load<Weapon>(path);
+        Weapon gunPrefab = Managers.Resource.Load<Weapon>(path);
 
         if (gunPrefab != null)
         {
@@ -46,5 +55,20 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Failed to load gun prefab.");
         }
+    }
+
+    public bool WeaponIsNotNull()
+    {
+        return currentWeapon != null;
+    }
+
+    private void Dead()
+    {
+        // 게임오버 UI 불러와 게임 오버 처리하기 
+    }
+
+    private void Win()
+    {
+        // 게임 승리 UI 불러와 게임 승리 처리하기
     }
 }
