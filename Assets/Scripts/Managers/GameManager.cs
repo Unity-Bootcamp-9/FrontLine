@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private readonly int MaxHP = 100;
     private readonly int MaxPlayTime = 90;
     private readonly float PortalSpawnTime = 10f;
+    private readonly float MaxXZ = 40f;
 
     private static GameManager _instance;
 
@@ -66,13 +67,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameStart()
     {
-        float portalSpawnTimer = PortalSpawnTime;
+        float portalSpawnTimer = 0f;
         while (gameTimer > 0)
         {
             if (portalSpawnTimer <= 0)
             {
                 Portal portal = new GameObject("Portal").AddComponent<Portal>();
                 portal.Initialize(currentStage.monsterIndexs, currentStage.spawnDelays);
+                portal.transform.position = new Vector3(Random.Range(-MaxXZ, MaxXZ), 0, Random.Range(-MaxXZ, MaxXZ));
                 portals.Add(portal);
                 portalSpawnTimer = PortalSpawnTime;
             }
