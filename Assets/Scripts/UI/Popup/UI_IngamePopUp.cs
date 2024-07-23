@@ -22,6 +22,7 @@ public class UI_IngamePopUp : UI_Popup
     }
 
     private Slider playerHpSlider;
+    private Slider weaponBulletCheck;
 
     public override bool Init()
     {
@@ -38,8 +39,16 @@ public class UI_IngamePopUp : UI_Popup
         if (playerHpSlider != null)
         {
             playerHpSlider.interactable = false; // 슬라이더의 상호작용 비활성화
-            playerHpSlider.value = 1f; // 초기값 설정 (플레이어의 체력으로 대체 가능)
+            playerHpSlider.value = 1f; // 초기값 설정 (플레이어의 체력으로 대체)
         }
+
+        weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
+        if (weaponBulletCheck != null)
+        {
+            weaponBulletCheck.interactable = false; // 슬라이더의 상호작용 비활성화
+            weaponBulletCheck.value = 1f; // 초기값 설정 (무기 잔탄으로 대체)
+        }
+
 
         return true;
     }
@@ -59,6 +68,13 @@ public class UI_IngamePopUp : UI_Popup
     {
         Slider playerhpSlider = GetSlider((int)Sliders.PlayerHpSlider);
         playerhpSlider.value = hpRatio;
+
+    }
+
+    public void UpdateWeaponBulletCheck(int bulletcheck) //weaponBulletCheck는 무기의 현재잔탄 / 무기의 최대장전 수
+    {
+        Slider weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
+        weaponBulletCheck.value = bulletcheck;
 
     }
 

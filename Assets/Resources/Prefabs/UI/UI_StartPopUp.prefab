@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 701644177774258376}
   - component: {fileID: 885409252668710372}
   - component: {fileID: 6815142496222674447}
+  - component: {fileID: 4938228588382209755}
   m_Layer: 5
   m_Name: GameStartButton
   m_TagString: Untagged
@@ -196,6 +197,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4938228588382209755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230416699062483845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c50a68a91c8684ea50930903f1e032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4455285998802974689
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +356,7 @@ GameObject:
   - component: {fileID: 8218734058248455622}
   - component: {fileID: 7674782669125174097}
   - component: {fileID: 5041148776550845591}
+  - component: {fileID: 4508808738922891081}
   m_Layer: 5
   m_Name: UI_StartPopUp
   m_TagString: Untagged
@@ -434,3 +448,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4508808738922891081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632263027477946475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b530e14667fc348a8d4487565bb789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -34,12 +34,17 @@ public abstract class UI_Base : MonoBehaviour
 
 		for (int i = 0; i < names.Length; i++)
 		{
-			if (typeof(T) == typeof(GameObject))
+            if (typeof(T) == typeof(GameObject))
+			{
 				objects[i] = Utils.FindChild(gameObject, names[i], true);
+				Debug.Log($"Binding GameObject {names[i]}: {objects[i]}");
+			}
 			else
+			{
 				objects[i] = Utils.FindChild<T>(gameObject, names[i], true);
-
-			if (objects[i] == null)
+				Debug.Log($"Binding Component {names[i]}: {objects[i]}");
+            }
+            if (objects[i] == null)
 				Debug.Log($"Failed to bind({names[i]})");
 		}
 	}

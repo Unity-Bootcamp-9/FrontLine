@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3231250339025060249}
   - component: {fileID: 2705958457441963731}
   - component: {fileID: 5306524521585356939}
+  - component: {fileID: 8067181470351324837}
   m_Layer: 5
   m_Name: UI_IngamePopUp
   m_TagString: Untagged
@@ -108,6 +109,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8067181470351324837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276027314160348167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1afc4b2fa4a5242ac9481a96c33a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1080165853703749726
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +133,7 @@ GameObject:
   - component: {fileID: 3282226389789736029}
   - component: {fileID: 3392682946867114960}
   - component: {fileID: 8084273575795078963}
+  - component: {fileID: 5317024172819893398}
   m_Layer: 5
   m_Name: ReloadButton
   m_TagString: Untagged
@@ -228,6 +242,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5317024172819893398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080165853703749726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c50a68a91c8684ea50930903f1e032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1629493965001256555
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3816144632933678289}
   - component: {fileID: 7455308195141658012}
+  - component: {fileID: 4855057481465675802}
   m_Layer: 5
   m_Name: BulletCheckSlider
   m_TagString: Untagged
@@ -353,6 +380,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4855057481465675802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2782402651703457736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c50a68a91c8684ea50930903f1e032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2903661468345891210
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +818,7 @@ GameObject:
   - component: {fileID: 1739061526312086887}
   - component: {fileID: 5739654274108980164}
   - component: {fileID: 8530324380052790573}
+  - component: {fileID: 6536641096491364516}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -887,6 +927,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6536641096491364516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265839534930241565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c50a68a91c8684ea50930903f1e032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6530731412653544486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273493122467837384}
   - component: {fileID: 9042947331839845708}
+  - component: {fileID: 9014601729220290695}
   m_Layer: 5
   m_Name: PlayerHpSlider
   m_TagString: Untagged
@@ -1185,6 +1238,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9014601729220290695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732212385293208841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c50a68a91c8684ea50930903f1e032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8650146814559100873
 GameObject:
   m_ObjectHideFlags: 0
