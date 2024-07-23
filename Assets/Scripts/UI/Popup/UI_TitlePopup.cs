@@ -6,20 +6,10 @@ using static Define;
 
 public class UI_TitlePopup : UI_Popup
 {
-	enum Texts
-	{
-		TouchToStartText,
-		StartButtonText,
-		ContinueButtonText,
-		CollectionButtonText,
-		//DataResetConfirmText
-	}
 
 	enum Buttons
 	{
-		StartButton,
-		ContinueButton,
-		CollectionButton
+		StartButton
 	}
 
 	public override bool Init()
@@ -30,17 +20,15 @@ public class UI_TitlePopup : UI_Popup
 		BindButton(typeof(Buttons)); 
 
 		GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnClickStartButton);
-
-
+		
 		return true;
 	}
 
 	void OnClickStartButton()
 	{
 		Debug.Log("OnClickStartButton");
-
-		Managers.UI.ClosePopupUI(this); // UI_TitlePopup
-		//Managers.UI.ShowPopupUI<UI_NamePopup>();
+		
+		Managers.UI.ClosePopupUI(this);
 		
 	}
 }
