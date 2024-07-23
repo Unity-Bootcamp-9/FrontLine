@@ -7,14 +7,21 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed;
+    public int damage { get; private set; }
     private Vector3 targetPos;
     private Vector3 startPos;
     private float timeCount;
     private float lerpT;
 
+
     private void OnEnable()
     {
         timeCount = 0;
+    }
+
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
     }
 
     public void SetTarget(Vector3 _startPos, Vector3 target)
@@ -31,7 +38,15 @@ public class Projectile : MonoBehaviour
         timeCount += Time.deltaTime;
         if (lerpT >= 1)
         {
-            Destroy(this);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.GetDamage(damage);
         }
     }
 

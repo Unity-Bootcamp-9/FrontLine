@@ -51,11 +51,13 @@ public class Monster : MonoBehaviour
         {
             Projectile newProjectile = Instantiate(projectile);
             newProjectile.SetTarget(firePos.position, playerPos);
+            newProjectile.SetDamage(monsterData.attackDamage);
         }
         else
         {
             // 근접공격 로직
             // 플레이어에게 데미지를 주는 코드를 작성
+            GameManager.Instance.GetDamage(monsterData.attackDamage);
 
         }
     }
