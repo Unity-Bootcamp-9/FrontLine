@@ -1,50 +1,33 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    private Vector3 playerPos;
     private Animator animator;
     public MonsterData monsterData;
-    private Rigidbody rigidbody;
     private Projectile projectile;
-    [SerializeField]
-    private Transform firePos;
+    private int currentHP;
+    [SerializeField] private Transform firePos;
 
     private void Start()
     {
+        playerPos = Camera.main.transform.position;
         projectile = Resources.Load<Projectile>(monsterData.projectile);
+        animator = GetComponent<Animator>();
     }
+
     private void OnEnable()
     {
-        animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
+        currentHP = monsterData.hp;
     }
 
-    public void SetVelocityMoveSpeed()
+    public bool CanAttack()
     {
-        rigidbody.velocity = transform.forward * monsterData.moveSpeed;
-    }
-
-    public void SetVelocityZero()
-    {
-        rigidbody.velocity = Vector3.zero;
-    }
-
-    public void LookAt(Vector3 pos)
-    {
-        transform.LookAt(pos);
-    }
-
-    public void SetAnimator(string parameter, bool value)
-    {
-        animator.SetBool(parameter, value);
-    }
-
-    public bool CanAttack(Vector3 targetPos)
-    {
-        if (Vector3.Distance(transform.position, targetPos) <= monsterData.attackRange)
+        if (Vector3.Distance(transform.position, playerPos) <= monsterData.attackRange)
         {
             return true;
         }
@@ -61,12 +44,12 @@ public class Monster : MonoBehaviour
         transform.DORotate(targetEulerAngles, duration).SetEase(Ease.Linear).OnComplete(callback);
     }
 
-    public void Attack(Vector3 target)
+    public void Attack()
     {
         if (monsterData.attackRange >= 20)
         {
             Projectile newProjectile = Instantiate(projectile);
-            newProjectile.SetTarget(firePos.position, target);
+            newProjectile.SetTarget(firePos.position, playerPos);
         }
         else
         {
@@ -74,6 +57,13 @@ public class Monster : MonoBehaviour
             // 플레이어에게 데미지를 주는 코드를 작성
 
         }
+    }
+
+    public void GetDamage(int damage)
+    {
+        currentHP -= damage;
+        if (currentHP <= 0)
+            animator.SetTrigger("Dead");
     }
 
 }

@@ -123,6 +123,182 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &143657814
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 241985949516076670, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: monsterData.moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035340801813807993, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_Name
+      value: Watcher_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703791457758140867, guid: c4af682be65ae26478eefbc1f12c90a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4af682be65ae26478eefbc1f12c90a1, type: 3}
+--- !u!1001 &187040202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5255722807018501871, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_Name
+      value: Dragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015536943543477956, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.name
+      value: Dragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.moveSpeed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.projectile
+      value: S_Fireball_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.attackRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208974421100315719, guid: 3ebb6742178f5d4408f6fd1c4e0e9159,
+        type: 3}
+      propertyPath: monsterData.attackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ebb6742178f5d4408f6fd1c4e0e9159, type: 3}
 --- !u!1 &462599949
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +578,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e35e3a0566cf64e99b4a29983aad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData:
+    index: 0
+    attackDamage: 0
+    attackRange: 0
+    hp: 0
+    moveSpeed: 0
+    name: 
+    projectile: 
+    sound: 
   firePos: {fileID: 1439265305}
 --- !u!54 &1738918778
 Rigidbody:
@@ -1395,3 +1580,5 @@ SceneRoots:
   - {fileID: 1684824640}
   - {fileID: 462599951}
   - {fileID: 3568255998917774388}
+  - {fileID: 143657814}
+  - {fileID: 187040202}
