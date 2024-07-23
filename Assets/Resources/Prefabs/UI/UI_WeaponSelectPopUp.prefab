@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5512939248331169908}
   - component: {fileID: 1050358813453657864}
   m_Layer: 5
-  m_Name: Weapon2Button (1)
+  m_Name: Weapon3Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 2398078508903648589}
   - component: {fileID: 2913663409662961034}
   m_Layer: 5
-  m_Name: Weapon2Button (2)
+  m_Name: Weapon4Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

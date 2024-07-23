@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,47 +26,28 @@ public class UI_WeaponSelectPopUp : UI_Popup
             return false;
 
         BindButton(typeof(Buttons));
-        GetButton((int)Buttons.Weapon1Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon1Button));
-        GetButton((int)Buttons.Weapon2Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon2Button));
-        GetButton((int)Buttons.Weapon3Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon3Button));
-        GetButton((int)Buttons.Weapon4Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon4Button));
+        BindButton(typeof(Buttons));
+        GetButton((int)Buttons.Weapon1Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon1Button, 0));
+        GetButton((int)Buttons.Weapon2Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon2Button, 1));
+        GetButton((int)Buttons.Weapon3Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon3Button, 2));
+        GetButton((int)Buttons.Weapon4Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon4Button, 3));
 
         return true;
     }
 
-    void SelectWeapon(Buttons weapon)
+    void SelectWeapon(Buttons weapon, int weaponId)
     {
         _selectedWeapon = weapon;
-        GameStart();
+        GameStart(weaponId);
     }
 
-    void GameStart()
+    void GameStart(int weaponId)
     {
-        switch (_selectedWeapon)
-        {
-            case Buttons.Weapon1Button:
-                Debug.Log("Weapon 1 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_IngamePopUp>();
-                break;
-            case Buttons.Weapon2Button:
-                Debug.Log("Weapon 2 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_IngamePopUp>();
-                break;
-            case Buttons.Weapon3Button:
-                Debug.Log("Weapon 3 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_IngamePopUp>();
-                break;
-            case Buttons.Weapon4Button:
-                Debug.Log("Weapon 4 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_IngamePopUp>();
-                break;
-            default:
-                Debug.LogWarning("Invalid Weapon Selected");
-                break;
-        }
+        WeaponData weaponData = Managers.DataManager.weaponDatas[weaponId];
+        GameManager.Instance.SetWeapon(weaponData);
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_IngamePopUp>();
     }
+    
 }
+

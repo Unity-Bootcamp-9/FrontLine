@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         Win();
     }
 
-    private void SetWeapon(WeaponData weaponData)
+    public void SetWeapon(WeaponData weaponData)
     {
         string path = weaponData.weaponPrefab;
 
