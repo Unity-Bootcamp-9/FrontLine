@@ -47,6 +47,7 @@ public class UI_WeaponSelectPopUp : UI_Popup
         GameManager.Instance.SetWeapon(weaponData);
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_IngamePopUp>();
+        GameManager.Instance.Initialize(Managers.DataManager.stageDatas[0]);
     }
     
 }

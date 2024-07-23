@@ -100,6 +100,7 @@ public class Weapon : MonoBehaviour
                 if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
+                    
                 }
             }
         }
