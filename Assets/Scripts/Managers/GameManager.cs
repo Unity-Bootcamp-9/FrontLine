@@ -50,11 +50,12 @@ public class GameManager : MonoBehaviour
         }
 
         portals = new List<Portal>();
-        player = Camera.main.transform.GetChild(0).transform;
+        player = Camera.main.transform;
     }
 
     public void Initialize(StageData stageData)
     {
+        currentStage = stageData;
         score = 0;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;

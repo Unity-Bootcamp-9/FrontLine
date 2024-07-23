@@ -14,16 +14,19 @@ public class Portal : MonoBehaviour
 
     public void MakeObjectPool(Monster prefab)
     {
-        IObjectPool<Monster> pool = new ObjectPool<Monster>(
-            () => CreateObject(prefab),
-            OnTakeFromPool,
-            OnReturnedToPool,
-            OnDestroyPoolObject,
-            collectionChecks,
-            10,
-            maxPoolSize
-        );
-        monsterPools.Add(prefab.monsterData.index, pool);
+        if (!monsterPools.ContainsKey(prefab.monsterData.index))
+        {
+            IObjectPool<Monster> pool = new ObjectPool<Monster>(
+                () => CreateObject(prefab),
+                OnTakeFromPool,
+                OnReturnedToPool,
+                OnDestroyPoolObject,
+                collectionChecks,
+                10,
+                maxPoolSize
+            );
+            monsterPools.Add(prefab.monsterData.index, pool);
+        }
     }
 
     private Monster CreateObject(Monster prefab)
@@ -71,7 +74,7 @@ public class Portal : MonoBehaviour
         poolContainers.Clear();
     }
 
-    public void InitializePool(int[] monsterIndexs, float[] spawnDelays)
+    public void InitializePool(int[] monsterIndexs)
     {
         for (int i = 0; i < monsterIndexs.Length; i++)
         {
@@ -83,6 +86,7 @@ public class Portal : MonoBehaviour
 
     public void Initialize(int[] monsterIndexs, float[] spawnDelays)
     {
+        InitializePool(monsterIndexs);
         for (int i = 0; i < monsterIndexs.Length; i++)
         {
             StartCoroutine(SpawnMonster(monsterIndexs[i], spawnDelays[i]));

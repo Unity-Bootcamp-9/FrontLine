@@ -12,6 +12,7 @@ public class DataManager
     {
         Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
         Managers.FirebaseManager.GetDataFromTable("Weapon", LoadData<WeaponData>);
+        Managers.FirebaseManager.GetDataFromTable("StageData", LoadData<StageData>);
     }
 
     public void LoadData<T>(List<string> datas) where T : struct
