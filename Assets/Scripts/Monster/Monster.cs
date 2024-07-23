@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -9,14 +10,19 @@ public class Monster : MonoBehaviour
     private Animator animator;
     public MonsterData monsterData;
     private Projectile projectile;
-    [SerializeField]
-    private Transform firePos;
+    private int currentHP;
+    [SerializeField] private Transform firePos;
 
     private void Start()
     {
         playerPos = Camera.main.transform.position;
         projectile = Resources.Load<Projectile>(monsterData.projectile);
         animator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        currentHP = monsterData.hp;
     }
 
     public bool CanAttack()
@@ -51,6 +57,13 @@ public class Monster : MonoBehaviour
             // 플레이어에게 데미지를 주는 코드를 작성
 
         }
+    }
+
+    public void GetDamage(int damage)
+    {
+        currentHP -= damage;
+        if (currentHP <= 0)
+            animator.SetTrigger("Dead");
     }
 
 }
