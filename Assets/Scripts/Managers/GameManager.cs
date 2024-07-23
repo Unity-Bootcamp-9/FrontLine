@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,38 +12,70 @@ public class GameManager : MonoBehaviour
     private List<Portal> portals;
 
     private int currentHP;
-    private int gameTimer;
+    private float gameTimer;
     private int score;
 
     private readonly int MaxHP = 100;
     private readonly int MaxPlayTime = 90;
 
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject singletonObject = new GameObject();
+                _instance = singletonObject.AddComponent<GameManager>();
+                singletonObject.name = typeof(GameManager).ToString();
+
+                DontDestroyOnLoad(singletonObject);
+            }
+            return _instance;
+        }
+    }
+
     private void Start()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         portals = new List<Portal>();
         player = Camera.main.transform.GetChild(0).transform;
     }
 
     public void Initialize(StageData stageData)
     {
+        score = 0;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;
         SetWeapon(Managers.DataManager.weaponDatas[0]); // 나중에 무기 선택 UI에서 실행
+        StopCoroutine(GameStart());
         StartCoroutine(GameStart());
     }
 
     IEnumerator GameStart()
     {
+        float portalSpawnTimer = 10;
         while (gameTimer > 0)
         {
-            if (gameTimer % 10 == 0)
+            if (portalSpawnTimer <= 0)
             {
                 Portal portal = new GameObject("Portal").AddComponent<Portal>();
                 portal.Initialize(currentStage.monsterIndexs, currentStage.spawnDelays);
                 portals.Add(portal);
             }
-            yield return new WaitForSeconds(1f);
-            gameTimer -= 1;
+            yield return null;
+            gameTimer -= Time.deltaTime;
+            portalSpawnTimer -= Time.deltaTime;
         }
         Win();
     }
@@ -97,6 +130,7 @@ public class GameManager : MonoBehaviour
         }
         portals.Clear();
 
+        StopCoroutine(GameStart());
         // 게임오버 UI 불러와 게임 오버 처리하기 
     }
 
