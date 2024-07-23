@@ -163,6 +163,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Watcher
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b91187a9debded54988c89438ac8b3f6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Monster
+      objectReference: {fileID: 0}
     - target: {fileID: 1645282136227435562, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -319,14 +324,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    index: 0
-    attackDamage: 0
-    attackRange: 0
-    hp: 0
-    moveSpeed: 0
-    name: 
-    projectile: 
-    sound: 
+    index: 1
+    attackDamage: 10
+    attackRange: 10
+    hp: 50
+    moveSpeed: 20
+    name: Watcher
+    projectile: None
+    sound: None
+  portal: {fileID: 0}
   firePos: {fileID: 0}
 --- !u!54 &3518542146885276855
 Rigidbody:
