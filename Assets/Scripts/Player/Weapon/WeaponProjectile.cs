@@ -53,6 +53,12 @@ public class WeaponProjectile : MonoBehaviour
                 Destroy(gameObject);
                 Debug.Log("monster");
             }
+
+            if(other.CompareTag("MonsterProjectile"))
+            {
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 }
