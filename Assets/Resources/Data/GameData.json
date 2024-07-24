@@ -1,7 +1,7 @@
 {
   "Monster": [
     {
-      "attackDamage": 10,
+      "attackDamage": 1,
       "attackRange": 30,
       "hp": 100,
       "index": 0,
@@ -11,7 +11,7 @@
       "sound": "None"
     },
     {
-      "attackDamage": 10,
+      "attackDamage": 1,
       "attackRange": 10,
       "hp": 50,
       "index": 1,

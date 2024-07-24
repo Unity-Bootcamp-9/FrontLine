@@ -32,7 +32,7 @@ public struct WeaponData
     public string bulletVisualFX;
     public int method;
 }
-
+[Serializable]
 public struct StageData
 {
     public int stage;

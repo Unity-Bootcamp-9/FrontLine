@@ -41,7 +41,7 @@ public class UI_IngamePopUp : UI_Popup
         if (playerHpSlider != null)
         {
             playerHpSlider.interactable = false;
-            playerHpSlider.value = 1;
+            playerHpSlider.value = GameManager.Instance.currentHP;
             GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
         }
 
@@ -66,11 +66,11 @@ public class UI_IngamePopUp : UI_Popup
 
     }
 
-    private void UpdatePlayerHpSlider(int hpslidervalue)
+    private void UpdatePlayerHpSlider(int currentHP)
     {
         if (playerHpSlider != null)
         {
-            playerHpSlider.value = hpslidervalue;
+            playerHpSlider.value = currentHP;
         }
     }
 

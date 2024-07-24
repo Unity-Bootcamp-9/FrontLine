@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         currentHP -= damage;
         if (currentHP < 0)
             Dead();
-        OnHPChanged?.Invoke(currentHP/MaxHP);
+        OnHPChanged?.Invoke(currentHP);
     }
 
     public void GetScore(int score)

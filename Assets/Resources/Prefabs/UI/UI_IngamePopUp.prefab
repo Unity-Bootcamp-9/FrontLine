@@ -1461,6 +1461,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHpSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 114306075799811430, guid: 77252106356ac5c46850e377faac9cd0,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306075799811430, guid: 77252106356ac5c46850e377faac9cd0,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 224088588453411778, guid: 77252106356ac5c46850e377faac9cd0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1470,6 +1480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224088588453411778, guid: 77252106356ac5c46850e377faac9cd0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.549988
       objectReference: {fileID: 0}
     - target: {fileID: 224585062908054090, guid: 77252106356ac5c46850e377faac9cd0,
         type: 3}
