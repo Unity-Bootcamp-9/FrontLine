@@ -62,10 +62,10 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current.leftButton.isPressed)
-        {
-            Fire();
-        }
+        //if (Mouse.current.leftButton.isPressed)
+        //{
+        //    Fire();
+        //}
     }
 
     public void Fire()

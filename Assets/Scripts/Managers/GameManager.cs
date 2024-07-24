@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     private StageData currentStage;
     private List<Portal> portals;
 
-    private int currentHP;
+    public int currentHP;
     private float gameTimer;
     private int score;
+
+    public delegate void HPChanged(int currentHP);
+    public event HPChanged OnHPChanged;
 
     private readonly int MaxHP = 100;
     private readonly int MaxPlayTime = 90;
@@ -123,7 +126,7 @@ public class GameManager : MonoBehaviour
         currentHP -= damage;
         if (currentHP < 0)
             Dead();
-        Debug.Log("���� ����");
+        OnHPChanged?.Invoke(currentHP/MaxHP);
     }
 
     public void GetScore(int score)

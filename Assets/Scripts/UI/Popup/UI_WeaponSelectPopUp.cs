@@ -26,7 +26,6 @@ public class UI_WeaponSelectPopUp : UI_Popup
             return false;
 
         BindButton(typeof(Buttons));
-        BindButton(typeof(Buttons));
         GetButton((int)Buttons.Weapon1Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon1Button, 0));
         GetButton((int)Buttons.Weapon2Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon2Button, 1));
         GetButton((int)Buttons.Weapon3Button).gameObject.BindEvent(() => SelectWeapon(Buttons.Weapon3Button, 2));

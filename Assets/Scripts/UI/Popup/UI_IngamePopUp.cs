@@ -34,21 +34,15 @@ public class UI_IngamePopUp : UI_Popup
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
-        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.PointerDown);
+        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.Pressed);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClickReloadWeapon);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
         if (playerHpSlider != null)
         {
-            playerHpSlider.interactable = false; // 슬라이더의 상호작용 비활성화
-            playerHpSlider.value = 1f; // 초기값 설정 (플레이어의 체력으로 대체)
-        }
-
-        weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
-        if (weaponBulletCheck != null)
-        {
-            weaponBulletCheck.interactable = false; // 슬라이더의 상호작용 비활성화
-            weaponBulletCheck.value = 1f; // 초기값 설정 (무기 잔탄으로 대체)
+            playerHpSlider.interactable = false;
+            playerHpSlider.value = 1;
+            GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
         }
 
         weapon = GameManager.Instance.GetCurrentWeapon();
@@ -72,19 +66,37 @@ public class UI_IngamePopUp : UI_Popup
 
     }
 
-
-    public void UpdatePlayerHpSlider(float hpRatio) //hpRatio는 플레이어의 현재체력 / 플레이어의 최대체력
+    private void UpdatePlayerHpSlider(int hpslidervalue)
     {
-        Slider playerhpSlider = GetSlider((int)Sliders.PlayerHpSlider);
-        playerhpSlider.value = hpRatio;
-
+        if (playerHpSlider != null)
+        {
+            playerHpSlider.value = hpslidervalue;
+        }
     }
 
-    public void UpdateWeaponBulletCheck(int bulletcheck) //weaponBulletCheck는 무기의 현재잔탄 / 무기의 최대장전 수
-    {
-        Slider weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
-        weaponBulletCheck.value = bulletcheck;
+    //public void RefreshUI()
+    //{
+    //    if (_init == false)
+    //        return;
 
-    }
+    //    int value = Utils.GetStatValue(_statType);
+
+    //    GetText((int)Texts.TitleText).text = Managers.GetText(_statData.nameID);
+    //    GetText((int)Texts.ChangeText).text = $"{value} → {GetIncreasedValue()}";
+    //    GetText((int)Texts.MoneyText).text = Utils.GetMoneyString(_statData.price);
+
+    //    if (_statType == StatType.Luck)
+    //        GetText((int)Texts.ChangeText).text = $"{Managers.Game.Luck}";
+
+    //    if (CanUpgrade())
+    //        GetButton((int)Buttons.UpgradeButton).interactable = true;
+    //    else
+    //        GetButton((int)Buttons.UpgradeButton).interactable = false;
+
+    //    if (_statType == StatType.Luck)
+    //        GetButton((int)Buttons.UpgradeButton).gameObject.SetActive(false);
+
+    //    GetText((int)Texts.DiffText).gameObject.SetActive(false);
+    //}
 
 }
