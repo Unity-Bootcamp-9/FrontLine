@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 948529178344593732}
   - component: {fileID: 438385520788546424}
   m_Layer: 5
-  m_Name: UIScoreCheckPopUp
+  m_Name: UI_ScoreCheckPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
