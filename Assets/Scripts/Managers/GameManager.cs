@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.iOS;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -108,6 +109,12 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Failed to load gun prefab.");
         }
     }
+
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
+
 
     public bool WeaponIsNotNull()
     {

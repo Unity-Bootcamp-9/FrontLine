@@ -51,7 +51,7 @@ public class UI_IngamePopUp : UI_Popup
             weaponBulletCheck.value = 1f; // 초기값 설정 (무기 잔탄으로 대체)
         }
 
-        weapon = FindObjectOfType<Weapon>();
+        weapon = GameManager.Instance.GetCurrentWeapon();
 
         if (weapon == null)
         {
