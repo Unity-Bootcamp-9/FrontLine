@@ -39,3 +39,10 @@ public struct StageData
     public int[] monsterIndexs;
     public float[] spawnDelays;
 }
+
+public class GameData
+{
+    public List<MonsterData> Monster;
+    public List<WeaponData> Weapon;
+    public List<StageData> StageData;
+}

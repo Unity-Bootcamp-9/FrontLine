@@ -5,7 +5,7 @@ using UnityEngine;
 public class Managers : MonoBehaviour
 {
     private static Managers _instance;
-    private static FirebaseManager firebaseManager = new FirebaseManager();
+    //private static FirebaseManager firebaseManager = new FirebaseManager();
     private static DataManager dataManager = new DataManager();
     //private static SpawnManager spawnManager = new SpawnManager();
     private static UIManager uiManager = new UIManager();
@@ -30,15 +30,12 @@ public class Managers : MonoBehaviour
             return _instance;
         }
     }
-    public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
+    //public static FirebaseManager FirebaseManager { get { return firebaseManager; } }
     public static DataManager DataManager { get { return dataManager; } }
     //public static SpawnManager SpawnManager { get { return spawnManager; } }
     public static UIManager UI { get { return uiManager; } }
     public static ResourceManager Resource { get { return resource; } }
-    public void LoadTest()
-    {
-        FirebaseManager.GetDataFromTable("Weapon", dataManager.LoadData<WeaponData>);
-    }
+
 
     private void Start()
     {
@@ -54,21 +51,26 @@ public class Managers : MonoBehaviour
 
         Initialize();
         StartCoroutine(GetData());
+        Debug.Log(DataManager.stageDatas.Count);
     }
     IEnumerator GetData()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         monsterDatas = DataManager.monsterDatas;
         weaponDatas = DataManager.weaponDatas;
         stageDatas = DataManager.stageDatas;
     }
 
+    // 파이어베이스 연결되면 사용 예정 
+    //public void Initialize() 
+    //{
+    //    firebaseManager.Initialize(() => dataManager.Initialize());
+    //    spawnManager.Initialize();
+    //}
+
     public void Initialize()
     {
-        firebaseManager.Initialize(() => dataManager.Initialize());
-        //spawnManager.Initialize();
+        dataManager.Initialize();
+        Debug.Log("Init");
     }
-
-    
-
 }

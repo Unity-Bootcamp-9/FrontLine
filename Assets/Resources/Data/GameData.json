@@ -1,0 +1,69 @@
+{
+  "Monster": [
+    {
+      "attackDamage": 10,
+      "attackRange": 30,
+      "hp": 100,
+      "index": 0,
+      "moveSpeed": 15,
+      "name": "Dragon",
+      "projectile": "S_Fireball_01",
+      "sound": "None"
+    },
+    {
+      "attackDamage": 10,
+      "attackRange": 10,
+      "hp": 50,
+      "index": 1,
+      "moveSpeed": 20,
+      "name": "Watcher",
+      "projectile": "None",
+      "sound": "None"
+    }
+  ],
+  "StageData": [
+    {
+      "monsterIndexs": [
+        0,
+        1
+      ],
+      "spawnDelays": [
+        3,
+        2
+      ],
+      "stage": 1
+    }
+  ],
+  "Weapon": [
+    {
+      "attackDamage": 50000,
+      "bulletCount": 10000,
+      "bulletPrefab": "projectiles/blasterProjectile",
+      "bulletSpeed": 100,
+      "bulletVisualFX": "tbd",
+      "fireDelay": 0.05,
+      "method": 1,
+      "range": 100,
+      "reloadTime": 1,
+      "soundFX": "tbd",
+      "visualFX": "tbd",
+      "weaponName": "blaster",
+      "weaponPrefab": "guns/blaster"
+    },
+    {
+      "attackDamage": 20,
+      "bulletCount": 5,
+      "bulletPrefab": "projectiles/rockerLauncherProjectile",
+      "bulletSpeed": 10,
+      "bulletVisualFX": "tbd",
+      "fireDelay": 1,
+      "method": 2,
+      "range": 20,
+      "reloadTime": 3,
+      "soundFX": "tbd",
+      "visualFX": "tbd",
+      "weaponName": "rocketLauncher",
+      "weaponPrefab": "guns/rocketLauncher"
+    }
+  ]
+}
