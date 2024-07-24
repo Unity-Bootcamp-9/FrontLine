@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.iOS;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -126,7 +123,7 @@ public class GameManager : MonoBehaviour
         currentHP -= damage;
         if (currentHP < 0)
             Dead();
-        Debug.Log("ÇÇÇØ ÀÔÀ½");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
 
     public void GetScore(int score)
@@ -143,7 +140,7 @@ public class GameManager : MonoBehaviour
         portals.Clear();
 
         StopCoroutine(GameStart());
-        // °ÔÀÓ¿À¹ö UI ºÒ·¯¿Í °ÔÀÓ ¿À¹ö Ã³¸®ÇÏ±â 
+        // ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ UI ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ 
     }
 
     private void Win()
@@ -154,6 +151,6 @@ public class GameManager : MonoBehaviour
         }
         portals.Clear();
 
-        // °ÔÀÓ ½Â¸® UI ºÒ·¯¿Í °ÔÀÓ ½Â¸® Ã³¸®ÇÏ±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Â¸ï¿½ UI ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â¸ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½
     }
 }
