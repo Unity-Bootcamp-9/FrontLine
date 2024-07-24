@@ -9,6 +9,8 @@ using Slider = UnityEngine.UI.Slider;
 
 public class UI_IngamePopUp : UI_Popup
 {
+    public Weapon weapon;
+
     enum Sliders
     {
         PlayerHpSlider,
@@ -32,7 +34,7 @@ public class UI_IngamePopUp : UI_Popup
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
-        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon);
+        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.PointerDown);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClickReloadWeapon);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
@@ -49,13 +51,20 @@ public class UI_IngamePopUp : UI_Popup
             weaponBulletCheck.value = 1f; // 초기값 설정 (무기 잔탄으로 대체)
         }
 
+        weapon = GameManager.Instance.GetCurrentWeapon();
+
+        if (weapon == null)
+        {
+            Debug.LogError("Weapon 컴포넌트를 찾을 수 없습니다.");
+        }
 
         return true;
     }
 
     void OnClickShootWeapon()
     {
-        
+        weapon.Fire();
+        Debug.Log("발사");
     }
 
     void OnClickReloadWeapon()

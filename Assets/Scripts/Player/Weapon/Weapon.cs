@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void Fire()
+    public void Fire()
     {
         if (isReadyToFire)
         {
