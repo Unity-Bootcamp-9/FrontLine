@@ -10,6 +10,7 @@ public class Managers : MonoBehaviour
     //private static SpawnManager spawnManager = new SpawnManager();
     private static UIManager uiManager = new UIManager();
     private static ResourceManager resource = new ResourceManager();
+    private static EffectManager effectManager = new EffectManager();
 
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
@@ -35,6 +36,7 @@ public class Managers : MonoBehaviour
     //public static SpawnManager SpawnManager { get { return spawnManager; } }
     public static UIManager UI { get { return uiManager; } }
     public static ResourceManager Resource { get { return resource; } }
+    public static EffectManager EffectManager { get { return effectManager; } }
 
 
     private void Start()
