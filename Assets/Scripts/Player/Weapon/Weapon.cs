@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 using UnityEngineInternal;
+using static GameManager;
 
 public class Weapon : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ObjectPool<GameObject> bulletPool;
+
+    public delegate void BulletChanged(int currentBulletsCount);
+    public event BulletChanged OnBulletChanged;
 
     public enum Method
     {
@@ -83,6 +87,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public float CheckBulletLeft()
+    {
+        float bulletValue = currentBulletsCount / weaponData.bulletCount * 100;
+        return bulletValue;
+    }
+
     private IEnumerator FireCoroutine()
     {
         isReadyToFire = false;
@@ -108,6 +118,7 @@ public class Weapon : MonoBehaviour
         Handheld.Vibrate();
 
         currentBulletsCount--;
+        OnBulletChanged?.Invoke(currentBulletsCount);
 
         Debug.Log(currentBulletsCount);
 

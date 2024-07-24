@@ -2118,6 +2118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterDatas: []
   weaponDatas: []
+  stageDatas: []
 --- !u!4 &1310805371
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,6 +2147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  currentHP: 0
 --- !u!1 &1494680591
 GameObject:
   m_ObjectHideFlags: 0
