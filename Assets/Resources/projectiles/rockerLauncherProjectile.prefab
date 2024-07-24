@@ -4907,7 +4907,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0521d2d3127ad694aa0a0f3a2f1ba5b6, type: 2}
+  - {fileID: 2100000, guid: 5f44be8b3b4cc1747a16b5868932884a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24566,6 +24566,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1689192416564872173, guid: 78446d6de8eda8c4781679fe34b2bdbb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f44be8b3b4cc1747a16b5868932884a, type: 2}
     - target: {fileID: 6079029741094258858, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}
       propertyPath: m_Enabled
