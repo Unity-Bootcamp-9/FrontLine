@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
+  - MonsterProjectile
   layers:
   - Default
   - TransparentFX
