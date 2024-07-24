@@ -34,7 +34,7 @@ public class UI_IngamePopUp : UI_Popup
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
-        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon);
+        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.PointerDown);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClickReloadWeapon);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
@@ -64,6 +64,7 @@ public class UI_IngamePopUp : UI_Popup
     void OnClickShootWeapon()
     {
         weapon.Fire();
+        Debug.Log("น฿ป็");
     }
 
     void OnClickReloadWeapon()
