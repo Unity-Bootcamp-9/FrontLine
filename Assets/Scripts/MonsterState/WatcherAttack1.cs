@@ -9,6 +9,7 @@ public class WatcherAttack1 : StateMachineBehaviour
     {
         if (monster == null)
             monster = animator.GetComponent<Monster>();
+        animator.transform.LookAt(Camera.main.transform.position);
         monster.Attack();
     }
 
