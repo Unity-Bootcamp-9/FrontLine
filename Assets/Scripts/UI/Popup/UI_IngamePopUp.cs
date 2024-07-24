@@ -34,7 +34,7 @@ public class UI_IngamePopUp : UI_Popup
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
-        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.PointerDown);
+        GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.Pressed);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(OnClickReloadWeapon);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);

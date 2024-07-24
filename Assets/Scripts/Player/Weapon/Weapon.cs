@@ -60,13 +60,13 @@ public class Weapon : MonoBehaviour
         currentBulletsCount = weaponData.bulletCount;
     }
 
-    private void Update()
-    {
-        if (Mouse.current.leftButton.isPressed)
-        {
-            Fire();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Mouse.current.leftButton.isPressed)
+    //    {
+    //        Fire();
+    //    }
+    //}
 
     public void Fire()
     {
