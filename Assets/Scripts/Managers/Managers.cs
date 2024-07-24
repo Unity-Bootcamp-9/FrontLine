@@ -51,7 +51,6 @@ public class Managers : MonoBehaviour
 
         Initialize();
         StartCoroutine(GetData());
-        Debug.Log(DataManager.stageDatas.Count);
     }
     IEnumerator GetData()
     {

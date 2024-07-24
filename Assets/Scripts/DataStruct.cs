@@ -33,6 +33,7 @@ public struct WeaponData
     public int method;
 }
 
+[Serializable]
 public struct StageData
 {
     public int stage;

@@ -26,6 +26,8 @@ public class DataManager
         {
             // JSON µ•¿Ã≈Õ∏¶ GameData ∞¥√º∑Œ ∆ƒΩÃ
             GameData gameData = JsonUtility.FromJson<GameData>(jsonData.text);
+            
+            Debug.Log(gameData.ToString());
 
             monsterDatas = gameData.Monster;
             weaponDatas = gameData.Weapon;
