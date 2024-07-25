@@ -51,12 +51,12 @@
       "weaponPrefab": "guns/blaster"
     },
     {
-      "attackDamage": 20,
+      "attackDamage": 30,
       "bulletCount": 5,
       "bulletPrefab": "projectiles/rockerLauncherProjectile",
-      "bulletSpeed": 10,
+      "bulletSpeed": 20,
       "bulletVisualFX": "tbd",
-      "fireDelay": 1,
+      "fireDelay": 0.5,
       "method": 2,
       "range": 20,
       "reloadTime": 3,

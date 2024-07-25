@@ -20,14 +20,6 @@ public class Define
 		Game,
 	}
 
-	public enum Sound
-	{
-		Bgm,
-		Effect,
-		Speech,
-		Max,
-	}
-
 	public enum AnimState
 	{
 		None,
