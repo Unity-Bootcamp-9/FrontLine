@@ -11,6 +11,7 @@ public class Managers : MonoBehaviour
     private static UIManager uiManager = new UIManager();
     private static ResourceManager resource = new ResourceManager();
     private static EffectManager effectManager = new EffectManager();
+    private static SoundManager soundManager = new SoundManager();
 
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
@@ -37,6 +38,7 @@ public class Managers : MonoBehaviour
     public static UIManager UI { get { return uiManager; } }
     public static ResourceManager Resource { get { return resource; } }
     public static EffectManager EffectManager { get { return effectManager; } }
+    public static SoundManager SoundManager { get { return soundManager; } }
 
 
     private void Start()
@@ -72,6 +74,8 @@ public class Managers : MonoBehaviour
     public void Initialize()
     {
         dataManager.Initialize();
+        effectManager.Init();
+        soundManager.Init();
         Debug.Log("Init");
     }
 }

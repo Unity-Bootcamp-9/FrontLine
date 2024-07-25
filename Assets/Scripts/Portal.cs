@@ -43,6 +43,10 @@ public class Portal : MonoBehaviour
     private void OnTakeFromPool(Monster obj)
     {
         obj.gameObject.SetActive(true);
+        foreach (Transform child in obj.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     private void OnReturnedToPool(Monster obj)
@@ -78,7 +82,7 @@ public class Portal : MonoBehaviour
     {
         for (int i = 0; i < monsterIndexs.Length; i++)
         {
-            Monster monster = Resources.Load<Monster>(Managers.DataManager.monsterDatas[monsterIndexs[i]].name);
+            Monster monster = Resources.Load<Monster>("Monster/" + Managers.DataManager.monsterDatas[monsterIndexs[i]].name);
             monster.monsterData = Managers.DataManager.monsterDatas[i];
             MakeObjectPool(monster);
         }
