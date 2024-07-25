@@ -5,7 +5,12 @@ using UnityEngine.Pool;
 
 public class EffectManager
 {
-    private Dictionary<string, IObjectPool<Effect>> effects = new Dictionary<string, IObjectPool<Effect>>();
+    private Dictionary<string, IObjectPool<Effect>> effects;
+
+    public void Init()
+    {
+        effects = new Dictionary<string, IObjectPool<Effect>>();
+    }
 
     public Effect GetEffect(string path, Vector3 position, Quaternion rotation, float duration = 1f)
     {
@@ -19,7 +24,7 @@ public class EffectManager
             return effect;
         }
 
-        effect = Managers.Resource.Load<Effect>(path);
+        effect = Managers.Resource.Load<Effect>("Effect/" + path);
         MakeObjectPool(effect, path);
         effect = effects[path].Get();
         effect.transform.position = position;
@@ -38,7 +43,7 @@ public class EffectManager
 
     private void MakeObjectPool(Effect prefab, string path)
     {
-        if (effects.ContainsKey(prefab.name))
+        if (effects.ContainsKey(path))
         {
             Debug.LogWarning($"Pool for {prefab.name} already exists.");
             return;

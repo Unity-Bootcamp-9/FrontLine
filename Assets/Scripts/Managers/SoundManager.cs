@@ -110,6 +110,8 @@ public class SoundManager
 
     public AudioClip GetAudioClip(string path)
     {
+        if (!path.Contains("Sound/"))
+            path = string.Format("Sound/{0}", path);
         AudioClip audioClip = null;
         if (_audioClips.TryGetValue(path, out audioClip))
             return audioClip;
