@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 using UnityEngineInternal;
+using static GameManager;
 
 public class Weapon : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ObjectPool<GameObject> bulletPool;
+
+    public delegate void BulletChanged(int currentBulletsCount);
+    public event BulletChanged OnBulletChanged;
 
     public enum Method
     {
@@ -60,13 +64,10 @@ public class Weapon : MonoBehaviour
         currentBulletsCount = weaponData.bulletCount;
     }
 
-    //private void Update()
-    //{
-    //    if (Mouse.current.leftButton.isPressed)
-    //    {
-    //        Fire();
-    //    }
-    //}
+    private void Update()
+    {
+        Debug.Log(currentBulletsCount);
+    }
 
     public void Fire()
     {
@@ -83,6 +84,17 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public float CheckBulletLeft()
+    {
+        float bulletValue = currentBulletsCount;
+        return bulletValue;
+    }
+
+    public void ReloadButton()
+    {
+        StartCoroutine(ReloadCoroutine());
+    }
+
     private IEnumerator FireCoroutine()
     {
         isReadyToFire = false;
@@ -95,7 +107,7 @@ public class Weapon : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range))
+            if (Physics.Raycast(player.position, player.forward, out hit, 20f))
             {
                 if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
@@ -108,6 +120,8 @@ public class Weapon : MonoBehaviour
         Handheld.Vibrate();
 
         currentBulletsCount--;
+        OnBulletChanged?.Invoke(currentBulletsCount);
+
 
         Debug.Log(currentBulletsCount);
 
@@ -150,6 +164,7 @@ public class Weapon : MonoBehaviour
         yield return delayAfterReload; // 올리고 0.3초 대기
 
         currentBulletsCount = weaponData.bulletCount;
+        OnBulletChanged?.Invoke(currentBulletsCount);
 
         isReadyToFire = true;
     }
