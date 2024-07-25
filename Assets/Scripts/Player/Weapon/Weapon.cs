@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour
 
         if (bulletPrefab == null)
         {
-            Debug.LogError("bulletPrefabÀ» ·ÎµåÇÒ ¼ö ¾ø½À´Ï´Ù: " + weaponData.bulletPrefab);
+            Debug.LogError("bulletPrefabì„ ë¡œë“œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤: " + weaponData.bulletPrefab);
             return;
         }
 
@@ -140,8 +140,8 @@ public class Weapon : MonoBehaviour
         Vector3 loweredPosition = originalPosition + new Vector3(0.1f, -0.5f, 0);
 
         float elapsedTime = 0f;
-        float duration = weaponData.reloadTime / 3; // ÀåÀü½Ã°£À» 3À¸·Î ³ª´²¼­ ÀåÀü ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
-        while (elapsedTime < duration) // ÃÑ ³»¸®´Â º¸°£
+        float duration = weaponData.reloadTime / 3; // ì¥ì „ì‹œê°„ì„ 3ìœ¼ë¡œ ë‚˜ëˆ ì„œ ì¥ì „ ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
+        while (elapsedTime < duration) // ì´ ë‚´ë¦¬ëŠ” ë³´ê°„
         {
             transform.localPosition = Vector3.Lerp(originalPosition, loweredPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
@@ -151,9 +151,9 @@ public class Weapon : MonoBehaviour
 
         elapsedTime = 0f;
 
-        yield return new WaitForSeconds(duration); //³»¸®°í ±â´Ù¸®±â
+        yield return new WaitForSeconds(duration); //ë‚´ë¦¬ê³  ê¸°ë‹¤ë¦¬ê¸°
 
-        while (elapsedTime < duration) // ¿Ã¸®´Â º¸°£
+        while (elapsedTime < duration) // ì˜¬ë¦¬ëŠ” ë³´ê°„
         {
             transform.localPosition = Vector3.Lerp(loweredPosition, originalPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
@@ -161,7 +161,7 @@ public class Weapon : MonoBehaviour
         }
         transform.localPosition = originalPosition;
 
-        yield return delayAfterReload; // ¿Ã¸®°í 0.3ÃÊ ´ë±â
+        yield return delayAfterReload; // ì˜¬ë¦¬ê³  0.3ì´ˆ ëŒ€ê¸°
 
         currentBulletsCount = weaponData.bulletCount;
         OnBulletChanged?.Invoke(currentBulletsCount);
@@ -181,8 +181,8 @@ public class Weapon : MonoBehaviour
     private void ActivateBullet(GameObject bullet)
     {
         bullet.SetActive(true);
-        bullet.transform.position = gunMuzzle.position; // ÃÑ¾Ë GetÇÒ ¶§ À§Ä¡ ¼³Á¤ 
-        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // ÃÑ¾Ë GetÇÒ ¶§ ¹æÇâ ¼³Á¤
+        bullet.transform.position = gunMuzzle.position; // ì´ì•Œ Getí•  ë•Œ ìœ„ì¹˜ ì„¤ì • 
+        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // ì´ì•Œ Getí•  ë•Œ ë°©í–¥ ì„¤ì •
     }
 
     private void DeactivateBullet(GameObject bullet)
