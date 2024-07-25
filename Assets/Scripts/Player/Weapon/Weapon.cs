@@ -29,7 +29,8 @@ public class Weapon : MonoBehaviour
     public enum Method
     {
         hitScan = 1,
-        projectile = 2
+        projectile = 2,
+        AutoLazer = 3
     }
 
     private void Awake()
@@ -103,23 +104,34 @@ public class Weapon : MonoBehaviour
 
         animator.Play("Shot", 0, 0);
 
-        GameObject bullet = bulletPool.Get();
+        bulletPool.Get();
 
-        if (currentMethod == Method.hitScan)
+        switch (currentMethod)
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(player.position, player.forward, out hit, 20f))
-            {
-                if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
+            case Method.hitScan:
+                RaycastHit hit;
+                if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range))
                 {
-                    hitTarget.GetDamage(weaponData.attackDamage);
-                    
+                    if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
+                    {
+                        hitTarget.GetDamage(weaponData.attackDamage);
+                    }
                 }
-            }
-        }
+                break;
 
-        Handheld.Vibrate();
+            case Method.projectile:
+
+                break;
+            case Method.AutoLazer:
+
+                break;
+        }
+        
+
+
+
+
+            Handheld.Vibrate();
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);

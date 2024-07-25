@@ -51,14 +51,14 @@ public class WeaponProjectile : MonoBehaviour
                 Monster hitTarget = other.GetComponentInParent<Monster>();
                 hitTarget.GetDamage(attackDamage);
                 Managers.EffectManager.GetEffect("bulletExplosion/rocketExplosion", transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                pool.Release(this.gameObject);
                 Debug.Log("monster");
             }
 
             if(other.CompareTag("MonsterProjectile"))
             {
                 Destroy(other.gameObject);
-                Destroy(gameObject);
+                pool.Release(this.gameObject);
             }
         }
     }
