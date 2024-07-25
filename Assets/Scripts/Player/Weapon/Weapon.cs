@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 using UnityEngineInternal;
 using static GameManager;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Weapon : MonoBehaviour
 {
@@ -84,10 +85,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public float CheckBulletLeft()
+    public int CheckBulletLeft()
     {
         float bulletValue = currentBulletsCount;
-        return bulletValue;
+        int value = Mathf.RoundToInt(bulletValue);
+        return value;
     }
 
     public void ReloadButton()

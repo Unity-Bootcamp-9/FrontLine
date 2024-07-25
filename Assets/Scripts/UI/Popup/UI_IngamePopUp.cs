@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static Define;
+using static UnityEngine.Rendering.DebugUI;
 using Slider = UnityEngine.UI.Slider;
 
 public class UI_IngamePopUp : UI_Popup
