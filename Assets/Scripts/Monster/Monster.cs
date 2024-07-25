@@ -12,6 +12,8 @@ public class Monster : MonoBehaviour
     public Portal portal;
     private Projectile projectile;
     private int currentHP;
+    public Rigidbody rigidBody;
+    //private Collider monsterCollider;
     [SerializeField] private Transform firePos;
 
     private void Start()
@@ -19,6 +21,8 @@ public class Monster : MonoBehaviour
         playerPos = Camera.main.transform.position;
         projectile = Resources.Load<Projectile>("MonsterProjectile/" + monsterData.projectile);
         animator = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody>();
+        //monsterCollider = GetComponentInChildren<Collider>(); 
     }
 
     private void OnEnable()
@@ -69,4 +73,8 @@ public class Monster : MonoBehaviour
             animator.SetTrigger("Dead");
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        animator.SetBool("Chase", true);
+    }
 }
