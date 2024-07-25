@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1561417288640658702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_EyeLid_M_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364706187004232522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211859413150160544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162424496442240153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Tail_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914545179742988802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7257244499132606114}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_EyeBall_M_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3393044111215514750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7203584439332368446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6241914176476258091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Tail_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691466502300493559}
   - component: {fileID: 566456699023359295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Watcher_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 241985949516076670}
   - component: {fileID: 3518542146885276855}
   - component: {fileID: 1569507943344841218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Watcher
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterData:
     index: 1
-    attackDamage: 1
+    attackDamage: 10
     attackRange: 10
     hp: 50
     moveSpeed: 20
@@ -595,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2898951659714027475}
   - component: {fileID: 1654093720640342207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7269481206230355526}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0631b874e93fa4a4f958813f4aa91128, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -633,7 +633,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -648,7 +648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3997858072519409634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_EyeLid_M_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6592788788951897043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Tail_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

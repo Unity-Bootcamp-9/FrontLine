@@ -6,14 +6,15 @@ TagManager:
   tags:
   - Monster
   - MonsterProjectile
+  - Stage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Stage
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
