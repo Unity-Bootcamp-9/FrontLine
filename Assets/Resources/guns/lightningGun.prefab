@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1724673171723113505}
   - component: {fileID: 8136579415516492963}
   m_Layer: 0
-  m_Name: Lightning Gun v2
+  m_Name: lightningGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

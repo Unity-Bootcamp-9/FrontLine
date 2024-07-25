@@ -1,5 +1,110 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &297953866654662445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6761663818821359197}
+  - component: {fileID: 800540666839064551}
+  - component: {fileID: 6052992878340669328}
+  - component: {fileID: 1025311803503937760}
+  m_Layer: 7
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6761663818821359197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297953866654662445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7703791457758140867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &800540666839064551
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297953866654662445}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6052992878340669328
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297953866654662445}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5de212b61e8d8414d8cc84dc68e646b1, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &1025311803503937760
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297953866654662445}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &522593076251917956
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1561417288640658702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_EyeLid_M_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364706187004232522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211859413150160544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162424496442240153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Tail_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914545179742988802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7257244499132606114}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_EyeBall_M_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3393044111215514750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01 Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7203584439332368446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6241914176476258091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Tail_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691466502300493559}
   - component: {fileID: 566456699023359295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Watcher_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +499,7 @@ GameObject:
   - component: {fileID: 241985949516076670}
   - component: {fileID: 3518542146885276855}
   - component: {fileID: 1569507943344841218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Watcher
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -416,6 +521,7 @@ Transform:
   m_Children:
   - {fileID: 691466502300493559}
   - {fileID: 2898951659714027475}
+  - {fileID: 6761663818821359197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4836807200928277003
@@ -453,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterData:
     index: 1
-    attackDamage: 1
+    attackDamage: 10
     attackRange: 10
     hp: 50
     moveSpeed: 20
@@ -461,6 +567,7 @@ MonoBehaviour:
     projectile: None
     sound: None
   portal: {fileID: 0}
+  rigidBody: {fileID: 0}
   firePos: {fileID: 0}
 --- !u!54 &3518542146885276855
 Rigidbody:
@@ -595,7 +702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2898951659714027475}
   - component: {fileID: 1654093720640342207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip01
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -625,7 +732,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7269481206230355526}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0631b874e93fa4a4f958813f4aa91128, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -633,7 +740,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -648,7 +755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3997858072519409634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_EyeLid_M_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6592788788951897043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BN_Tail_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -176,7 +176,7 @@ public class Weapon : MonoBehaviour
     private GameObject CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod);
+        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod, weaponData.bulletVisualFX);
         return bullet;
     }
 

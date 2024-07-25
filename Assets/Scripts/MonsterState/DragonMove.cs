@@ -14,10 +14,11 @@ public class DragonMove : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (rigidbody == null)
-            rigidbody = animator.GetComponent<Rigidbody>();
         if (monster == null)
             monster = animator.GetComponent<Monster>();
+        if (rigidbody == null)
+            //rigidbody = animator.GetComponent<Rigidbody>();
+            rigidbody = monster.rigidBody;
 
         moveVector = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.1f, 0.1f), Random.Range(-0.3f, 0.3f));
         timeCount = 0f;
