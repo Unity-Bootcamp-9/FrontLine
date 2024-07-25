@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    private Vector3 playerPos;
+    public Vector3 playerPos;
     private Animator animator;
     public MonsterData monsterData;
     public Portal portal;
@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        playerPos = Camera.main.transform.position;
+        playerPos = GameManager.Instance.player.position;
         projectile = Resources.Load<Projectile>("MonsterProjectile/" + monsterData.projectile);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();

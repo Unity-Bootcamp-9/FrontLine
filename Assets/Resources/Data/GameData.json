@@ -64,6 +64,21 @@
       "visualFX": "tbd",
       "weaponName": "rocketLauncher",
       "weaponPrefab": "guns/rocketLauncher"
+    },
+    {
+      "attackDamage": 30,
+      "bulletCount": 5,
+      "bulletPrefab": "projectiles/rockerLauncherProjectile",
+      "bulletSpeed": 20,
+      "bulletVisualFX": "tbd",
+      "fireDelay": 0.5,
+      "method": 2,
+      "range": 20,
+      "reloadTime": 3,
+      "soundFX": "tbd",
+      "visualFX": "tbd",
+      "weaponName": "rocketLauncher",
+      "weaponPrefab": "guns/rocketLauncher"
     }
   ]
 }
