@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/UI/발사아이콘-removebg-preview.png.meta
 guid: 7395b6d1e9647d042b45ef3a06b6ab68
+========
+guid: f5b19216500ae2e4e9681b4cf2a80569
+>>>>>>>> 786457efd8dffc8b5980110bdac5f3d516257278:Assets/ImportedAssets/JW/FireButton.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,6 +121,22 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+<<<<<<<< HEAD:Assets/Prefabs/UI/발사아이콘-removebg-preview.png.meta
+========
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+>>>>>>>> 786457efd8dffc8b5980110bdac5f3d516257278:Assets/ImportedAssets/JW/FireButton.png.meta
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:

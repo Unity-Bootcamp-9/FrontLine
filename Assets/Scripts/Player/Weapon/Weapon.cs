@@ -63,6 +63,7 @@ public class Weapon : MonoBehaviour
         currentMethod = (Method)weaponData.method;
         currentBulletsCount = weaponData.bulletCount;
     }
+
     private void Update()
     {
         Debug.Log(currentBulletsCount);
@@ -106,7 +107,7 @@ public class Weapon : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range))
+            if (Physics.Raycast(player.position, player.forward, out hit, 20f))
             {
                 if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
