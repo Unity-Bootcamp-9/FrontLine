@@ -13,8 +13,6 @@ public class Managers : MonoBehaviour
     private static ResourceManager resource = new ResourceManager();
     private static EffectManager effectManager = new EffectManager();
 
-    //private Action Initialize;
-
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
     public List<StageData> stageDatas;
@@ -55,7 +53,6 @@ public class Managers : MonoBehaviour
         }
 
         firebaseInitializer.Init(Initialize);
-        Initialize();
         StartCoroutine(GetData());
     }
     IEnumerator GetData()
