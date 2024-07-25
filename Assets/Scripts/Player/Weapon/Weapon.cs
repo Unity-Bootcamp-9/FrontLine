@@ -66,10 +66,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        //if (Mouse.current.leftButton.isPressed)
-        //{
-        //    Fire();
-        //}
+        Debug.Log(currentBulletsCount);
     }
 
     public void Fire()
@@ -89,8 +86,13 @@ public class Weapon : MonoBehaviour
 
     public float CheckBulletLeft()
     {
-        float bulletValue = currentBulletsCount / weaponData.bulletCount * 100;
+        float bulletValue = currentBulletsCount;
         return bulletValue;
+    }
+
+    public void ReloadButton()
+    {
+        StartCoroutine(ReloadCoroutine());
     }
 
     private IEnumerator FireCoroutine()
@@ -119,6 +121,7 @@ public class Weapon : MonoBehaviour
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);
+
 
         Debug.Log(currentBulletsCount);
 
@@ -161,6 +164,7 @@ public class Weapon : MonoBehaviour
         yield return delayAfterReload; // 올리고 0.3초 대기
 
         currentBulletsCount = weaponData.bulletCount;
+        OnBulletChanged?.Invoke(currentBulletsCount);
 
         isReadyToFire = true;
     }

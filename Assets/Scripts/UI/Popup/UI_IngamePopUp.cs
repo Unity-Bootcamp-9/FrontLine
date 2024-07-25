@@ -32,24 +32,26 @@ public class UI_IngamePopUp : UI_Popup
             return false;
 
         weapon = GameManager.Instance.GetCurrentWeapon();
+       
 
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
         GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.Pressed);
+        GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(onReloadWeapon, UIEvent.Click);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
         if (playerHpSlider != null)
         {
             playerHpSlider.interactable = false;
             playerHpSlider.value = GameManager.Instance.currentHP;
-            GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
         }
 
         weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
         if (weaponBulletCheck != null)
         {
             weaponBulletCheck.interactable = false;
+            weaponBulletCheck.maxValue = weapon.CheckBulletLeft();
             weaponBulletCheck.value = weapon.CheckBulletLeft();
             weapon.OnBulletChanged += UpdateBulletLeft;
         }
@@ -61,7 +63,14 @@ public class UI_IngamePopUp : UI_Popup
     void OnClickShootWeapon()
     {
         weapon.Fire();
-        Debug.Log("발사");
+        GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
+    }
+
+    void onReloadWeapon()
+    {
+        weapon.ReloadButton();
+        weaponBulletCheck.value = weapon.CheckBulletLeft();
+        Debug.Log("장전");
     }
 
     private void UpdateBulletLeft(int currentBulletsCount)
