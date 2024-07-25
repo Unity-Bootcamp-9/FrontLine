@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour
 
         if (bulletPrefab == null)
         {
-            Debug.LogError("bulletPrefabÀ» ·ÎµåÇÒ ¼ö ¾ø½À´Ï´Ù: " + weaponData.bulletPrefab);
+            Debug.LogError("bulletPrefabï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: " + weaponData.bulletPrefab);
             return;
         }
 
@@ -107,7 +107,7 @@ public class Weapon : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(player.position, player.forward, out hit, 20f))
+            if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range))
             {
                 if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
@@ -140,8 +140,8 @@ public class Weapon : MonoBehaviour
         Vector3 loweredPosition = originalPosition + new Vector3(0.1f, -0.5f, 0);
 
         float elapsedTime = 0f;
-        float duration = weaponData.reloadTime / 3; // ÀåÀü½Ã°£À» 3À¸·Î ³ª´²¼­ ÀåÀü ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
-        while (elapsedTime < duration) // ÃÑ ³»¸®´Â º¸°£
+        float duration = weaponData.reloadTime / 3; // ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        while (elapsedTime < duration) // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             transform.localPosition = Vector3.Lerp(originalPosition, loweredPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
@@ -151,9 +151,9 @@ public class Weapon : MonoBehaviour
 
         elapsedTime = 0f;
 
-        yield return new WaitForSeconds(duration); //³»¸®°í ±â´Ù¸®±â
+        yield return new WaitForSeconds(duration); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½
 
-        while (elapsedTime < duration) // ¿Ã¸®´Â º¸°£
+        while (elapsedTime < duration) // ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             transform.localPosition = Vector3.Lerp(loweredPosition, originalPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
@@ -161,7 +161,7 @@ public class Weapon : MonoBehaviour
         }
         transform.localPosition = originalPosition;
 
-        yield return delayAfterReload; // ¿Ã¸®°í 0.3ÃÊ ´ë±â
+        yield return delayAfterReload; // ï¿½Ã¸ï¿½ï¿½ï¿½ 0.3ï¿½ï¿½ ï¿½ï¿½ï¿½
 
         currentBulletsCount = weaponData.bulletCount;
         OnBulletChanged?.Invoke(currentBulletsCount);
@@ -181,8 +181,8 @@ public class Weapon : MonoBehaviour
     private void ActivateBullet(GameObject bullet)
     {
         bullet.SetActive(true);
-        bullet.transform.position = gunMuzzle.position; // ÃÑ¾Ë GetÇÒ ¶§ À§Ä¡ ¼³Á¤ 
-        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // ÃÑ¾Ë GetÇÒ ¶§ ¹æÇâ ¼³Á¤
+        bullet.transform.position = gunMuzzle.position; // ï¿½Ñ¾ï¿½ Getï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 
+        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // ï¿½Ñ¾ï¿½ Getï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void DeactivateBullet(GameObject bullet)
