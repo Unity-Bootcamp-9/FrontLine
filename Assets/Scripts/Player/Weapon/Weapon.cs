@@ -109,7 +109,7 @@ public class Weapon : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(player.position, player.forward, out hit, 20f))
+            if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range))
             {
                 if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
