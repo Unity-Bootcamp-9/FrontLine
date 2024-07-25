@@ -41,14 +41,24 @@ public class WeaponProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(currentMethod == Weapon.Method.projectile)
+        Debug.Log("hit");
+        if (currentMethod == Weapon.Method.projectile)
         {
-            if(other.CompareTag("Monster"))
+            Debug.Log("method");
+
+            if (other.CompareTag("Monster"))
             {
-                if(other.TryGetComponent<Monster>(out Monster hitTarget))
-                {
-                    hitTarget.GetDamage(attackDamage);
-                }
+                Monster hitTarget = other.GetComponentInParent<Monster>();
+                hitTarget.GetDamage(attackDamage);
+                Managers.EffectManager.GetEffect("bulletExplosion/rocketExplosion", transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                Debug.Log("monster");
+            }
+
+            if(other.CompareTag("MonsterProjectile"))
+            {
+                Destroy(other.gameObject);
+                Destroy(gameObject);
             }
         }
     }

@@ -17,7 +17,7 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         playerPos = Camera.main.transform.position;
-        projectile = Resources.Load<Projectile>(monsterData.projectile);
+        projectile = Resources.Load<Projectile>("MonsterProjectile/" + monsterData.projectile);
         animator = GetComponent<Animator>();
     }
 

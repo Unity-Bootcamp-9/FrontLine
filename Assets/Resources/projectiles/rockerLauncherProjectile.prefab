@@ -4907,7 +4907,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0521d2d3127ad694aa0a0f3a2f1ba5b6, type: 2}
+  - {fileID: 2100000, guid: 5f44be8b3b4cc1747a16b5868932884a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19550,6 +19550,7 @@ GameObject:
   - component: {fileID: 6338810516246663482}
   - component: {fileID: 6351384480443721697}
   - component: {fileID: -1567766579691300058}
+  - component: {fileID: 5622176566479750643}
   m_Layer: 0
   m_Name: rockerLauncherProjectile
   m_TagString: Untagged
@@ -19600,6 +19601,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b814580bf945c459433009de056849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5622176566479750643
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338810516246564122}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6538789094205436441
 GameObject:
   m_ObjectHideFlags: 0
@@ -24542,6 +24566,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1689192416564872173, guid: 78446d6de8eda8c4781679fe34b2bdbb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f44be8b3b4cc1747a16b5868932884a, type: 2}
     - target: {fileID: 6079029741094258858, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}
       propertyPath: m_Enabled
