@@ -42,12 +42,26 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
     void GameStart(int weaponId)
     {
+        GameObject game = GameObject.Find("Game");
+
+        if(game.transform.childCount == 0)
+        {
+            GameObject arScene = Managers.Resource.Instantiate("AR/Game");
+            arScene.transform.parent = game.transform;
+        }
+
+        game.transform.GetChild(0).gameObject.SetActive(true);
+        GameManager.Instance.player = GameObject.FindWithTag("Player").transform;
+        //GameObject go = Managers.Resource.Instantiate("AR/Game");
+        //go.transform.SetParent(transform);
+        //GameManager.Instance.player = Camera.main.transform.GetChild(0).gameObject.transform;
+
         WeaponData weaponData = Managers.DataManager.weaponDatas[weaponId];
         GameManager.Instance.SetWeapon(weaponData);
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_IngamePopUp>();
         GameManager.Instance.Initialize(Managers.DataManager.stageDatas[0]);
     }
-    
+
 }
 

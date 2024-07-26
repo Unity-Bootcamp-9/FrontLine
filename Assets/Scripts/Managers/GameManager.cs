@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
 
         portals = new List<Portal>();
-        player = Camera.main.transform.GetChild(0);
+        //player = Camera.main.transform.GetChild(0);
     }
 
     public void Initialize(StageData stageData)
