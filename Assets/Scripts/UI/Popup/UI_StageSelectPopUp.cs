@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -27,8 +28,21 @@ public class UI_StageSelectPopUp : UI_Popup
         GetButton((int)Buttons.StageButton1).gameObject.BindEvent(() => SelectStage(Buttons.StageButton1));
         GetButton((int)Buttons.StageButton2).gameObject.BindEvent(() => SelectStage(Buttons.StageButton2));
         GetButton((int)Buttons.StageButton3).gameObject.BindEvent(() => SelectStage(Buttons.StageButton3));
+        GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GoBack());
+        GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
 
         return true;
+    }
+
+    void GoBack()
+    {
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_StartPopUp>();
+    }
+
+    void OptionPopup()
+    {
+        Managers.UI.ShowPopupUI<UI_OptionPopUp>();
     }
 
     void SelectStage(Buttons stage)

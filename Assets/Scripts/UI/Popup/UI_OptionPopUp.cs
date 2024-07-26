@@ -29,6 +29,8 @@ public class UI_OptionPopUp : UI_Popup
         if (base.Init() == false)
             return false;
 
+        Time.timeScale = 0f;
+
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
@@ -50,12 +52,15 @@ public class UI_OptionPopUp : UI_Popup
 
     void GameEnd()
     {
-        //게임 종료 로직
+        Time.timeScale = 1f;
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
     }
 
     void BackStage()
     {
-        //실행 전 ui로 변경 로직
+        Time.timeScale = 1f;
+        Managers.UI.ClosePopupUI(this);
     }
 
     void OnSoundSliderValueChanged(float value)

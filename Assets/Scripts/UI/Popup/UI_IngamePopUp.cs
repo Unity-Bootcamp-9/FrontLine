@@ -21,7 +21,8 @@ public class UI_IngamePopUp : UI_Popup
     enum Buttons
     {
         AttackButton,
-        ReloadButton
+        ReloadButton,
+        OptionButton
     }
 
     private Slider playerHpSlider;
@@ -40,6 +41,7 @@ public class UI_IngamePopUp : UI_Popup
 
         GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.Pressed);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(onReloadWeapon, UIEvent.Click);
+        GetButton((int)Buttons.OptionButton).gameObject.BindEvent(OptionPopup);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
         if (playerHpSlider != null)
@@ -60,6 +62,10 @@ public class UI_IngamePopUp : UI_Popup
         return true;
     }
 
+    void OptionPopup()
+    {
+        Managers.UI.ShowPopupUI<UI_OptionPopUp>();
+    }
 
     void OnClickShootWeapon()
     {
