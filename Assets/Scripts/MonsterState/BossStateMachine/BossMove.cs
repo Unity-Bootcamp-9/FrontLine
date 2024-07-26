@@ -18,15 +18,16 @@ public class BossMove : BossStateMachineBase
 
         if(timer > 3)
         {
-            switch (nextAttack)
-            {
-                case 0:
-                    animator.SetBool("BiteAttack", true);
-                    break;
-                case 1:
-                    animator.SetBool("StingerAttack", true);
-                    break;
-            }
+            animator.SetBool("BiteAttack", true);
+            //switch (nextAttack)
+            //{
+            //    case 0:
+            //        animator.SetBool("BiteAttack", true);
+            //        break;
+            //    case 1:
+            //        animator.SetBool("StingerAttack", true);
+            //        break;
+            //}
         }
 
     }
