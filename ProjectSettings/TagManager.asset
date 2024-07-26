@@ -7,6 +7,7 @@ TagManager:
   - Monster
   - MonsterProjectile
   - Stage
+  - Game
   layers:
   - Default
   - TransparentFX

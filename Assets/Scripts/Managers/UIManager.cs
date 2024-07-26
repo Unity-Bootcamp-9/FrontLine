@@ -46,8 +46,8 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/SubItem/{name}");
-        GameObject go = Object.Instantiate(prefab);
+        GameObject prefab = Managers.Resource.Load<GameObject>($"Prefabs/UI/SubItem/{name}");
+        GameObject go = Managers.Resource.Instantiate(prefab);
         if (parent != null)
             go.transform.SetParent(parent);
 
@@ -57,24 +57,12 @@ public class UIManager
         return go.GetComponent<T>();
     }
 
-    public GameObject Instantiate(string path, Transform parent = null)
-    {
-        GameObject prefab = Resources.Load<GameObject>($"Prefabs/{path}");
-        if (prefab == null)
-        {
-            Debug.Log($"Failed to load prefab : {path}");
-            return null;
-        }
-
-        return Object.Instantiate(prefab, parent);
-    }
-
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Instantiate($"UI/Scene/{name}");
+        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
         T sceneUI = go.GetComponent<T>();
         SceneUI = sceneUI;
 
@@ -88,9 +76,9 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/{name}");
+        GameObject prefab = Managers.Resource.Load<GameObject>($"UI/{name}");
 
-        GameObject go = Instantiate($"UI/{name}");
+        GameObject go = Managers.Resource.Instantiate($"UI/{name}");
         T popup =go.GetComponent<T>();
         _popupStack.Push(popup);
 
@@ -140,7 +128,7 @@ public class UIManager
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        Object.Destroy(popup.gameObject);
+        Managers.Resource.Destroy(popup.gameObject);
         popup = null;
         _order--;
     }

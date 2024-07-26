@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        player = Camera.main.transform;
+        player = Camera.main.gameObject.transform;
         animator = GetComponent<Animator>();
     }
 
@@ -82,7 +82,7 @@ public class Weapon : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(autoLazerTransform.position, range);
+ //       Gizmos.DrawWireSphere(autoLazerTransform.position, range);
     }
 
     public void Fire()

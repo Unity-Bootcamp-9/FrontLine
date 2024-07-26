@@ -23,22 +23,12 @@ public class ResourceManager
 			_sprites.Add(path, sp);
 			return sp as T;
 		}
-		//else if (typeof(T) == typeof(SkeletonDataAsset))
-		//{
-		//	if (_skeletons.TryGetValue(path, out SkeletonDataAsset sprite))
-		//		return sprite as T;
-
-		//	SkeletonDataAsset sp = Resources.Load<SkeletonDataAsset>(path);
-		//	_skeletons.Add(path, sp);
-		//	return sp as T;
-		//}
-
 		return Resources.Load<T>(path);
 	}
 
 	public GameObject Instantiate(string path, Transform parent = null)
 	{
-		GameObject prefab = Load<GameObject>($"Prefabs/{path}");
+		GameObject prefab = Load<GameObject>(path);
 		if (prefab == null)
 		{
 			Debug.Log($"Failed to load prefab : {path}");
