@@ -1,11 +1,6 @@
-using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Pool;
-using UnityEngineInternal;
-using static GameManager;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Weapon : MonoBehaviour
 {
@@ -25,6 +20,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ObjectPool<GameObject> bulletPool;
+
+    private ObjectPool<LineRenderer> lineRendererPool;
+    [SerializeField] private Transform lineRendererParent;
 
     public delegate void BulletChanged(int currentBulletsCount);
     public event BulletChanged OnBulletChanged;
@@ -58,6 +56,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
+        // Initialize Bullet Pool
         bulletPool = new ObjectPool<GameObject>(
             createFunc: CreateBullet,
             actionOnGet: ActivateBullet,
@@ -66,6 +65,17 @@ public class Weapon : MonoBehaviour
             collectionCheck: false,
             defaultCapacity: 10,
             maxSize: 20
+        );
+
+        // Initialize LineRenderer Pool
+        lineRendererPool = new ObjectPool<LineRenderer>(
+            createFunc: CreateLineRenderer,
+            actionOnGet: ActivateLineRenderer,
+            actionOnRelease: DeactivateLineRenderer,
+            actionOnDestroy: DestroyLineRenderer,
+            collectionCheck: false,
+            defaultCapacity: maxEnemies,
+            maxSize: maxEnemies
         );
 
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
@@ -82,7 +92,7 @@ public class Weapon : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
- //       Gizmos.DrawWireSphere(autoLazerTransform.position, range);
+        Gizmos.DrawWireSphere(autoLazerTransform.position, range);
     }
 
     public void Fire()
@@ -128,14 +138,14 @@ public class Weapon : MonoBehaviour
                 if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
-                }               
+                }
                 break;
 
             case Method.projectile:
-                
+                // Projectile logic here
                 break;
-            case Method.AutoLazer:
 
+            case Method.AutoLazer:
                 int enemyCount = Physics.OverlapSphereNonAlloc(autoLazerTransform.position, range, hitEnemies, Enemy);
 
                 for (int i = 0; i < enemyCount; i++)
@@ -145,14 +155,14 @@ public class Weapon : MonoBehaviour
                     Monster monster = parentTransform.GetComponent<Monster>();
                     if (monster != null)
                     {
+                        ShowElectricEffect(gunMuzzle.position, monster.transform.position);
                         monster.GetDamage(weaponData.attackDamage);
                     }
                 }
-
                 break;
         }
-        
-            Handheld.Vibrate();
+
+        Handheld.Vibrate();
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);
@@ -162,6 +172,22 @@ public class Weapon : MonoBehaviour
         yield return waitForFireDelay;
 
         isReadyToFire = true;
+    }
+
+    private void ShowElectricEffect(Vector3 start, Vector3 end)
+    {
+        LineRenderer lineRenderer = lineRendererPool.Get();
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+        StartCoroutine(AutoOffElectricEffect(lineRenderer, 0.2f));
+    }
+
+    private IEnumerator AutoOffElectricEffect(LineRenderer lineRenderer, float delay)
+    {
+        lineRenderer.enabled = true;
+        yield return new WaitForSeconds(delay);
+        lineRenderer.enabled = false;
+        lineRendererPool.Release(lineRenderer);
     }
 
     private IEnumerator ReloadCoroutine()
@@ -203,7 +229,6 @@ public class Weapon : MonoBehaviour
         isReadyToFire = true;
     }
 
-
     #region bulletPool
     private GameObject CreateBullet()
     {
@@ -228,6 +253,38 @@ public class Weapon : MonoBehaviour
     private void DestroyBullet(GameObject bullet)
     {
         Destroy(bullet);
+    }
+    #endregion
+
+    #region lineRendererPool
+    private LineRenderer CreateLineRenderer()
+    {
+        GameObject lineObj = new GameObject("LineRenderer");
+        LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+        lineObj.transform.SetParent(lineRendererParent);
+
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
+        lineRenderer.startColor = Color.yellow;
+        lineRenderer.endColor = Color.red;
+        lineRenderer.positionCount = 2;
+
+        return lineRenderer;
+    }
+
+    private void ActivateLineRenderer(LineRenderer lineRenderer)
+    {
+        lineRenderer.enabled = true;
+    }
+
+    private void DeactivateLineRenderer(LineRenderer lineRenderer)
+    {
+        lineRenderer.enabled = false;
+    }
+
+    private void DestroyLineRenderer(LineRenderer lineRenderer)
+    {
+        Destroy(lineRenderer.gameObject);
     }
     #endregion
 }
