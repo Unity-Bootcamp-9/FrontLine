@@ -47,11 +47,18 @@ public class UI_WeaponSelectPopUp : UI_Popup
         BindText(typeof(Texts));
 
         GetButton((int)Buttons.NextButton).gameObject.BindEvent(() => GameStart());
+        GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
+        GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GameStart());
 
         SetWeapon(Managers.DataManager.weaponDatas[0]);
         PopulateWeapon();
 
         return true;
+    }
+
+    void OptionPopup()
+    {
+        Managers.UI.ShowPopupUI<UI_OptionPopUp>();
     }
 
     public void PopulateWeapon()
