@@ -31,6 +31,7 @@ public struct WeaponData
     public float range;
     public string bulletVisualFX;
     public int method;
+    public string info;
 }
 
 [Serializable]

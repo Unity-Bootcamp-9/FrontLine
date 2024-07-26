@@ -137,22 +137,15 @@ public class Weapon : MonoBehaviour
             case Method.AutoLazer:
 
                 int enemyCount = Physics.OverlapSphereNonAlloc(autoLazerTransform.position, range, hitEnemies, Enemy);
-                Debug.Log("Enemy Count: " + enemyCount); // 디버그 로그 추가
 
                 for (int i = 0; i < enemyCount; i++)
                 {
                     Collider collider = hitEnemies[i];
-                    Debug.Log("Collider: " + collider.name); // 디버그 로그 추가
-
-                    Monster monster = collider.GetComponent<Monster>();
+                    Transform parentTransform = collider.transform.parent;
+                    Monster monster = parentTransform.GetComponent<Monster>();
                     if (monster != null)
                     {
-                        Debug.Log("Monster: " + monster.name); // 디버그 로그 추가
                         monster.GetDamage(weaponData.attackDamage);
-                    }
-                    else
-                    {
-                        Debug.Log("Monster component not found on " + collider.name); // 디버그 로그 추가
                     }
                 }
 
