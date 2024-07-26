@@ -13,7 +13,6 @@ public class Monster : MonoBehaviour
     private Projectile projectile;
     private int currentHP;
     public Rigidbody rigidBody;
-    //private Collider monsterCollider;
     [SerializeField] private Transform firePos;
 
     private void Start()
@@ -22,7 +21,6 @@ public class Monster : MonoBehaviour
         projectile = Resources.Load<Projectile>("MonsterProjectile/" + monsterData.projectile);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
-        //monsterCollider = GetComponentInChildren<Collider>(); 
     }
 
     private void OnEnable()
@@ -54,6 +52,7 @@ public class Monster : MonoBehaviour
         if (monsterData.attackRange >= 20)
         {
             Projectile newProjectile = Instantiate(projectile);
+            newProjectile.transform.parent = Managers.Instance.game.transform;
             newProjectile.SetTarget(firePos.position, playerPos);
             newProjectile.SetDamage(monsterData.attackDamage);
         }

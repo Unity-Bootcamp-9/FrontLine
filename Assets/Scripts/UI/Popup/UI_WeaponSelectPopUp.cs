@@ -92,19 +92,24 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
     void GameStart()
     {
-        GameObject game = GameObject.Find("Game");
+        GameObject _game = GameObject.Find("Game");
 
-        if (game.transform.childCount == 0)
+        if(_game == null)
         {
-            GameObject arScene = Managers.Resource.Instantiate("AR/Game");
-            arScene.transform.parent = game.transform;
+            _game = new GameObject("Game");
         }
 
-        game.transform.GetChild(0).gameObject.SetActive(true);
+        if(_game.transform.childCount == 0)
+        {
+            GameObject arScene = Managers.Resource.Instantiate("AR/Game");
+            arScene.transform.parent = _game.transform;
+        }
+
+        _game.transform.GetChild(0).gameObject.SetActive(true);
+
+        Managers.Instance.game = _game;
+
         GameManager.Instance.player = GameObject.FindWithTag("Player").transform;
-        //GameObject go = Managers.Resource.Instantiate("AR/Game");
-        //go.transform.SetParent(transform);
-        //GameManager.Instance.player = Camera.main.transform.GetChild(0).gameObject.transform;
 
         GameManager.Instance.SetWeapon(currentWeapon);
         Managers.UI.ClosePopupUI(this);
