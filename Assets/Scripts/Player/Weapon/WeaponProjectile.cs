@@ -57,7 +57,6 @@ public class WeaponProjectile : MonoBehaviour
                 Monster hitTarget = other.GetComponentInParent<Monster>();
                 hitTarget.GetDamage(attackDamage);
                 Destroy(gameObject);
-                Debug.Log("monster");
             }
 
             if(other.CompareTag("MonsterProjectile"))
