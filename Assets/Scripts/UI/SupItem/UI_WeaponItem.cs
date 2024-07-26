@@ -34,7 +34,7 @@ public class UI_WeaponItem : UI_Base
         BindText(typeof(Texts));
         BindObject(typeof(GameObjects));
 
-		GetButton((int)Buttons.SelectButton).gameObject.BindEvent(OnClickButton);
+        GetButton((int)Buttons.SelectButton).gameObject.BindEvent(OnClickButton);
 
         return true;
     }
@@ -50,9 +50,9 @@ public class UI_WeaponItem : UI_Base
         if (_init == false)
             return;
 
-        GetObject((int)GameObjects.Icon).GetOrAddComponent<Image>().sprite = Managers.Resource.Load<Sprite>("");
+        GetObject((int)GameObjects.Icon).GetOrAddComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprite/" + weaponData.weaponName);
         GetText((int)Texts.WeaponNameText).text = weaponData.weaponName;
-        GetText((int)Texts.WeaponInfoText).text = weaponData.weaponName;
+        GetText((int)Texts.WeaponInfoText).text = weaponData.info;
         GetText((int)Texts.SelectText).text = "Select";
 
     }

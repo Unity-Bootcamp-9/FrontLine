@@ -85,7 +85,7 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
     private void RefreshWeapon()
     {
-        GetObject((int)GameObjects.WeaponIcon).GetOrAddComponent<Image>().sprite = Managers.Resource.Load<Sprite>("");
+        GetObject((int)GameObjects.WeaponIcon).GetOrAddComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprite/" + currentWeapon.weaponName);
         GetText((int)Texts.WeaponNameText).text = currentWeapon.weaponName;
         GetText((int)Texts.DamageText).text = "Damage : " + currentWeapon.attackDamage.ToString();
         GetText((int)Texts.RangeText).text = "Range : " + currentWeapon.range.ToString();
