@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Method currentMethod;
     [SerializeField] private int currentBulletsCount;
     [SerializeField] private Transform gunMuzzle;
+    [SerializeField] private Transform autoLazerTransform;
+    [SerializeField] private int range = 20;
 
     [SerializeField] private Transform player;
     [SerializeField] private Animator animator;
@@ -26,10 +29,15 @@ public class Weapon : MonoBehaviour
     public delegate void BulletChanged(int currentBulletsCount);
     public event BulletChanged OnBulletChanged;
 
+    public LayerMask Enemy;
+    public Collider[] hitEnemies;
+    private int maxEnemies;
+
     public enum Method
     {
         hitScan = 1,
-        projectile = 2
+        projectile = 2,
+        AutoLazer = 3
     }
 
     private void Awake()
@@ -40,6 +48,7 @@ public class Weapon : MonoBehaviour
 
     public void Initialize(WeaponData weapon)
     {
+        hitEnemies = new Collider[maxEnemies];
         weaponData = weapon;
         bulletPrefab = Resources.Load<GameObject>(weaponData.bulletPrefab);
 
@@ -68,6 +77,12 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         Debug.Log(currentBulletsCount);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(autoLazerTransform.position, range);
     }
 
     public void Fire()
@@ -103,27 +118,40 @@ public class Weapon : MonoBehaviour
 
         animator.Play("Shot", 0, 0);
 
-        GameObject bullet = bulletPool.Get();
+        bulletPool.Get();
 
-        if (currentMethod == Method.hitScan)
+        switch (currentMethod)
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(player.position, player.forward, out hit, 20f))
-            {
-                if(hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
+            case Method.hitScan:
+                RaycastHit hit;
+                Physics.Raycast(player.position, player.forward, out hit, weaponData.range);
+                if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
-                    
-                }
-            }
-        }
+                }               
+                break;
 
-        Handheld.Vibrate();
+            case Method.projectile:
+               
+                int enemyColldiers = Physics.OverlapSphereNonAlloc(autoLazerTransform.position, range, hitEnemies, Enemy);
+                for (int i = 0; i < enemyColldiers; i++)
+                {
+                    Collider collider = hitEnemies[i];
+                    Monster monster = collider.GetComponent<Monster>();
+                    monster.GetDamage(weaponData.attackDamage);
+                }
+                //몬스터가 배열에 담기지가않음
+                break;
+            case Method.AutoLazer:
+
+
+                break;
+        }
+        
+            Handheld.Vibrate();
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);
-
 
         Debug.Log(currentBulletsCount);
 
