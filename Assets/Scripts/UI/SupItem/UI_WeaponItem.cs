@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_WeaponItem : MonoBehaviour
+public class UI_WeaponItem : UI_Base
 {
-    // Start is called before the first frame update
-    void Start()
+    enum Buttons
     {
-        
+        SelectButton
     }
 
-    // Update is called once per frame
-    void Update()
+    enum Texts
     {
-        
+        WeaponNameText,
+        SelectText,
+        WeaponInfoText
     }
+
+    enum GameObjects
+    {
+        Icon
+    }
+
+    WeaponData weaponData;
 }
