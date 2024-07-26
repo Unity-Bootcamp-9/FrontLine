@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724673171723113505}
   - component: {fileID: 8136579415516492963}
+  - component: {fileID: 1801788525785221328}
   m_Layer: 0
   m_Name: lightningGun
   m_TagString: Untagged
@@ -30,6 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4780095817101203837}
+  - {fileID: 8027688625680172264}
   - {fileID: 3807651663339964238}
   - {fileID: 1113315974594890733}
   - {fileID: 7823213376561423746}
@@ -59,6 +62,44 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1801788525785221328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210276190051960534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f439a875cd5e0458201463a96bd3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData:
+    weaponName: 
+    attackDamage: 0
+    reloadTime: 0
+    fireDelay: 0
+    bulletCount: 0
+    weaponPrefab: 
+    bulletPrefab: 
+    soundFX: 
+    visualFX: 
+    bulletSpeed: 0
+    range: 0
+    bulletVisualFX: 
+    method: 0
+  currentMethod: 1
+  currentBulletsCount: 0
+  gunMuzzle: {fileID: 8027688625680172264}
+  autoLazerTransform: {fileID: 4780095817101203837}
+  range: 10
+  player: {fileID: 0}
+  animator: {fileID: 0}
+  isReadyToFire: 1
+  bulletPrefab: {fileID: 0}
+  Enemy:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &668143029017951261
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +478,37 @@ Transform:
   - {fileID: 5094945928743535724}
   m_Father: {fileID: 1724673171723113505}
   m_LocalEulerAnglesHint: {x: 0.000025613208, y: -89.99998, z: -89.99999}
+--- !u!1 &1114957985595924339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8027688625680172264}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8027688625680172264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114957985595924339}
+  serializedVersion: 2
+  m_LocalRotation: {x: -1.2732924e-11, y: 0.7071068, z: 5.4569678e-12, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.73, z: 3.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1724673171723113505}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1259734572648631071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,6 +1402,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2938878712448438065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4780095817101203837}
+  m_Layer: 0
+  m_Name: AttackShpere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4780095817101203837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938878712448438065}
+  serializedVersion: 2
+  m_LocalRotation: {x: -4.1836753e-11, y: 0.7071068, z: 2.0008882e-11, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.73, z: 15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1724673171723113505}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3399836903966284615
 GameObject:
   m_ObjectHideFlags: 0
