@@ -14,6 +14,8 @@ public class Managers : MonoBehaviour
     private static EffectManager effectManager = new EffectManager();
     private static SoundManager soundManager = new SoundManager();
 
+    public GameObject game;
+
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
     public List<StageData> stageDatas;

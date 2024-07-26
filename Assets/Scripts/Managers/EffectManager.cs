@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -64,7 +65,9 @@ public class EffectManager
 
     private Effect CreateObject(Effect prefab)
     {
-        return Object.Instantiate(prefab);
+        Effect effect = Object.Instantiate(prefab);
+        effect.transform.parent = Managers.Instance.game.transform;
+        return effect;
     }
 
     private void OnTakeFromPool(Effect obj)

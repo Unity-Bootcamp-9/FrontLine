@@ -34,7 +34,9 @@ public class Portal : MonoBehaviour
         Monster newMonster = Instantiate(prefab);
         if (!poolContainers.ContainsKey(newMonster.monsterData.index))
         {
-            poolContainers.Add(newMonster.monsterData.index, new GameObject($"Monster[{newMonster.monsterData.index}] Pool").transform);
+            GameObject newPool = new GameObject($"Monster[{newMonster.monsterData.index}] Pool");
+            poolContainers.Add(newMonster.monsterData.index, newPool.transform);
+            newPool.transform.parent = Managers.Instance.game.transform;
         }
         newMonster.transform.SetParent(poolContainers[newMonster.monsterData.index]);
         return newMonster;

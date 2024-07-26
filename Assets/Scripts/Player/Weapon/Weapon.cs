@@ -209,6 +209,7 @@ public class Weapon : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod, weaponData.bulletVisualFX);
+        bullet.transform.parent = Managers.Instance.game.transform;
         return bullet;
     }
 

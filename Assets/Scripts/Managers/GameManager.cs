@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
 
         portals = new List<Portal>();
-        player = GameObject.FindWithTag("Player").transform;
+        //player = GameObject.FindWithTag("Player").transform;
     }
 
     public void Initialize(StageData stageData)
@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
             {
                 Portal portal = new GameObject("Portal").AddComponent<Portal>();
                 portal.Initialize(currentStage.monsterIndexs, currentStage.spawnDelays);
+                portal.transform.parent = Managers.Instance.game.transform;
                 portal.transform.position = new Vector3(Random.Range(-MaxXZ, MaxXZ), yOffset, Random.Range(-MaxXZ, MaxXZ));
                 portals.Add(portal);
                 portalSpawnTimer = PortalSpawnTime;

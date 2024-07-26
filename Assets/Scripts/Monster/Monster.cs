@@ -52,6 +52,7 @@ public class Monster : MonoBehaviour
         if (monsterData.attackRange >= 20)
         {
             Projectile newProjectile = Instantiate(projectile);
+            newProjectile.transform.parent = Managers.Instance.game.transform;
             newProjectile.SetTarget(firePos.position, playerPos);
             newProjectile.SetDamage(monsterData.attackDamage);
         }
