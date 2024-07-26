@@ -14,11 +14,7 @@ public class UI_WeaponSelectPopUp : UI_Popup
     {
         OptionButton,
         BackButton,
-        NextButton,
-        Weapon1Button,
-        Weapon2Button,
-        Weapon3Button,
-        Weapon4Button
+        NextButton
     }
 
     enum GameObjects
