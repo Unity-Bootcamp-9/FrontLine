@@ -88,7 +88,7 @@ MonoBehaviour:
     range: 0
     bulletVisualFX: 
     method: 0
-  currentMethod: 1
+  currentMethod: 3
   currentBulletsCount: 0
   gunMuzzle: {fileID: 8027688625680172264}
   autoLazerTransform: {fileID: 4780095817101203837}
@@ -99,7 +99,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   Enemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  hitEnemies: []
 --- !u!1 &668143029017951261
 GameObject:
   m_ObjectHideFlags: 0

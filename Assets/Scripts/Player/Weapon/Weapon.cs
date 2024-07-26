@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
 
     public LayerMask Enemy;
     public Collider[] hitEnemies;
-    private int maxEnemies;
+    private int maxEnemies = 10;
 
     public enum Method
     {
@@ -132,18 +132,29 @@ public class Weapon : MonoBehaviour
                 break;
 
             case Method.projectile:
-               
-                int enemyColldiers = Physics.OverlapSphereNonAlloc(autoLazerTransform.position, range, hitEnemies, Enemy);
-                for (int i = 0; i < enemyColldiers; i++)
-                {
-                    Collider collider = hitEnemies[i];
-                    Monster monster = collider.GetComponent<Monster>();
-                    monster.GetDamage(weaponData.attackDamage);
-                }
-                //몬스터가 배열에 담기지가않음
+                
                 break;
             case Method.AutoLazer:
 
+                int enemyCount = Physics.OverlapSphereNonAlloc(autoLazerTransform.position, range, hitEnemies, Enemy);
+                Debug.Log("Enemy Count: " + enemyCount); // 디버그 로그 추가
+
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    Collider collider = hitEnemies[i];
+                    Debug.Log("Collider: " + collider.name); // 디버그 로그 추가
+
+                    Monster monster = collider.GetComponent<Monster>();
+                    if (monster != null)
+                    {
+                        Debug.Log("Monster: " + monster.name); // 디버그 로그 추가
+                        monster.GetDamage(weaponData.attackDamage);
+                    }
+                    else
+                    {
+                        Debug.Log("Monster component not found on " + collider.name); // 디버그 로그 추가
+                    }
+                }
 
                 break;
         }
