@@ -44,6 +44,11 @@ public class UI_WeaponSelectPopUp : UI_Popup
     {
         GameObject game = GameObject.Find("Game");
 
+        if(game == null)
+        {
+            game = new GameObject("Game");
+        }
+
         if(game.transform.childCount == 0)
         {
             GameObject arScene = Managers.Resource.Instantiate("AR/Game");
@@ -52,9 +57,6 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
         game.transform.GetChild(0).gameObject.SetActive(true);
         GameManager.Instance.player = GameObject.FindWithTag("Player").transform;
-        //GameObject go = Managers.Resource.Instantiate("AR/Game");
-        //go.transform.SetParent(transform);
-        //GameManager.Instance.player = Camera.main.transform.GetChild(0).gameObject.transform;
 
         WeaponData weaponData = Managers.DataManager.weaponDatas[weaponId];
         GameManager.Instance.SetWeapon(weaponData);

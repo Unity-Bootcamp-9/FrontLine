@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         if (_instance == null)
         {
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
 
         portals = new List<Portal>();
-        //player = Camera.main.transform.GetChild(0);
+        player = GameObject.FindWithTag("Player").transform;
     }
 
     public void Initialize(StageData stageData)
