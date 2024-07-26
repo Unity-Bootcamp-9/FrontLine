@@ -46,7 +46,7 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = Managers.Resource.Load<GameObject>($"Prefabs/UI/SubItem/{name}");
+        GameObject prefab = Managers.Resource.Load<GameObject>($"UI/SubItem/{name}");
         GameObject go = Managers.Resource.Instantiate(prefab);
         if (parent != null)
             go.transform.SetParent(parent);
