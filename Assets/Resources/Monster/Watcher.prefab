@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e35e3a0566cf64e99b4a29983aad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {x: 0, y: 0, z: 0}
   monsterData:
     index: 1
     attackDamage: 10
