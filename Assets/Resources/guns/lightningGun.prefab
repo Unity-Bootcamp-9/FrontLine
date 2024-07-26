@@ -32,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4780095817101203837}
   - {fileID: 8027688625680172264}
+  - {fileID: 4780095817101203837}
   - {fileID: 3807651663339964238}
   - {fileID: 1113315974594890733}
   - {fileID: 7823213376561423746}
@@ -90,6 +90,7 @@ MonoBehaviour:
     range: 0
     bulletVisualFX: 
     method: 0
+    info: 
   currentMethod: 3
   currentBulletsCount: 0
   gunMuzzle: {fileID: 8027688625680172264}
@@ -1534,8 +1535,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2938878712448438065}
   serializedVersion: 2
-  m_LocalRotation: {x: -4.1836753e-11, y: 0.7071068, z: 2.0008882e-11, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.73, z: 19.88}
+  m_LocalRotation: {x: -7.094058e-11, y: 0.7071068, z: 3.4560795e-11, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.73, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

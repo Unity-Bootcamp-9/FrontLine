@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -89,11 +90,32 @@ public class Weapon : MonoBehaviour
         Debug.Log(currentBulletsCount);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(autoLazerTransform.position, range);
-    }
+    //public float x;
+    //public float y;
+    //public float z;
+    //private void OnDrawGizmos()
+    //{
+    //    if (autoLazerTransform == null || gunMuzzle == null)
+    //        return;
+
+    //    // Gizmo 색상 설정
+    //    Gizmos.color = Color.green;
+
+    //    // 박스의 반경 크기 설정 (좌우 짧고, 앞뒤 길게)
+    //    Vector3 boxHalfExtents = new Vector3(13, 2, 2); // X, Y는 짧게, Z는 길게
+
+    //    // 박스의 중심과 방향 설정
+    //    // 총구의 위치를 중심으로 박스의 방향을 총구의 회전으로 설정
+    //    Vector3 boxCenter = autoLazerTransform.position;
+    //    Quaternion boxOrientation = gunMuzzle.rotation;
+
+    //    // Gizmo 변환 행렬 설정
+    //    Gizmos.matrix = Matrix4x4.TRS(boxCenter, boxOrientation, Vector3.one);
+
+    //    // 박스 그리기
+    //    Gizmos.DrawWireCube(Vector3.zero, boxHalfExtents * 2); // 박스의 크기를 두 배로 해서 실제 크기 표시
+    //}
+
 
     public void Fire()
     {
@@ -146,18 +168,24 @@ public class Weapon : MonoBehaviour
                 break;
 
             case Method.AutoLazer:
-                int enemyCount = Physics.OverlapSphereNonAlloc(autoLazerTransform.position, range, hitEnemies, Enemy);
+                // 총구의 위치와 방향 설정
+                Vector3 boxCenter = autoLazerTransform.position;
+                Vector3 boxHalfExtents = new Vector3(13, 2, 2); // X, Y, Z 방향의 반지름
+                Quaternion boxOrientation = gunMuzzle.rotation; // 총구의 회전 방향
 
+                // 적을 감지
+                int enemyCount = Physics.OverlapBoxNonAlloc(boxCenter, boxHalfExtents, hitEnemies, boxOrientation, Enemy);
+
+                // 적에게 전기 효과와 피해를 주기
                 for (int i = 0; i < enemyCount; i++)
                 {
                     Collider collider = hitEnemies[i];
                     Transform parentTransform = collider.transform.parent;
                     Monster monster = parentTransform.GetComponent<Monster>();
-                    if (monster != null)
-                    {
-                        ShowElectricEffect(gunMuzzle.position, monster.transform.position);
-                        monster.GetDamage(weaponData.attackDamage);
-                    }
+                    Vector3 monsterPosition = collider.transform.position;
+
+                    ShowElectricEffect(gunMuzzle.position, monsterPosition);
+                    monster.GetDamage(weaponData.attackDamage);
                 }
                 break;
         }
@@ -179,7 +207,7 @@ public class Weapon : MonoBehaviour
         LineRenderer lineRenderer = lineRendererPool.Get();
         lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
-        StartCoroutine(AutoOffElectricEffect(lineRenderer, 0.2f));
+        StartCoroutine(AutoOffElectricEffect(lineRenderer, 0.05f));
     }
 
     private IEnumerator AutoOffElectricEffect(LineRenderer lineRenderer, float delay)
