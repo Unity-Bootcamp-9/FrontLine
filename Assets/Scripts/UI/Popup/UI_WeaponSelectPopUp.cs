@@ -48,12 +48,18 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
         GetButton((int)Buttons.NextButton).gameObject.BindEvent(() => GameStart());
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
-        GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GameStart());
+        GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GoBack());
 
         SetWeapon(Managers.DataManager.weaponDatas[0]);
         PopulateWeapon();
 
         return true;
+    }
+
+    void GoBack()
+    {
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
     }
 
     void OptionPopup()
