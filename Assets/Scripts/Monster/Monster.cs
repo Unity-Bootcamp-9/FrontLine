@@ -69,7 +69,10 @@ public class Monster : MonoBehaviour
     {
         currentHP -= damage;
         if (currentHP <= 0)
+        {
             animator.SetTrigger("Dead");
+            GameManager.Instance.GetGold(monsterData.gold);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

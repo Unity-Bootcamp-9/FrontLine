@@ -13,6 +13,7 @@ public struct MonsterData
     public string name;
     public string projectile;
     public string sound;
+    public int gold;
 }
 
 [Serializable]
