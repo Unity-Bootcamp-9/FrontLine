@@ -726,6 +726,7 @@ MonoBehaviour:
   monsterDatas: []
   weaponDatas: []
   stageDatas: []
+  bossDatas: []
 --- !u!4 &1606674968
 Transform:
   m_ObjectHideFlags: 0
@@ -2231,17 +2232,17 @@ PrefabInstance:
     - target: {fileID: 5819757755620873576, guid: c8605c1b057f2db4fb5e7d527325d2f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.07
+      value: -15.6
       objectReference: {fileID: 0}
     - target: {fileID: 5819757755620873576, guid: c8605c1b057f2db4fb5e7d527325d2f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: -18.3
       objectReference: {fileID: 0}
     - target: {fileID: 5819757755620873576, guid: c8605c1b057f2db4fb5e7d527325d2f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.2
       objectReference: {fileID: 0}
     - target: {fileID: 5819757755620873576, guid: c8605c1b057f2db4fb5e7d527325d2f9,
         type: 3}

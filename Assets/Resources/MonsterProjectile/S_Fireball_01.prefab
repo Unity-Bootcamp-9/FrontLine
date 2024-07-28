@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2527298531764070769}
   - component: {fileID: 2527298531764070782}
   - component: {fileID: 2527298531764070783}
+  - component: {fileID: -9197333774596622637}
   m_Layer: 0
-  m_Name: DragonFireball
+  m_Name: S_Fireball_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +116,19 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-9197333774596622637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527298531764070780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4856f221726342149a8d6a497f0ea3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.33
 --- !u!1001 &6667594406221101293
 PrefabInstance:
   m_ObjectHideFlags: 0

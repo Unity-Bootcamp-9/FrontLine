@@ -20,7 +20,7 @@ public class BossFireballAttack : BossStateMachineBase
 
         for (int i = 0; i < fireballCount; i++)
         {
-            GameObject fireball = Managers.Resource.Instantiate("MonsterProjectile/bossAttack", bossMonster.transform);
+            GameObject fireball = Managers.Resource.Instantiate("MonsterProjectile/" + bossMonster.bossData.projectile, bossMonster.transform);
 
             fireballs.Add(fireball);
 
@@ -32,7 +32,6 @@ public class BossFireballAttack : BossStateMachineBase
 
             // 파이어볼의 위치 설정
             fireball.transform.localPosition = new Vector3(x, y, 0);
-
         }
     }
 

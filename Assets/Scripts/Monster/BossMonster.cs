@@ -7,7 +7,7 @@ public class BossMonster : MonoBehaviour
     public Vector3 playerPos;
     private Animator animator;
     public Rigidbody rigidBody;
-    private BossData bossData;
+    public BossData bossData;
 
 
     private void Start()
