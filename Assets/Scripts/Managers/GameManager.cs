@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
         }
 
         portals = new List<Portal>();
-        player = GameObject.FindWithTag("Player").transform;
     }
 
     public void Initialize(StageData stageData)
