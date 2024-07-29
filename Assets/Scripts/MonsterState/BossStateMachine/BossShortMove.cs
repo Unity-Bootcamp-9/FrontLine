@@ -9,27 +9,29 @@ public class BossShortMove : BossStateMachineBase
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Vector3 randomDirection = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.1f, 0.1f), Random.Range(-0.2f, 0.2f)).normalized;
-        float moveDistance = 10;
-        float rotateDuration = 0.1f;
-        float moveDuration = 1f;
+        float moveDistance = 8f;
+        float rotateDuration = 0.2f;
+        float moveDuration = 2f;
 
         targetPosition = bossMonster.transform.position + randomDirection * moveDistance;
-        bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
         bossMonster.transform.DOMove(targetPosition, moveDuration);
+        bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if (timer > 1)
+        if (timer > 2f)
         {
             animator.SetBool("NextAction", true);
         }
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //base.OnStateExit(animator, stateInfo, layerIndex);
         animator.SetBool("NextAction", false);
+        animator.SetBool("BossMoveAttack", false);
     }
 
 }

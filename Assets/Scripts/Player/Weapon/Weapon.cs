@@ -25,8 +25,13 @@ public class Weapon : MonoBehaviour
     private ObjectPool<LineRenderer> lineRendererPool;
     [SerializeField] private Transform lineRendererParent;
 
+    private ObjectPool<GameObject> lazerPool;
+    [SerializeField] private Transform lazerRendererParent; // 레이저 프리팹의 부모
+
+
     public delegate void BulletChanged(int currentBulletsCount);
     public event BulletChanged OnBulletChanged;
+
 
     public LayerMask Enemy;
     public Collider[] hitEnemies;
@@ -90,32 +95,6 @@ public class Weapon : MonoBehaviour
         Debug.Log(currentBulletsCount);
     }
 
-    //public float x;
-    //public float y;
-    //public float z;
-    //private void OnDrawGizmos()
-    //{
-    //    if (autoLazerTransform == null || gunMuzzle == null)
-    //        return;
-
-    //    // Gizmo 색상 설정
-    //    Gizmos.color = Color.green;
-
-    //    // 박스의 반경 크기 설정 (좌우 짧고, 앞뒤 길게)
-    //    Vector3 boxHalfExtents = new Vector3(13, 2, 2); // X, Y는 짧게, Z는 길게
-
-    //    // 박스의 중심과 방향 설정
-    //    // 총구의 위치를 중심으로 박스의 방향을 총구의 회전으로 설정
-    //    Vector3 boxCenter = autoLazerTransform.position;
-    //    Quaternion boxOrientation = gunMuzzle.rotation;
-
-    //    // Gizmo 변환 행렬 설정
-    //    Gizmos.matrix = Matrix4x4.TRS(boxCenter, boxOrientation, Vector3.one);
-
-    //    // 박스 그리기
-    //    Gizmos.DrawWireCube(Vector3.zero, boxHalfExtents * 2); // 박스의 크기를 두 배로 해서 실제 크기 표시
-    //}
-
 
     public void Fire()
     {
@@ -150,11 +129,12 @@ public class Weapon : MonoBehaviour
 
         animator.Play("Shot", 0, 0);
 
-        bulletPool.Get();
+        
 
         switch (currentMethod)
         {
             case Method.hitScan:
+                bulletPool.Get();
                 RaycastHit hit;
                 Physics.Raycast(player.position, player.forward, out hit, weaponData.range);
                 if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
@@ -164,6 +144,7 @@ public class Weapon : MonoBehaviour
                 break;
 
             case Method.projectile:
+                bulletPool.Get();
                 //투사체 
                 break;
 
@@ -215,6 +196,7 @@ public class Weapon : MonoBehaviour
         lineRenderer.enabled = false;
         lineRendererPool.Release(lineRenderer);
     }
+
 
     private IEnumerator ReloadCoroutine()
     {
@@ -289,11 +271,15 @@ public class Weapon : MonoBehaviour
         LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
         lineObj.transform.SetParent(lineRendererParent);
 
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        lineRenderer.startColor = Color.yellow;
-        lineRenderer.endColor = Color.red;
+        lineRenderer.startWidth = 0.08f;
+        lineRenderer.endWidth = 0.08f;
+        lineRenderer.startColor = Color.white;
+        lineRenderer.endColor = Color.blue;
         lineRenderer.positionCount = 2;
+
+        Material lineMaterial = new Material(Shader.Find("Sprites/Default"));
+        lineMaterial.color = Color.blue;
+        lineRenderer.material = lineMaterial;
 
         return lineRenderer;
     }
@@ -313,4 +299,6 @@ public class Weapon : MonoBehaviour
         Destroy(lineRenderer.gameObject);
     }
     #endregion
+
+    
 }

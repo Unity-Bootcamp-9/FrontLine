@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 public class WeaponProjectile : MonoBehaviour
 {
@@ -31,13 +32,27 @@ public class WeaponProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+        Projectile();
 
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime > lifeTime)
         {
             pool.Release(this.gameObject);
+        }
+    }
+
+    private void Projectile()
+    {
+        switch (currentMethod)
+        {
+            case Weapon.Method.hitScan:
+            case Weapon.Method.projectile:
+               transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+               break;
+           case Weapon.Method.AutoLazer:
+                break;
+
         }
     }
 

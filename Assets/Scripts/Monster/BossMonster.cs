@@ -5,16 +5,23 @@ using UnityEngine;
 public class BossMonster : MonoBehaviour
 {
     public Vector3 playerPos;
-    private Animator animator;
     public Rigidbody rigidBody;
     public BossData bossData;
+    public Transform fireballOffset;
+    public Transform bigFireballOffset;
 
+
+    public void Initalize(BossData _bossData)
+    {
+        bossData = _bossData;
+    }
 
     private void Start()
     {
         playerPos = Camera.main.transform.position;
-        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         bossData = Managers.DataManager.bossDatas[0];
     }
+
+
 }

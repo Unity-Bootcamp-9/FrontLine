@@ -120,6 +120,9 @@ public class GameManager : MonoBehaviour
         return currentWeapon;
     }
 
+    public void GenerateBoss()
+    {
+    }
 
     public bool WeaponIsNotNull()
     {

@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossStateMachineBase : StateMachineBehaviour
@@ -11,6 +12,7 @@ public class BossStateMachineBase : StateMachineBehaviour
     protected Vector3 playerPosition;
     protected Vector3 targetPosition;
     protected float timer;
+    protected float distance;
     protected string animationName;
 
     virtual public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,7 +23,6 @@ public class BossStateMachineBase : StateMachineBehaviour
         }
 
         animationName = this.GetType().Name;
-        currentPosition = bossMonster.transform.position;
         playerPosition = bossMonster.playerPos;
         timer = 0f;
     }
@@ -29,6 +30,15 @@ public class BossStateMachineBase : StateMachineBehaviour
     virtual public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer += Time.deltaTime;
+
+        currentPosition = bossMonster.transform.position;
+
+        distance = Vector3.Distance(currentPosition, bossMonster.playerPos);
+        
+        if(distance > 60)
+        {
+            animator.SetBool("BossToPlayer", true);
+        }
     }
 
     virtual public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

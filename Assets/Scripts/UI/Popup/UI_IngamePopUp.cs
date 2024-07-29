@@ -34,7 +34,6 @@ public class UI_IngamePopUp : UI_Popup
             return false;
 
         weapon = GameManager.Instance.GetCurrentWeapon();
-       
 
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
@@ -58,6 +57,7 @@ public class UI_IngamePopUp : UI_Popup
             weaponBulletCheck.value = weapon.CheckBulletLeft();
             weapon.OnBulletChanged += UpdateBulletLeft;
         }
+        GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
 
         GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
         return true;
@@ -77,7 +77,7 @@ public class UI_IngamePopUp : UI_Popup
     {
         weapon.ReloadButton();
         weaponBulletCheck.value = weapon.CheckBulletLeft();
-        Debug.Log("¿Â¿¸");
+        Debug.Log("√Ä√•√Ä√º");
     }
 
     private void UpdateBulletLeft(int currentBulletsCount)
