@@ -560,13 +560,14 @@ MonoBehaviour:
   playerPos: {x: 0, y: 0, z: 0}
   monsterData:
     index: 1
-    attackDamage: 10
+    attackDamage: 1
     attackRange: 10
     hp: 50
-    moveSpeed: 20
+    moveSpeed: 5
     name: Watcher
     projectile: None
     sound: None
+    gold: 0
   portal: {fileID: 0}
   rigidBody: {fileID: 0}
   firePos: {fileID: 0}
@@ -595,7 +596,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!82 &1569507943344841218
 AudioSource:
