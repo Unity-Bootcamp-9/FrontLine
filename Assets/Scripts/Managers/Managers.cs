@@ -19,6 +19,7 @@ public class Managers : MonoBehaviour
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
     public List<StageData> stageDatas;
+    public List<BossData> bossDatas;
 
     public static Managers Instance
     {
@@ -65,6 +66,7 @@ public class Managers : MonoBehaviour
         monsterDatas = DataManager.monsterDatas;
         weaponDatas = DataManager.weaponDatas;
         stageDatas = DataManager.stageDatas;
+        bossDatas = DataManager.bossDatas;
     }
 
     public void Initialize()

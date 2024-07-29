@@ -16,6 +16,19 @@ public struct MonsterData
     public int gold;
 }
 
+[System.Serializable]
+public struct BossData
+{
+    public int index;
+    public int attackDamage;
+    public float attackRange;
+    public int hp;
+    public float moveSpeed;
+    public string name;
+    public string projectile;
+    public string sound;
+}
+
 [Serializable]
 public struct WeaponData
 {

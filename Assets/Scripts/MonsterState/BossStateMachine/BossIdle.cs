@@ -9,7 +9,7 @@ public class BossIdle : BossStateMachineBase
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        monster.transform.LookAt(monster.playerPos);
+        bossMonster.transform.DOLookAt(bossMonster.playerPos, 1f);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
