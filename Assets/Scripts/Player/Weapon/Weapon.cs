@@ -164,16 +164,14 @@ public class Weapon : MonoBehaviour
                 break;
 
             case Method.projectile:
-                // Projectile logic here
+                //투사체 
                 break;
 
             case Method.AutoLazer:
-                // 총구의 위치와 방향 설정
                 Vector3 boxCenter = autoLazerTransform.position;
-                Vector3 boxHalfExtents = new Vector3(13, 2, 2); // X, Y, Z 방향의 반지름
-                Quaternion boxOrientation = gunMuzzle.rotation; // 총구의 회전 방향
+                Vector3 boxHalfExtents = new Vector3(13, 2, 2);
+                Quaternion boxOrientation = gunMuzzle.rotation;
 
-                // 적을 감지
                 int enemyCount = Physics.OverlapBoxNonAlloc(boxCenter, boxHalfExtents, hitEnemies, boxOrientation, Enemy);
 
                 // 적에게 전기 효과와 피해를 주기
