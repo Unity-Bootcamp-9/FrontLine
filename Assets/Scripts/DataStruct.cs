@@ -32,6 +32,7 @@ public struct BossData
 [Serializable]
 public struct WeaponData
 {
+    public int index;
     public string weaponName;
     public int attackDamage;
     public float reloadTime;
@@ -46,6 +47,8 @@ public struct WeaponData
     public string bulletVisualFX;
     public int method;
     public string info;
+    public int price;
+    public bool isOwn;
 }
 
 [Serializable]

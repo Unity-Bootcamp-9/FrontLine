@@ -28,7 +28,7 @@ public class FirebaseManager
         });
     }
 
-    public void GetDataFromTable(string tableName, Action<List<string>> action)
+    public void ImportDataFromTable(string tableName, Action<List<string>> action)
     {
         databaseReference.Child(tableName).GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -53,7 +53,7 @@ public class FirebaseManager
         });
     }
 
-    public void SaveGoldData(GoldData goldData)
+    public void ExportGoldData(GoldData goldData)
     {
         var goldDataMap = new Dictionary<string, object>
     {
@@ -73,7 +73,26 @@ public class FirebaseManager
         });
     }
 
-    public void GetGoldData(Action<string> action, string userName = "Default")
+    public void ExportWeaponOwnership(int index)
+    {
+        var exprotData = new Dictionary<string, object>
+    {
+        { "isOwn", true },
+    };
+        databaseReference.Child("Weapon").Child(index.ToString()).SetValueAsync(exprotData).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("Error saving data to Firebase: " + task.Exception);
+            }
+            else
+            {
+                Debug.Log("Data saved successfully to Firebase.");
+            }
+        });
+    }
+
+    public void ImportGoldData(Action<string> action, string userName = "Default")
     {
         databaseReference.Child("Gold").GetValueAsync().ContinueWithOnMainThread(task =>
         {

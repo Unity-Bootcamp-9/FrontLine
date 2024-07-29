@@ -34,7 +34,7 @@ public class UI_GameEndPopUp : UI_Popup
         GetButton((int)Buttons.RePlayButton).gameObject.BindEvent(ReplayGame);
         GetButton((int)Buttons.GameEndButton2).gameObject.BindEvent(GoStageSelectPopupUI);
 
-        Managers.DataManager.SaveGold(GameManager.Instance.currentStageGold);
+        Managers.DataManager.ExportGold(GameManager.Instance.currentStageGold);
 
         return true;
     }

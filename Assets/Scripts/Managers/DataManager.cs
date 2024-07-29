@@ -14,34 +14,12 @@ public class DataManager
     public void Initialize()
     {
         goldData.userName = "Default";
-        Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
-        Managers.FirebaseManager.GetDataFromTable("Weapon", LoadData<WeaponData>);
-        Managers.FirebaseManager.GetDataFromTable("StageData", LoadData<StageData>);
-        Managers.FirebaseManager.GetDataFromTable("BossMonster", LoadData<BossData>);
-        Managers.FirebaseManager.GetGoldData(LoadGold);
+        Managers.FirebaseManager.ImportDataFromTable("Monster", LoadData<MonsterData>);
+        Managers.FirebaseManager.ImportDataFromTable("Weapon", LoadData<WeaponData>);
+        Managers.FirebaseManager.ImportDataFromTable("StageData", LoadData<StageData>);
+        Managers.FirebaseManager.ImportDataFromTable("BossMonster", LoadData<BossData>);
+        Managers.FirebaseManager.ImportGoldData(LoadGold);
     }
-
-    //파이어베이스 연결 전까지 사용 
-    //public void Initialize()
-    //{
-    //    TextAsset jsonData = Resources.Load<TextAsset>("Data/GameData");
-
-    //    if (jsonData != null)
-    //    {
-    //        // JSON 데이터를 GameData 객체로 파싱
-    //        GameData gameData = JsonUtility.FromJson<GameData>(jsonData.text);
-
-    //        Debug.Log(gameData.ToString());
-
-    //        monsterDatas = gameData.Monster;
-    //        weaponDatas = gameData.Weapon;
-    //        stageDatas = gameData.StageData;
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("gameData.json 파일을 찾을 수 없습니다.");
-    //    }
-    //}
 
     public void LoadData<T>(List<string> datas) where T : struct
     {
@@ -51,10 +29,10 @@ public class DataManager
             T d = JsonUtility.FromJson<T>(data);
             returnValue.Add(d);
         }
-        SaveData<T>(returnValue);
+        ImportData<T>(returnValue);
     }
 
-    public void SaveData<T>(List<T> datas) where T : struct
+    public void ImportData<T>(List<T> datas) where T : struct
     {
         if (typeof(T) == typeof(MonsterData))
         {
@@ -79,9 +57,15 @@ public class DataManager
         goldData = JsonUtility.FromJson<GoldData>(data);
     }
 
-    public void SaveGold(int gold)
+    public void ExportGold(int gold)
     {
         goldData.gold += gold;
-        Managers.FirebaseManager.SaveGoldData(goldData);
+        Managers.FirebaseManager.ExportGoldData(goldData);
     }
+
+    public void ExportWeaponOwnership(WeaponData weaponData)
+    {
+        Managers.FirebaseManager.ExportWeaponOwnership(weaponData.index);
+    }
+
 }
