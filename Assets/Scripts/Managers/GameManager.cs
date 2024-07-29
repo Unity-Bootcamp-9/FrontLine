@@ -6,12 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public Transform player;
     private Weapon currentWeapon;
-    private StageData currentStage;
+    public StageData currentStage { get; private set; }
     private List<Portal> portals;
 
     public int currentHP;
     private float gameTimer;
-    private int gold;
+    private bool isDead;
+    public int currentStageGold {  get; private set; }
+    public bool gameClear { get; private set; }
 
     public delegate void HPChanged(int currentHP);
     public event HPChanged OnHPChanged;
@@ -60,6 +62,9 @@ public class GameManager : MonoBehaviour
         currentStage = stageData;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;
+        currentStageGold = 0;
+        gameClear = false;
+        isDead = false;
         StopCoroutine(GameStart());
         StartCoroutine(GameStart());
     }
@@ -134,19 +139,24 @@ public class GameManager : MonoBehaviour
 
     public void GetGold(int gold)
     {
-        this.gold += gold;
+        this.currentStageGold += gold;
     }
 
     private void Dead()
     {
-        for(int i = 0; i < portals.Count; i++)
+        if (isDead)
+            return;
+        isDead = true;
+        for (int i = 0; i < portals.Count; i++)
         {
             portals[i].StopSpawn();
+            portals[i].ResetPools();
+            Destroy(portals[i].gameObject);
         }
         portals.Clear();
-
-        StopCoroutine(GameStart());
-        // ���ӿ��� UI �ҷ��� ���� ���� ó���ϱ� 
+        StopAllCoroutines();
+        Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }
 
     private void Win()
@@ -154,9 +164,13 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < portals.Count; i++)
         {
             portals[i].StopSpawn();
+            portals[i].ResetPools();
         }
         portals.Clear();
 
-        // ���� �¸� UI �ҷ��� ���� �¸� ó���ϱ�
+        StopCoroutine(GameStart());
+        Destroy(Managers.Instance.game);
+        Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }
 }

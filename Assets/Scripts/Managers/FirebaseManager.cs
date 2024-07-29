@@ -53,4 +53,40 @@ public class FirebaseManager
         });
     }
 
+    public void SaveGoldData(GoldData goldData)
+    {
+        var goldDataMap = new Dictionary<string, object>
+    {
+        { "userName", goldData.userName },
+        { "gold", goldData.gold }
+    };
+        databaseReference.Child("Gold").SetValueAsync(goldDataMap).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("Error saving data to Firebase: " + task.Exception);
+            }
+            else
+            {
+                Debug.Log("Data saved successfully to Firebase.");
+            }
+        });
+    }
+
+    public void GetGoldData(Action<string> action, string userName = "Default")
+    {
+        databaseReference.Child("Gold").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("Error retrieving data from Firebase.");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+
+                action(snapshot.GetRawJsonValue());
+            }
+        });
+    }
 }

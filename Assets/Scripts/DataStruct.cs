@@ -56,6 +56,13 @@ public struct StageData
     public float[] spawnDelays;
 }
 
+[Serializable]
+public struct GoldData
+{
+    public string userName;
+    public int gold;
+}
+
 public class GameData
 {
     public List<MonsterData> Monster;

@@ -77,7 +77,12 @@ public class Portal : MonoBehaviour
     public void ResetPools()
     {
         monsterPools.Clear();
+        foreach(var pool in poolContainers.Values)
+        {
+            Destroy(pool.gameObject);
+        }
         poolContainers.Clear();
+        StopSpawn();
     }
 
     public void InitializePool(int[] monsterIndexs)
