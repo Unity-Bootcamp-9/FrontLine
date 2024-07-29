@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public int currentHP;
     private float gameTimer;
-    private int score;
+    private int gold;
 
     public delegate void HPChanged(int currentHP);
     public event HPChanged OnHPChanged;
@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
     public void Initialize(StageData stageData)
     {
         currentStage = stageData;
-        score = 0;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;
         StopCoroutine(GameStart());
@@ -131,9 +130,9 @@ public class GameManager : MonoBehaviour
         OnHPChanged?.Invoke(currentHP);
     }
 
-    public void GetScore(int score)
+    public void GetGold(int gold)
     {
-        this.score += score;
+        this.gold += gold;
     }
 
     private void Dead()
