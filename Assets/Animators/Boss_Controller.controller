@@ -717,49 +717,49 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossIdle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossBiteAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossFireballAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossMoveAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: NextAction
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossBigFireball
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossToPlayer
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -855,22 +855,22 @@ AnimatorStateMachine:
     m_Position: {x: 960, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2116043779174622666}
-    m_Position: {x: 250, y: 350, z: 0}
+    m_Position: {x: 240, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 796816410269114288}
-    m_Position: {x: 490, y: 350, z: 0}
+    m_Position: {x: 490, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3592465639010353442}
     m_Position: {x: 0, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2165906248097591794}
-    m_Position: {x: 950, y: 350, z: 0}
+    m_Position: {x: 950, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2041351835796757223}
-    m_Position: {x: 720, y: 350, z: 0}
+    m_Position: {x: 720, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4895790265452824033}
-    m_Position: {x: 1170, y: 350, z: 0}
+    m_Position: {x: 1170, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1230139248318426951}
     m_Position: {x: 480, y: 260, z: 0}
@@ -907,7 +907,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlyStationaryStingerAttack 0
+  m_Name: BossShortFireball 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1066,7 +1066,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlyStationaryStingerAttack 0 0
+  m_Name: BossShortFireball 1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

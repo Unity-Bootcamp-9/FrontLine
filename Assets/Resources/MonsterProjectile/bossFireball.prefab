@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2103278245350891069}
   - component: {fileID: 2103278245350891068}
   - component: {fileID: 2103278245350891043}
-  - component: {fileID: -3757612275074647093}
   - component: {fileID: -4428942675055475139}
+  - component: {fileID: 1600984989660167525}
   m_Layer: 0
   m_Name: bossFireball
   m_TagString: Untagged
@@ -119,21 +119,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-3757612275074647093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103278245350891042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a34e1ff2d4993ce4aad664568d1abf8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 1
-  elapsedTime: 0
-  moveSpeed: 10
 --- !u!136 &-4428942675055475139
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -157,3 +142,16 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1600984989660167525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103278245350891042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4856f221726342149a8d6a497f0ea3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0

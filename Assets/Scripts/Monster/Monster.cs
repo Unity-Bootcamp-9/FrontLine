@@ -53,7 +53,7 @@ public class Monster : MonoBehaviour
         {
             Projectile newProjectile = Instantiate(projectile);
             newProjectile.transform.parent = Managers.Instance.game.transform;
-            newProjectile.SetTarget(firePos.position, playerPos);
+            newProjectile.SetTarget(firePos.position, playerPos, 3f);
             newProjectile.SetDamage(monsterData.attackDamage);
         }
         else

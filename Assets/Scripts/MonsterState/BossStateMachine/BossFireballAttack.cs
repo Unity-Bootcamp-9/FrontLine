@@ -11,7 +11,8 @@ public class BossFireballAttack : BossStateMachineBase
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        fireballCount = Random.Range(5, 10);
+        fireballCount = 1;
+        //fireballCount = Random.Range(5, 10);
 
         bossMonster.transform.DOLookAt(bossMonster.playerPos, 1f);
 
@@ -20,6 +21,12 @@ public class BossFireballAttack : BossStateMachineBase
             GameObject fireball = Managers.Resource.Instantiate("MonsterProjectile/bossFireball");
 
             fireball.transform.position = bossMonster.fireballOffset.position;
+
+            Projectile projectile = fireball.GetComponent<Projectile>();
+
+            projectile.SetDamage(bossMonster.bossData.attackDamage);
+            projectile.SetTarget(bossMonster.fireballOffset.position, bossMonster.playerPos, 2f);
+
         }
     }
 

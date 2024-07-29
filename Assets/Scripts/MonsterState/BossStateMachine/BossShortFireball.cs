@@ -15,7 +15,10 @@ public class BossShortFireball : BossStateMachineBase
 
         GameObject fireball = Managers.Resource.Instantiate("MonsterProjectile/bossFireball");
         
-        fireball.transform.position = bossMonster.fireballOffset.position;
+        Projectile projectile = fireball.GetComponent<Projectile>();
+
+        projectile.SetDamage(bossMonster.bossData.attackDamage);
+        projectile.SetTarget(bossMonster.fireballOffset.position, bossMonster.playerPos, 2f);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -11,7 +11,7 @@ public class BossBiteAttack : BossStateMachineBase
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
         float rotateDuration = 0.5f;
-        float moveDuration = 1.5f;
+        float moveDuration = 2f;
 
         targetPosition = MoveToPlayerBack(currentPosition, bossMonster.playerPos, 20f);
 
@@ -23,7 +23,7 @@ public class BossBiteAttack : BossStateMachineBase
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
         
-        if(timer > 4f)
+        if(timer > 3f)
         {
             animator.SetBool("BossIdle", true);
         }

@@ -14,7 +14,7 @@ public class BossMove : BossStateMachineBase
         float rotateDuration = 0.2f;
         float moveDuration = 5f;
 
-        nextMove = Random.Range(1, 4);
+        nextMove = Random.Range(1, 5);
 
         Debug.Log(nextMove);
 
@@ -31,19 +31,13 @@ public class BossMove : BossStateMachineBase
 
         if (timer > 5.1f)
         {
-            if (distance > 30)
+            switch (nextMove)
             {
-                animator.SetBool("BossBiteAttack", true);
-            }
-            else
-            {
-                switch (nextMove)
-                {
-                    case 1: animator.SetBool("BossFireballAttack", true); break;
-                    case 2: animator.SetBool("BossMoveAttack", true); break;
-                    case 3: animator.SetBool("BossBigFireball", true); break;
-                    default: break;
-                }
+                case 1: animator.SetBool("BossFireballAttack", true); break;
+                case 2: animator.SetBool("BossMoveAttack", true); break;
+                case 3: animator.SetBool("BossBigFireball", true); break;
+                case 4: animator.SetBool("BossBiteAttack", true); break;
+                default: break;
             }
         }
     }
