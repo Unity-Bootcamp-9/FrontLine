@@ -8,12 +8,14 @@ public class DataManager
     public List<MonsterData> monsterDatas;
     public List<WeaponData> weaponDatas;
     public List<StageData> stageDatas;
+    public List<BossData> bossDatas;
 
     public void Initialize()
     {
         Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
         Managers.FirebaseManager.GetDataFromTable("Weapon", LoadData<WeaponData>);
         Managers.FirebaseManager.GetDataFromTable("StageData", LoadData<StageData>);
+        Managers.FirebaseManager.GetDataFromTable("BossMonster", LoadData<BossData>);
     }
 
     //파이어베이스 연결 전까지 사용 
@@ -63,5 +65,10 @@ public class DataManager
         {
             stageDatas = datas as List<StageData>;
         }
+        else if (typeof(T) == typeof(BossData))
+        {
+            bossDatas = datas as List<BossData>;
+        }
+
     }
 }

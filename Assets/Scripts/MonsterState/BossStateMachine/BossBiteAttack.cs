@@ -4,22 +4,26 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class BiteAttack : BossStateMachineBase
+public class BossBiteAttack : BossStateMachineBase
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        targetPosition = MoveToPlayerBack(currentPosition, monster.playerPos, 10f);
+        float rotateDuration = 0.5f;
+        float moveDuration = 1.5f;
 
-        monster.transform.DOMove(targetPosition, 1.5f);
+        targetPosition = MoveToPlayerBack(currentPosition, bossMonster.playerPos, 20f);
+
+        bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
+        bossMonster.transform.DOMove(targetPosition, moveDuration);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
         
-        if(Vector3.Distance(monster.transform.position, targetPosition) < 0.2f)
+        if(timer > 4f)
         {
             animator.SetBool("BossIdle", true);
         }
