@@ -11,6 +11,7 @@ using Slider = UnityEngine.UI.Slider;
 public class UI_IngamePopUp : UI_Popup
 {
     private Weapon weapon;
+    private Canvas canvas;
 
     enum Sliders
     {
@@ -34,7 +35,10 @@ public class UI_IngamePopUp : UI_Popup
             return false;
 
         weapon = GameManager.Instance.GetCurrentWeapon();
-       
+        canvas = GetComponent<Canvas>();
+
+        bool left = true;
+        Managers.UI.Flip(left, canvas);
 
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));

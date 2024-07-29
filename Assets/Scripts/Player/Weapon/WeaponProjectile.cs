@@ -15,8 +15,6 @@ public class WeaponProjectile : MonoBehaviour
     private string vfxPath;
     Weapon.Method currentMethod;
 
-    WeaponAutoLazer autoLazerweapon;
-
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
         this.pool = _pool;
