@@ -34,8 +34,8 @@ public class UI_OptionPopUp : UI_Popup
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
 
-        GetButton((int)Buttons.BackButton).gameObject.BindEvent(BackStage);
-        GetButton((int)Buttons.GameEndButton).gameObject.BindEvent(GameEnd);
+        GetButton((int)Buttons.BackButton).gameObject.BindEvent(GoBack);
+        GetButton((int)Buttons.GameEndButton).gameObject.BindEvent(GoStageSelectPopupUI);
 
         soundSlider = GetSlider((int)Sliders.SoundSlider);
 
@@ -50,14 +50,14 @@ public class UI_OptionPopUp : UI_Popup
         return true;
     }
 
-    void GameEnd()
+    void GoStageSelectPopupUI()
     {
         Time.timeScale = 1f;
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
     }
 
-    void BackStage()
+    void GoBack()
     {
         Time.timeScale = 1f;
         Managers.UI.ClosePopupUI(this);

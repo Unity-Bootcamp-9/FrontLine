@@ -9,13 +9,16 @@ public class DataManager
     public List<WeaponData> weaponDatas;
     public List<StageData> stageDatas;
     public List<BossData> bossDatas;
+    public GoldData goldData;
 
     public void Initialize()
     {
+        goldData.userName = "Default";
         Managers.FirebaseManager.GetDataFromTable("Monster", LoadData<MonsterData>);
         Managers.FirebaseManager.GetDataFromTable("Weapon", LoadData<WeaponData>);
         Managers.FirebaseManager.GetDataFromTable("StageData", LoadData<StageData>);
         Managers.FirebaseManager.GetDataFromTable("BossMonster", LoadData<BossData>);
+        Managers.FirebaseManager.GetGoldData(LoadGold);
     }
 
     //파이어베이스 연결 전까지 사용 
@@ -69,6 +72,16 @@ public class DataManager
         {
             bossDatas = datas as List<BossData>;
         }
+    }
 
+    public void LoadGold(string data)
+    {
+        goldData = JsonUtility.FromJson<GoldData>(data);
+    }
+
+    public void SaveGold(int gold)
+    {
+        goldData.gold += gold;
+        Managers.FirebaseManager.SaveGoldData(goldData);
     }
 }
