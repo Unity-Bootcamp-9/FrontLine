@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 public class WeaponProjectile : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class WeaponProjectile : MonoBehaviour
     private float elapsedTime;
     private string vfxPath;
     Weapon.Method currentMethod;
+
+    WeaponAutoLazer autoLazerweapon;
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
@@ -31,13 +34,27 @@ public class WeaponProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+        Projectile();
 
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime > lifeTime)
         {
             pool.Release(this.gameObject);
+        }
+    }
+
+    private void Projectile()
+    {
+        switch (currentMethod)
+        {
+            case Weapon.Method.hitScan:
+            case Weapon.Method.projectile:
+               transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+               break;
+           case Weapon.Method.AutoLazer:
+                break;
+
         }
     }
 

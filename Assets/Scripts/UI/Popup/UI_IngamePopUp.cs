@@ -58,6 +58,7 @@ public class UI_IngamePopUp : UI_Popup
             weaponBulletCheck.value = weapon.CheckBulletLeft();
             weapon.OnBulletChanged += UpdateBulletLeft;
         }
+        GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
 
         return true;
     }
@@ -70,7 +71,7 @@ public class UI_IngamePopUp : UI_Popup
     void OnClickShootWeapon()
     {
         weapon.Fire();
-        GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
+        
     }
 
     void onReloadWeapon()
