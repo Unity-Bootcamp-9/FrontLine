@@ -11,6 +11,7 @@ public enum Sound
 
 public class SoundManager
 {
+    private AudioListener _audioListener;
     private AudioSource[] _audioSources = new AudioSource[(int)Sound.Max];
     private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
@@ -26,6 +27,8 @@ public class SoundManager
                 _soundRoot = new GameObject { name = "@SoundRoot" };
                 Object.DontDestroyOnLoad(_soundRoot);
 
+                _audioListener = _soundRoot.AddComponent<AudioListener>();
+
                 string[] soundTypeNames = System.Enum.GetNames(typeof(Sound));
                 for (int count = 0; count < soundTypeNames.Length - 1; count++)
                 {
@@ -35,6 +38,7 @@ public class SoundManager
                 }
 
                 _audioSources[(int)Sound.Bgm].loop = true;
+                Managers.SoundManager.Play(Sound.Bgm, "Sound/BackGroundMusic");
             }
         }
     }
@@ -55,6 +59,7 @@ public class SoundManager
         audioSource.pitch = pitch;
     }
 
+
     public bool Play(Sound type, string path, float volume = 1.0f, float pitch = 1.0f)
     {
         if (string.IsNullOrEmpty(path))
@@ -64,7 +69,6 @@ public class SoundManager
         if (!path.Contains("Sound/"))
             path = string.Format("Sound/{0}", path);
 
-        audioSource.volume = volume;
 
         if (type == Sound.Bgm)
         {
@@ -75,6 +79,7 @@ public class SoundManager
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
+            audioSource.volume = volume;
             audioSource.clip = audioClip;
             audioSource.pitch = pitch;
             audioSource.Play();
@@ -85,7 +90,7 @@ public class SoundManager
             AudioClip audioClip = GetAudioClip(path);
             if (audioClip == null)
                 return false;
-
+            audioSource.volume = volume;
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
             return true;

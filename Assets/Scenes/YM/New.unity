@@ -270,9 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5a8afd725faba4a8e4de28f3cddc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 0}
   monsterDatas: []
   weaponDatas: []
   stageDatas: []
+  bossDatas: []
 --- !u!4 &1044393147
 Transform:
   m_ObjectHideFlags: 0

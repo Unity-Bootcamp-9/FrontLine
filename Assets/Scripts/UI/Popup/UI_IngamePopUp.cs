@@ -59,7 +59,6 @@ public class UI_IngamePopUp : UI_Popup
         }
         GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
 
-        GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
         return true;
     }
 

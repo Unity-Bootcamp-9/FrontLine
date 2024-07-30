@@ -60,11 +60,13 @@ public class UI_WeaponSelectPopUp : UI_Popup
     {
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
+        Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button9");
     }
 
     void OptionPopup()
     {
         Managers.UI.ShowPopupUI<UI_OptionPopUp>();
+        Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button3");
     }
 
     public void PopulateWeapon()
@@ -128,6 +130,8 @@ public class UI_WeaponSelectPopUp : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_IngamePopUp>();
         GameManager.Instance.Initialize(Managers.DataManager.stageDatas[0]);
+        Managers.SoundManager.Play(Sound.Bgm, "Sound/IngameBackGroundSound");
+        Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button6");
     }
 
 }

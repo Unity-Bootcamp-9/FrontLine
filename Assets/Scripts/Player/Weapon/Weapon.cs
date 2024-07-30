@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -25,9 +24,7 @@ public class Weapon : MonoBehaviour
     private ObjectPool<LineRenderer> lineRendererPool;
     [SerializeField] private Transform lineRendererParent;
 
-    private ObjectPool<GameObject> lazerPool;
-    [SerializeField] private Transform lazerRendererParent; // 레이저 프리팹의 부모
-
+    private AudioSource weaponAudioSource;
 
     public delegate void BulletChanged(int currentBulletsCount);
     public event BulletChanged OnBulletChanged;
@@ -36,6 +33,7 @@ public class Weapon : MonoBehaviour
     public LayerMask Enemy;
     public Collider[] hitEnemies;
     private int maxEnemies = 10;
+    private AudioClip audioClip;
 
     public enum Method
     {
@@ -48,6 +46,7 @@ public class Weapon : MonoBehaviour
     {
         player = Camera.main.gameObject.transform;
         animator = GetComponent<Animator>();
+        weaponAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void Initialize(WeaponData weapon)
@@ -165,6 +164,8 @@ public class Weapon : MonoBehaviour
 
                     ShowElectricEffect(gunMuzzle.position, monsterPosition);
                     monster.GetDamage(weaponData.attackDamage);
+                    Managers.SoundManager.GetAudioClip("lasergunSound");
+                    weaponAudioSource.PlayOneShot(audioClip);
                 }
                 break;
         }
