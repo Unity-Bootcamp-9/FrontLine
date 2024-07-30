@@ -36,9 +36,11 @@ public class BossBiteAttack : BossStateMachineBase
 
     Vector3 MoveToPlayerBack(Vector3 enemyPosition, Vector3 playerPosition, float distance)
     {
-        Vector3 direction = (playerPosition - enemyPosition).normalized;
+        Vector3 targetOffset = playerPosition + new Vector3(0, -5, 0);
+        
+        Vector3 direction = (targetOffset - enemyPosition).normalized;
 
-        Vector3 newPosition = playerPosition + direction * distance;
+        Vector3 newPosition = targetOffset + direction * distance;
 
         return newPosition;
     }

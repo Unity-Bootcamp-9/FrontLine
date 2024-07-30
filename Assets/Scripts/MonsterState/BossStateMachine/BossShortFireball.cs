@@ -13,12 +13,11 @@ public class BossShortFireball : BossStateMachineBase
 
         bossMonster.transform.DOLookAt(targetPosition, 0.5f);
 
-        GameObject fireball = Managers.Resource.Instantiate("MonsterProjectile/bossFireball");
+        GameObject fireball = Managers.Resource.Instantiate(bossMonster.fireball);
         
-        Projectile projectile = fireball.GetComponent<Projectile>();
+        fireball.transform.position = bossMonster.fireballOffset.position;
 
-        projectile.SetDamage(bossMonster.bossData.attackDamage);
-        projectile.SetTarget(bossMonster.fireballOffset.position, bossMonster.playerPos, 2f);
+        SetProjectile(fireball, bossMonster.bossData.attackDamage).SetTarget(bossMonster.fireballOffset.position, bossMonster.playerPos, 3f);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -32,7 +31,6 @@ public class BossShortFireball : BossStateMachineBase
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        base.OnStateExit(animator, stateInfo, layerIndex);
         animator.SetBool("NextAction", false);
     }
 

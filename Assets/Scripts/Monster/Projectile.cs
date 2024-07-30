@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage { get; private set; }
-    private Vector3 targetPos;
+    [SerializeField] public int damage { get; private set; }
+    [SerializeField] private Vector3 targetPos;
 
     public void SetDamage(int damage)
     {
@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.GetDamage(damage);
+            Destroy(gameObject);
         }
     }
 

@@ -11,7 +11,7 @@ public class Monster : MonoBehaviour
     public MonsterData monsterData;
     public Portal portal;
     private Projectile projectile;
-    private int currentHP;
+    protected int currentHP;
     public Rigidbody rigidBody;
     [SerializeField] private Transform firePos;
 
@@ -65,7 +65,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void GetDamage(int damage)
+    public virtual void GetDamage(int damage)
     {
         currentHP -= damage;
         if (currentHP <= 0)

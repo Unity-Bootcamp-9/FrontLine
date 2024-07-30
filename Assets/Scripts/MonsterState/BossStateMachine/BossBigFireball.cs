@@ -5,42 +5,30 @@ using UnityEngine;
 
 public class BossBigFireball : BossStateMachineBase
 {
-    private GameObject fireball;
-    private bool isShoot = false;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        isShoot = false;
-
-        targetPosition = Camera.main.transform.position;
+        targetPosition = bossMonster.playerPos;
 
         bossMonster.transform.DOLookAt(targetPosition, 0.5f);
 
-        fireball = Managers.Resource.Instantiate("MonsterProjectile/bossElectric");
+        GameObject fireball = Managers.Resource.Instantiate(bossMonster.fireball);
 
         fireball.transform.position = bossMonster.bigFireballOffset.position;
-
-        fireball.transform.localScale = Vector3.one;
-
-        fireball.transform.DOScale(Vector3.one * 10f, 3f);
+        
+        fireball.transform.DOScale(Vector3.one * 10f, 3f).OnComplete(() => {
+            Debug.Log(fireball.gameObject.name);
+            SetProjectile(fireball, bossMonster.bossData.attackDamage).SetTarget(fireball.transform.position, targetPosition, 2f);
+        }
+        );
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if (timer > 3 && !isShoot)
-        {
-            Projectile projectile = fireball.GetComponent<Projectile>();
-
-            projectile.SetDamage(bossMonster.bossData.attackDamage);
-            projectile.SetTarget(bossMonster.bigFireballOffset.position, bossMonster.playerPos, 5f);
-
-            isShoot = true;
-        }
-
-        if (timer > 5)
+        if (timer > 10)
         {
             animator.SetBool("BossIdle", true);
         }

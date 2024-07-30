@@ -10,13 +10,11 @@ public class BossMove : BossStateMachineBase
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Vector3 randomDirection = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.1f, 0.1f), Random.Range(-0.3f, 0.3f)).normalized;
-        float moveDistance = 50f;
+        float moveDistance = 100f;
         float rotateDuration = 0.2f;
         float moveDuration = 5f;
 
         nextMove = Random.Range(1, 5);
-
-        Debug.Log(nextMove);
 
         targetPosition = bossMonster.transform.position + randomDirection * moveDistance;
         bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
@@ -29,7 +27,7 @@ public class BossMove : BossStateMachineBase
 
         float distance = Vector3.Distance(playerPosition, currentPosition);
 
-        if (timer > 5.1f)
+        if (timer > 5f)
         {
             switch (nextMove)
             {

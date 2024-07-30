@@ -11,9 +11,8 @@ public class GameManager : MonoBehaviour
 
     public int currentHP;
     private float gameTimer;
-    private bool isDead;
     public int currentStageGold {  get; private set; }
-    public bool gameClear { get; private set; }
+    public bool gameClear { get; set; }
 
     public delegate void HPChanged(int currentHP);
     public event HPChanged OnHPChanged;
@@ -64,7 +63,6 @@ public class GameManager : MonoBehaviour
         gameTimer = MaxPlayTime;
         currentStageGold = 0;
         gameClear = false;
-        isDead = false;
         StopCoroutine(GameStart());
         StartCoroutine(GameStart());
     }
@@ -87,7 +85,20 @@ public class GameManager : MonoBehaviour
             gameTimer -= Time.deltaTime;
             portalSpawnTimer -= Time.deltaTime;
         }
-        Win();
+
+        GenerateBossMonster();
+    }
+
+    public void GenerateBossMonster()
+    {
+        int bossIndex = currentStage.bossIndex;
+        string name = Managers.DataManager.bossDatas[bossIndex].name;
+        GameObject bossMonster = Managers.Resource.Instantiate($"Monster/Boss/{name}");
+
+        BossMonster bossMonsterComponent = bossMonster.GetComponent<BossMonster>();
+        bossMonsterComponent.Initalize(Managers.DataManager.bossDatas[bossIndex]);
+
+        Debug.Log(name);
     }
 
     public void SetWeapon(WeaponData weaponData)
@@ -133,7 +144,7 @@ public class GameManager : MonoBehaviour
     {
         currentHP -= damage;
         if (currentHP < 0)
-            Dead();
+            GameOver();
         OnHPChanged?.Invoke(currentHP);
     }
 
@@ -142,11 +153,8 @@ public class GameManager : MonoBehaviour
         this.currentStageGold += gold;
     }
 
-    private void Dead()
+    public void GameOver()
     {
-        if (isDead)
-            return;
-        isDead = true;
         for (int i = 0; i < portals.Count; i++)
         {
             portals[i].StopSpawn();
@@ -155,21 +163,6 @@ public class GameManager : MonoBehaviour
         }
         portals.Clear();
         StopAllCoroutines();
-        Managers.UI.ClosePopupUI();
-        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
-    }
-
-    private void Win()
-    {
-        for (int i = 0; i < portals.Count; i++)
-        {
-            portals[i].StopSpawn();
-            portals[i].ResetPools();
-        }
-        portals.Clear();
-
-        StopCoroutine(GameStart());
-        Destroy(Managers.Instance.game);
         Managers.UI.ClosePopupUI();
         Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }

@@ -34,8 +34,10 @@ public class BossStateMachineBase : StateMachineBehaviour
         currentPosition = bossMonster.transform.position;
 
         distance = Vector3.Distance(currentPosition, bossMonster.playerPos);
-        
-        if(distance > 60)
+
+        float maxDistance = 120;
+
+        if(distance > maxDistance)
         {
             animator.SetBool("BossToPlayer", true);
         }
@@ -44,5 +46,12 @@ public class BossStateMachineBase : StateMachineBehaviour
     virtual public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool(animationName, false);
+    }
+
+    protected Projectile SetProjectile(GameObject fireball, int damage)
+    {
+        Projectile fireballProjectile = fireball.GetComponent<Projectile>();
+        fireballProjectile.SetDamage(damage);
+        return fireballProjectile;
     }
 }
