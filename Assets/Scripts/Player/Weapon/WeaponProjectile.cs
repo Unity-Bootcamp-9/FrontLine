@@ -32,7 +32,7 @@ public class WeaponProjectile : MonoBehaviour
 
     public void ShootProjectile()
     {
-        if(weaponProjectileAudio == null)
+        if (weaponProjectileAudio == null)
         {
             weaponProjectileAudio = gameObject.AddComponent<AudioSource>();
         }
@@ -54,29 +54,25 @@ public class WeaponProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
         if (currentMethod == Weapon.Method.projectile)
         {
-            Debug.Log("method");
-
-            if (other.CompareTag("Monster"))
+            if (vfxPath != "")
             {
-                if(vfxPath != "") 
-                {
-                    Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
-                }
-
-                Monster hitTarget = other.GetComponentInParent<Monster>();
-                hitTarget.GetDamage(attackDamage);
-                Destroy(gameObject);
-                Debug.Log("monster");
+                Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
             }
 
-            if(other.CompareTag("MonsterProjectile"))
+            if (other.TryGetComponent<Monster>(out Monster hitMonster))
             {
-                Destroy(other.gameObject);
+                hitMonster.GetDamage(attackDamage);
                 pool.Release(this.gameObject);
             }
+
+            if(other.TryGetComponent<Projectile>(out Projectile hitProjectile))
+            {
+                Destroy(other.gameObject);
+                //pool.Release(this.gameObject);
+            }
         }
+
     }
 }

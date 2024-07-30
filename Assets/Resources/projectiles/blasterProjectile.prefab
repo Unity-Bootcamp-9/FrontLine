@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1902166205236133416}
   - component: {fileID: 3394838254338025983}
   - component: {fileID: 452354442470623910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4795683133270089744}
   - component: {fileID: 4795683133270089746}
   - component: {fileID: 4795683133270089747}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,9 +211,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4795683133691389397}
   - component: {fileID: -1286295360255503477}
-  m_Layer: 0
+  - component: {fileID: 9157171379320273203}
+  m_Layer: 8
   m_Name: blasterProjectile
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,5 +248,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b814580bf945c459433009de056849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 0
-  shootDirection: {x: 0, y: 0, z: 0}
+--- !u!65 &9157171379320273203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795683133691389418}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04, y: 0.03, z: 1.16}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4160624045849314531}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2809929187857096987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigFireballOffset
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4327635046666392067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6775978992887783588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaLeftA2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3727273068607853056}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3029160129594320821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7971442998449799170}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4465684531235856095}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609613787048669021}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 163936639871429549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaLeftA3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8144944814819844358}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaLeftB2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7845772694563646779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6311710944253477611}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2882659728952719054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6691146124742742950}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8565839957993854151}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1696603382938599215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaLeftB3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4337107308906108436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5053848512314968799}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9147326618895740956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4502921990087014273}
   - component: {fileID: 5880984029749314996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SK_Skorptere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51948627170562620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8431241718612589004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 2682125497748070510}
   - component: {fileID: 5960374048600209901}
   - component: {fileID: 4938672294262546790}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572136896764967544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554854348857306021}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaRightA3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2103320946645938734}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1041,7 +1041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4655741578590199385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5660640486903052470}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9141318152386525515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,7 +1138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5902590901087467890}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaLeftA1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,7 +1170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8341906273362046771}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaRightA2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1202,7 +1202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1145745620127249809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1234,7 +1234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4195608053313179728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FIreballOffset
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -1265,7 +1265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9106503711197513750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaRightB2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1297,7 +1297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5246477138172821043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1328,7 +1328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6355388214755815944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaRightB1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6431262793312078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,7 +1391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6100912985224082142}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,9 +1427,9 @@ GameObject:
   - component: {fileID: 1811436300413165154}
   - component: {fileID: 8453927852428168849}
   - component: {fileID: 3755515177243112351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss1
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1516,7 +1516,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0, z: 0}
+  monsterData:
+    index: 0
+    attackDamage: 0
+    attackRange: 0
+    hp: 0
+    moveSpeed: 0
+    name: 
+    projectile: 
+    sound: 
+    gold: 0
+  portal: {fileID: 0}
   rigidBody: {fileID: 0}
+  firePos: {fileID: 0}
   bossData:
     index: 0
     attackDamage: 0
@@ -1538,7 +1550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2255031298637497572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1571,7 +1583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5739511272733973812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1603,7 +1615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 887483964958004276}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1635,7 +1647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2740223154619986533}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1667,7 +1679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2209749433787761127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1699,7 +1711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490061679052912412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1731,7 +1743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1767644930679460150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1762,7 +1774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1867474617849899081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3286583686068250368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1829,7 +1841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2841836281394938746}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1865,7 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4945705389850878530}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1899,7 +1911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3717030115997301847}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1931,7 +1943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6640095831400312409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1963,7 +1975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2667048272829762056}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaRightB3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1994,7 +2006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1224960458060560711}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2026,7 +2038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3010990878289599697}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaRightA1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2059,7 +2071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3880033401936220442}
   - component: {fileID: 5717861287509957867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2111,7 +2123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2340749592523466879}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2143,7 +2155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3286102326844546120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2174,7 +2186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4076332199162374263}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Tail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2206,7 +2218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2884573098277447531}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2238,7 +2250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4447006524627840898}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2272,7 +2284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 780357443647828561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2306,7 +2318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3006826798623902675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skorptere_ AntennaLeftB1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
