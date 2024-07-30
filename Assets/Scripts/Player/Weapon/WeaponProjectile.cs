@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,9 +51,8 @@ public class WeaponProjectile : MonoBehaviour
             case Weapon.Method.projectile:
                transform.position += shootDirection * Time.deltaTime * bulletSpeed;
                break;
-           case Weapon.Method.AutoLazer:
+            case Weapon.Method.AutoLazer:
                 break;
-
         }
     }
 
