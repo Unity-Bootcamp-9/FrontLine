@@ -49,6 +49,31 @@ public struct WeaponData
     public string info;
     public int price;
     public bool isOwn;
+
+    public Dictionary<string, object> ReturnDic()
+    {
+        Dictionary<string, object> keyValuePairs = new Dictionary<string, object>
+        {
+            { "index", index },
+            { "weaponName", weaponName},
+            { "attackDamage", attackDamage },
+            { "reloadTime", reloadTime },
+            { "fireDelay", fireDelay },
+            { "bulletCount", bulletCount },
+            { "weaponPrefab", weaponPrefab },
+            { "bulletPrefab", bulletPrefab },
+            { "soundFX", soundFX },
+            { "visualFX", visualFX },
+            { "bulletSpeed", bulletSpeed },
+            { "range", range },
+            { "bulletVisualFX", bulletVisualFX },
+            { "method", method },
+            { "info", info },
+            { "price", price },
+            { "isOwn", isOwn }
+        };
+        return keyValuePairs;
+    }
 }
 
 [Serializable]

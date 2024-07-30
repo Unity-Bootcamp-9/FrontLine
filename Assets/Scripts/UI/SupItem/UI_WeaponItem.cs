@@ -17,7 +17,8 @@ public class UI_WeaponItem : UI_Base
         WeaponNameText,
         WeaponInfoText,
         SelectText,
-        BuyText
+        BuyText,
+        PriceText
     }
 
     enum GameObjects
@@ -59,9 +60,11 @@ public class UI_WeaponItem : UI_Base
         GetText((int)Texts.WeaponInfoText).text = weaponData.info;
         GetText((int)Texts.SelectText).text = "Select";
         GetText((int)Texts.BuyText).text = "Buy";
+        GetText((int)Texts.PriceText).text = "G : " + weaponData.price.ToString();
 
         GetButton((int)Buttons.SelectButton).gameObject.SetActive(weaponData.isOwn);
         GetButton((int)Buttons.BuyButton).gameObject .SetActive(!weaponData.isOwn);
+        GetText((int)Texts.PriceText).gameObject.SetActive(!weaponData.isOwn);
     }
 
     void OnClickSelectButton()
@@ -74,9 +77,10 @@ public class UI_WeaponItem : UI_Base
         if(Managers.DataManager.goldData.gold >= weaponData.price)
         {
             // ±¸¸Å
-            Managers.DataManager.ExportGold(-weaponData.price);
-            Managers.UI.FindPopup<UI_WeaponSelectPopUp>().RefreshGold();
             weaponData.isOwn = true;
+            Managers.DataManager.ExportGold(-weaponData.price);
+            Managers.DataManager.ExportWeaponData(weaponData);
+            Managers.UI.FindPopup<UI_WeaponSelectPopUp>().RefreshGold();
             RefreshUI();
         }
         else

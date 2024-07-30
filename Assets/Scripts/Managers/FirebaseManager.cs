@@ -73,13 +73,9 @@ public class FirebaseManager
         });
     }
 
-    public void ExportWeaponOwnership(int index)
+    public void ExportWeaponData(int index, Dictionary<string, object> data)
     {
-        var exprotData = new Dictionary<string, object>
-    {
-        { "isOwn", true },
-    };
-        databaseReference.Child("Weapon").Child(index.ToString()).SetValueAsync(exprotData).ContinueWithOnMainThread(task =>
+        databaseReference.Child("Weapon").Child(index.ToString()).SetValueAsync(data).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {

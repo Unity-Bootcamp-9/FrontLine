@@ -63,9 +63,9 @@ public class DataManager
         Managers.FirebaseManager.ExportGoldData(goldData);
     }
 
-    public void ExportWeaponOwnership(WeaponData weaponData)
+    public void ExportWeaponData(WeaponData weaponData)
     {
-        Managers.FirebaseManager.ExportWeaponOwnership(weaponData.index);
+        Managers.FirebaseManager.ExportWeaponData(weaponData.index, weaponData.ReturnDic());
     }
 
 }
