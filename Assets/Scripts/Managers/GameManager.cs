@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public event HPChanged OnHPChanged;
 
     private readonly int MaxHP = 100;
-    private readonly int MaxPlayTime = 90;
+    private readonly int MaxPlayTime = 20;
     private readonly float PortalSpawnTime = 10f;
     private readonly float MaxXZ = 24f;
     private const float yOffset = -2f;
@@ -101,8 +101,6 @@ public class GameManager : MonoBehaviour
 
         BossMonster bossMonsterComponent = bossMonster.GetComponent<BossMonster>();
         bossMonsterComponent.Initalize(Managers.DataManager.bossDatas[bossIndex]);
-
-        Debug.Log(name);
     }
 
     public void SetWeapon(WeaponData weaponData)

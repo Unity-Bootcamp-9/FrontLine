@@ -131,7 +131,7 @@ public class Weapon : MonoBehaviour
                 
                 Debug.Log(hit.transform.gameObject.name);
 
-                if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
+                if (hit.transform.TryGetComponent<IMonster>(out IMonster hitTarget))
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
                 }
@@ -160,7 +160,7 @@ public class Weapon : MonoBehaviour
                 {
                     Collider collider = hitEnemies[i];
                     Transform parentTransform = collider.transform.parent;
-                    Monster monster = parentTransform.GetComponent<Monster>();
+                    IMonster monster = parentTransform.GetComponent<IMonster>();
                     Vector3 monsterPosition = collider.transform.position;
 
                     ShowElectricEffect(gunMuzzle.position, monsterPosition);

@@ -61,7 +61,7 @@ public class WeaponProjectile : MonoBehaviour
                 Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
             }
 
-            if (other.TryGetComponent<Monster>(out Monster hitMonster))
+            if (other.TryGetComponent<IMonster>(out IMonster hitMonster))
             {
                 hitMonster.GetDamage(attackDamage);
                 pool.Release(this.gameObject);
