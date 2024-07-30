@@ -8,14 +8,17 @@ public class UI_WeaponItem : UI_Base
 {
     enum Buttons
     {
-        SelectButton
+        SelectButton,
+        BuyButton
     }
 
     enum Texts
     {
         WeaponNameText,
+        WeaponInfoText,
         SelectText,
-        WeaponInfoText
+        BuyText,
+        PriceText
     }
 
     enum GameObjects
@@ -34,7 +37,9 @@ public class UI_WeaponItem : UI_Base
         BindText(typeof(Texts));
         BindObject(typeof(GameObjects));
 
-        GetButton((int)Buttons.SelectButton).gameObject.BindEvent(OnClickButton);
+        GetButton((int)Buttons.SelectButton).gameObject.BindEvent(OnClickSelectButton);
+        
+        GetButton((int)Buttons.BuyButton).gameObject.BindEvent(OnClickBuyButton);
 
         return true;
     }
@@ -54,11 +59,34 @@ public class UI_WeaponItem : UI_Base
         GetText((int)Texts.WeaponNameText).text = weaponData.weaponName;
         GetText((int)Texts.WeaponInfoText).text = weaponData.info;
         GetText((int)Texts.SelectText).text = "Select";
+        GetText((int)Texts.BuyText).text = "Buy";
+        GetText((int)Texts.PriceText).text = "G : " + weaponData.price.ToString();
 
+        GetButton((int)Buttons.SelectButton).gameObject.SetActive(weaponData.isOwn);
+        GetButton((int)Buttons.BuyButton).gameObject .SetActive(!weaponData.isOwn);
+        GetText((int)Texts.PriceText).gameObject.SetActive(!weaponData.isOwn);
     }
 
-    void OnClickButton()
+    void OnClickSelectButton()
     {
         Managers.UI.FindPopup<UI_WeaponSelectPopUp>().SetWeapon(weaponData);
+    }
+
+    void OnClickBuyButton()
+    {
+        if(Managers.DataManager.goldData.gold >= weaponData.price)
+        {
+            // 구매
+            weaponData.isOwn = true;
+            Managers.DataManager.ExportGold(-weaponData.price);
+            Managers.DataManager.ExportWeaponData(weaponData);
+            Managers.UI.FindPopup<UI_WeaponSelectPopUp>().RefreshGold();
+            RefreshUI();
+        }
+        else
+        {
+            // 구매 불가
+
+        }
     }
 }

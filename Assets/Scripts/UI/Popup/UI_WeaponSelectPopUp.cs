@@ -30,7 +30,8 @@ public class UI_WeaponSelectPopUp : UI_Popup
         DamageText,
         RangeText,
         BulletCountText,
-        FireDelayText
+        FireDelayText,
+        GoldText
     }
 
     private Buttons _selectedWeapon;
@@ -50,8 +51,10 @@ public class UI_WeaponSelectPopUp : UI_Popup
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
         GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GoBack());
 
+
         SetWeapon(Managers.DataManager.weaponDatas[0]);
         PopulateWeapon();
+        RefreshGold();
 
         return true;
     }
@@ -60,11 +63,13 @@ public class UI_WeaponSelectPopUp : UI_Popup
     {
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
+        Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button9");
     }
 
     void OptionPopup()
     {
         Managers.UI.ShowPopupUI<UI_OptionPopUp>();
+        Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button3");
     }
 
     public void PopulateWeapon()
@@ -90,6 +95,11 @@ public class UI_WeaponSelectPopUp : UI_Popup
     {
         currentWeapon = weaponData;
         RefreshWeapon();
+    }
+
+    public void RefreshGold()
+    {
+        GetText((int)Texts.GoldText).text = "Gold : " + Managers.DataManager.goldData.gold.ToString();
     }
 
     private void RefreshWeapon()
@@ -128,6 +138,8 @@ public class UI_WeaponSelectPopUp : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_IngamePopUp>();
         GameManager.Instance.Initialize(Managers.DataManager.stageDatas[0]);
+        Managers.SoundManager.Play(Sound.Bgm, "Sound/IngameBackGroundSound");
+        Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button6");
     }
 
 }
