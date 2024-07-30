@@ -128,6 +128,9 @@ public class Weapon : MonoBehaviour
                 bulletPool.Get();
                 RaycastHit hit;
                 Physics.Raycast(player.position, player.forward, out hit, weaponData.range);
+                
+                Debug.Log(hit.transform.gameObject.name);
+
                 if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
