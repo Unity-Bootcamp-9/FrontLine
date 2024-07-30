@@ -30,7 +30,8 @@ public class UI_WeaponSelectPopUp : UI_Popup
         DamageText,
         RangeText,
         BulletCountText,
-        FireDelayText
+        FireDelayText,
+        GoldText
     }
 
     private Buttons _selectedWeapon;
@@ -50,8 +51,10 @@ public class UI_WeaponSelectPopUp : UI_Popup
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
         GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GoBack());
 
+
         SetWeapon(Managers.DataManager.weaponDatas[0]);
         PopulateWeapon();
+        RefreshGold();
 
         return true;
     }
@@ -92,6 +95,11 @@ public class UI_WeaponSelectPopUp : UI_Popup
     {
         currentWeapon = weaponData;
         RefreshWeapon();
+    }
+
+    public void RefreshGold()
+    {
+        GetText((int)Texts.GoldText).text = "Gold : " + Managers.DataManager.goldData.gold.ToString();
     }
 
     private void RefreshWeapon()
