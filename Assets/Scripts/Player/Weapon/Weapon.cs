@@ -252,11 +252,14 @@ public class Weapon : MonoBehaviour
         bullet.SetActive(true);
         bullet.transform.position = gunMuzzle.position; // 총알 Get할 때 위치 설정 
         bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
+        bullet.GetComponent<WeaponProjectile>().ShootProjectile();
     }
 
     private void DeactivateBullet(GameObject bullet)
     {
         bullet.SetActive(false);
+        bullet.transform.position = gunMuzzle.position;
+        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
     }
 
     private void DestroyBullet(GameObject bullet)

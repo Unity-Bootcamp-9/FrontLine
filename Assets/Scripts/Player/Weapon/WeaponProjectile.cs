@@ -29,27 +29,30 @@ public class WeaponProjectile : MonoBehaviour
     {
         shootDirection = Camera.main.transform.forward;
         elapsedTime = 0f;
+        Debug.Log("s");
     }
 
     void Update()
     {
-        Projectile();
+        //Projectile();
 
-        elapsedTime += Time.deltaTime;
+        //elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > lifeTime)
-        {
-            pool.Release(this.gameObject);
-        }
+        //if (elapsedTime > lifeTime)
+        //{
+        //    pool.Release(this.gameObject);
+        //}
     }
 
-    private void Projectile()
+    public void ShootProjectile()
     {
         switch (currentMethod)
         {
             case Weapon.Method.hitScan:
             case Weapon.Method.projectile:
-               transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+                //transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+                transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
+                Debug.Log(shootDirection.ToString()); 
                break;
             case Weapon.Method.AutoLazer:
                 break;
