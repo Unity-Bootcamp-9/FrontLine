@@ -59,16 +59,19 @@ public class UI_StageSelectPopUp : UI_Popup
                 Debug.Log("Stage 1 Selected");
                 Managers.UI.ClosePopupUI(this);
                 Managers.UI.ShowPopupUI<UI_WeaponSelectPopUp>();
+                Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button9");
                 break;
             case Buttons.StageButton2:
                 Debug.Log("Stage 2 Selected");
                 Managers.UI.ClosePopupUI(this);
                 Managers.UI.ShowPopupUI<UI_WeaponSelectPopUp>();
+                Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button6");
                 break;
             case Buttons.StageButton3:
                 Debug.Log("Stage 3 Selected");
                 Managers.UI.ClosePopupUI(this);
                 Managers.UI.ShowPopupUI<UI_WeaponSelectPopUp>();
+                Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button3");
                 break;
             default:
                 Debug.LogWarning("Invalid Stage Selected");
