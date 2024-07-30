@@ -41,7 +41,7 @@ public class UI_OptionPopUp : UI_Popup
 
         if (soundSlider != null)
         {
-            soundSlider.interactable = false; // 슬라이더의 상호작용 비활성화
+            soundSlider.interactable = true; // 슬라이더의 상호작용 비활성화
             soundSlider.value = 1f; // 초기값 설정 (게임 사운드)
             soundSlider.onValueChanged.AddListener(OnSoundSliderValueChanged);
         }
@@ -65,8 +65,7 @@ public class UI_OptionPopUp : UI_Popup
 
     void OnSoundSliderValueChanged(float value)
     {
-        Debug.Log("SoundSlider 값 변경됨: " + value);
-        // 여기서 사운드 볼륨을 조절하는 코드를 추가합니다.
+        Managers.SoundManager.ChangedAudioListener(value);
     }
 
     

@@ -59,6 +59,10 @@ public class SoundManager
         audioSource.pitch = pitch;
     }
 
+    public void ChangedAudioListener(float value)
+    {
+        AudioListener.volume = value;
+    }
 
     public bool Play(Sound type, string path, float volume = 1.0f, float pitch = 1.0f)
     {
