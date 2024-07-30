@@ -89,12 +89,6 @@ public class Weapon : MonoBehaviour
         currentBulletsCount = weaponData.bulletCount;
     }
 
-    private void Update()
-    {
-        Debug.Log(currentBulletsCount);
-    }
-
-
     public void Fire()
     {
         if (isReadyToFire)
@@ -134,9 +128,16 @@ public class Weapon : MonoBehaviour
                 bulletPool.Get();
                 RaycastHit hit;
                 Physics.Raycast(player.position, player.forward, out hit, weaponData.range);
+                
+                Debug.Log(hit.transform.gameObject.name);
+
                 if (hit.transform.TryGetComponent<Monster>(out Monster hitTarget))
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
+                }
+                else if (hit.transform.TryGetComponent<Projectile>(out Projectile hitProjectile))
+                {
+                    Destroy(hitProjectile.gameObject);
                 }
                 weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip(""));
                 break;
@@ -174,8 +175,6 @@ public class Weapon : MonoBehaviour
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);
-
-        Debug.Log(currentBulletsCount);
 
         yield return waitForFireDelay;
 

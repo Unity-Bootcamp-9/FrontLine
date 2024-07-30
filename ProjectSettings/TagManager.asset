@@ -9,6 +9,7 @@ TagManager:
   - Stage
   - Game
   - Wall
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
@@ -17,10 +18,10 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - Minimap
-  - Camera
-  - 
-  - 
+  - EnemyProjectile
+  - PlayerProjectile
+  - Player
+  - MiniMap
   - 
   - 
   - 

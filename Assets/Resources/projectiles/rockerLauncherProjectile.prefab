@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 906285663}
   - component: {fileID: 906285664}
   - component: {fileID: 4729242479827762343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 6391996558186050186}
   - component: {fileID: 118685565985628809}
   - component: {fileID: 5168186748553403048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trails (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4971,7 +4971,7 @@ GameObject:
   - component: {fileID: 4309485226888419584}
   - component: {fileID: 9147668972726477307}
   - component: {fileID: 1428167485693114337}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9813,13 +9813,13 @@ GameObject:
   - component: {fileID: 9059913001122410734}
   - component: {fileID: 3418608291809989144}
   - component: {fileID: 6638374056481602082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9059913001122410734
 Transform:
   m_ObjectHideFlags: 0
@@ -14610,7 +14610,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 44245c1656588ff49a44addefbc17593, type: 2}
-  - {fileID: 2100000, guid: 44245c1656588ff49a44addefbc17593, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14672,7 +14671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1608477067056930098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail Mover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14708,7 +14707,7 @@ GameObject:
   - component: {fileID: 7983313245221906444}
   - component: {fileID: 6095605196082600807}
   - component: {fileID: 9086105345492520044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trails (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19550,10 +19549,10 @@ GameObject:
   - component: {fileID: 6338810516246663482}
   - component: {fileID: 6351384480443721697}
   - component: {fileID: -1567766579691300058}
-  - component: {fileID: 5622176566479750643}
-  m_Layer: 0
+  - component: {fileID: 516258294686178106}
+  m_Layer: 8
   m_Name: rockerLauncherProjectile
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19601,7 +19600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b814580bf945c459433009de056849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &5622176566479750643
+--- !u!136 &516258294686178106
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19620,7 +19619,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -19635,7 +19634,7 @@ GameObject:
   - component: {fileID: 7796464065209942828}
   - component: {fileID: 3452228753288915164}
   - component: {fileID: 5994453770199551000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trails (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24475,7 +24474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5253905229869198345}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24510,6 +24509,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: rocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689192416561762029, guid: 78446d6de8eda8c4781679fe34b2bdbb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1689192416561926861, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}

@@ -107,6 +107,11 @@ public class GameManager : MonoBehaviour
 
     public void SetWeapon(WeaponData weaponData)
     {
+        if(currentWeapon != null)
+        {
+            Destroy(currentWeapon);
+        }
+
         string path = weaponData.weaponPrefab;
 
         Weapon gunPrefab = Managers.Resource.Load<Weapon>(path);
@@ -123,10 +128,6 @@ public class GameManager : MonoBehaviour
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
             currentWeapon = newGun;
-        }
-        else
-        {
-            Debug.LogError("Failed to load gun prefab.");
         }
     }
 
@@ -162,6 +163,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        ResetGame();
+        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
+    }
+
+    public void ResetGame()
+    {
         for (int i = 0; i < portals.Count; i++)
         {
             portals[i].StopSpawn();
@@ -171,6 +178,5 @@ public class GameManager : MonoBehaviour
         portals.Clear();
         StopAllCoroutines();
         Managers.UI.ClosePopupUI();
-        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }
 }
