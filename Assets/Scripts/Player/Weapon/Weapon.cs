@@ -128,8 +128,6 @@ public class Weapon : MonoBehaviour
 
         animator.Play("Shot", 0, 0);
 
-        
-
         switch (currentMethod)
         {
             case Method.hitScan:
@@ -140,11 +138,13 @@ public class Weapon : MonoBehaviour
                 {
                     hitTarget.GetDamage(weaponData.attackDamage);
                 }
+                weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip(""));
                 break;
 
             case Method.projectile:
                 bulletPool.Get();
                 //투사체 
+                
                 break;
 
             case Method.AutoLazer:
@@ -164,9 +164,9 @@ public class Weapon : MonoBehaviour
 
                     ShowElectricEffect(gunMuzzle.position, monsterPosition);
                     monster.GetDamage(weaponData.attackDamage);
-                    Managers.SoundManager.GetAudioClip("lasergunSound");
-                    weaponAudioSource.PlayOneShot(audioClip);
+                    
                 }
+                weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip("lasergunSound"));
                 break;
         }
 
@@ -252,11 +252,14 @@ public class Weapon : MonoBehaviour
         bullet.SetActive(true);
         bullet.transform.position = gunMuzzle.position; // 총알 Get할 때 위치 설정 
         bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
+        bullet.GetComponent<WeaponProjectile>().ShootProjectile();
     }
 
     private void DeactivateBullet(GameObject bullet)
     {
         bullet.SetActive(false);
+        bullet.transform.position = gunMuzzle.position;
+        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
     }
 
     private void DestroyBullet(GameObject bullet)

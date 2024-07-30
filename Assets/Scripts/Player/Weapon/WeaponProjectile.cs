@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class WeaponProjectile : MonoBehaviour
     private float elapsedTime;
     private string vfxPath;
     Weapon.Method currentMethod;
+    private AudioSource weaponProjectileAudio;
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
@@ -22,37 +24,41 @@ public class WeaponProjectile : MonoBehaviour
         this.attackDamage = _attackDamage;
         this.vfxPath = _vfxPath;
         this.currentMethod = _method;
+        weaponProjectileAudio.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
     {
         shootDirection = Camera.main.transform.forward;
         elapsedTime = 0f;
+        Debug.Log("s");
     }
 
     void Update()
     {
-        Projectile();
+        //Projectile();
 
-        elapsedTime += Time.deltaTime;
+        //elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > lifeTime)
-        {
-            pool.Release(this.gameObject);
-        }
+        //if (elapsedTime > lifeTime)
+        //{
+        //    pool.Release(this.gameObject);
+        //}
     }
 
-    private void Projectile()
+    public void ShootProjectile()
     {
         switch (currentMethod)
         {
             case Weapon.Method.hitScan:
             case Weapon.Method.projectile:
-               transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+                //transform.position += shootDirection * Time.deltaTime * bulletSpeed;
+                transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
+                //weaponProjectileAudio.PlayOneShot(Managers.SoundManager.GetAudioClip("misslelauncher"));
+                Debug.Log(shootDirection.ToString()); 
                break;
-           case Weapon.Method.AutoLazer:
+            case Weapon.Method.AutoLazer:
                 break;
-
         }
     }
 

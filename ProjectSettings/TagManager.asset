@@ -8,6 +8,7 @@ TagManager:
   - MonsterProjectile
   - Stage
   - Game
+  - Wall
   layers:
   - Default
   - TransparentFX
