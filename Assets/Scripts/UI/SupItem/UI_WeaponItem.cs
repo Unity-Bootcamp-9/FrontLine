@@ -17,8 +17,7 @@ public class UI_WeaponItem : UI_Base
         WeaponNameText,
         WeaponInfoText,
         SelectText,
-        BuyText,
-        PriceText
+        BuyText
     }
 
     enum GameObjects
@@ -59,12 +58,10 @@ public class UI_WeaponItem : UI_Base
         GetText((int)Texts.WeaponNameText).text = weaponData.weaponName;
         GetText((int)Texts.WeaponInfoText).text = weaponData.info;
         GetText((int)Texts.SelectText).text = "Select";
-        GetText((int)Texts.BuyText).text = "Buy";
-        GetText((int)Texts.PriceText).text = "G : " + weaponData.price.ToString();
+        GetText((int)Texts.BuyText).text = "G : " + weaponData.price.ToString();
 
         GetButton((int)Buttons.SelectButton).gameObject.SetActive(weaponData.isOwn);
         GetButton((int)Buttons.BuyButton).gameObject .SetActive(!weaponData.isOwn);
-        GetText((int)Texts.PriceText).gameObject.SetActive(!weaponData.isOwn);
     }
 
     void OnClickSelectButton()

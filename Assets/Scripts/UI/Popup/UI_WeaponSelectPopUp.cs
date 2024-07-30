@@ -99,7 +99,7 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
     public void RefreshGold()
     {
-        GetText((int)Texts.GoldText).text = "Gold : " + Managers.DataManager.goldData.gold.ToString();
+        GetText((int)Texts.GoldText).text = Managers.DataManager.goldData.gold.ToString();
     }
 
     private void RefreshWeapon()
