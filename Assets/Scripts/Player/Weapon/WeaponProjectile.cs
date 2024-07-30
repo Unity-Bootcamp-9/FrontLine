@@ -15,6 +15,7 @@ public class WeaponProjectile : MonoBehaviour
     private float elapsedTime;
     private string vfxPath;
     Weapon.Method currentMethod;
+    private AudioSource weaponProjectileAudio;
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
@@ -23,6 +24,7 @@ public class WeaponProjectile : MonoBehaviour
         this.attackDamage = _attackDamage;
         this.vfxPath = _vfxPath;
         this.currentMethod = _method;
+        weaponProjectileAudio.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -52,6 +54,7 @@ public class WeaponProjectile : MonoBehaviour
             case Weapon.Method.projectile:
                 //transform.position += shootDirection * Time.deltaTime * bulletSpeed;
                 transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
+                //weaponProjectileAudio.PlayOneShot(Managers.SoundManager.GetAudioClip("misslelauncher"));
                 Debug.Log(shootDirection.ToString()); 
                break;
             case Weapon.Method.AutoLazer:
