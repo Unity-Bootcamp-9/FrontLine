@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +25,7 @@ public class GameManager : MonoBehaviour
     private readonly float PortalSpawnTime = 10f;
     private readonly float MaxXZ = 24f;
     private const float yOffset = -2f;
+
 
     private static GameManager _instance;
 
@@ -147,7 +151,10 @@ public class GameManager : MonoBehaviour
         if (currentHP < 0)
             GameOver();
         OnHPChanged?.Invoke(currentHP);
+        
     }
+
+    
 
     public void GetGold(int gold)
     {
