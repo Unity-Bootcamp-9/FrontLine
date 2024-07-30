@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
             newGun.name = weaponData.weaponName;
 
-            newGun.transform.parent = player;
+            newGun.transform.parent = Camera.main.transform.Find("handPivot");
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
             currentWeapon = newGun;
