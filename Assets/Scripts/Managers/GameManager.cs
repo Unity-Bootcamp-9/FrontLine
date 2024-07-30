@@ -155,6 +155,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        ResetGame();
+        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
+    }
+
+    public void ResetGame()
+    {
         for (int i = 0; i < portals.Count; i++)
         {
             portals[i].StopSpawn();
@@ -164,6 +170,5 @@ public class GameManager : MonoBehaviour
         portals.Clear();
         StopAllCoroutines();
         Managers.UI.ClosePopupUI();
-        Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }
 }
