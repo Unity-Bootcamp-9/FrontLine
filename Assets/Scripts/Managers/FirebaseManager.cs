@@ -16,9 +16,9 @@ public class FirebaseManager
         {
             if (task.Result == DependencyStatus.Available)
             {
+                FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(false);
                 databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
                 Debug.Log("Firebase initialized");
-
                 initDBManager?.Invoke();
             }
             else
