@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     {
         if(currentWeapon != null)
         {
-            Destroy(currentWeapon);
+            Destroy(currentWeapon.gameObject);
         }
 
         string path = weaponData.weaponPrefab;
