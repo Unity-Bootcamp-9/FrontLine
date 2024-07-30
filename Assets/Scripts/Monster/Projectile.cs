@@ -20,15 +20,14 @@ public class Projectile : MonoBehaviour
         targetPos = target;
         transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
     }
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             GameManager.Instance.GetDamage(damage);
             Destroy(gameObject);
         }
     }
-    //private void OnCollisionEnter(Collider other)
-    //{
-    //}
+
 }
