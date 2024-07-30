@@ -54,6 +54,7 @@ public class UI_OptionPopUp : UI_Popup
     {
         Time.timeScale = 1f;
         Managers.UI.ClosePopupUI(this);
+        Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_IngamePopUp>());
         Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
     }
 
