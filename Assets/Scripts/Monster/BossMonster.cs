@@ -2,26 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMonster : MonoBehaviour
+public class BossMonster : Monster
 {
-    public Vector3 playerPos;
-    public Rigidbody rigidBody;
     public BossData bossData;
     public Transform fireballOffset;
     public Transform bigFireballOffset;
-
+    public GameObject fireball;
 
     public void Initalize(BossData _bossData)
     {
         bossData = _bossData;
+        currentHP = bossData.hp;
+        fireball = Managers.Resource.Load<GameObject>($"MonsterProjectile/{bossData.projectile}");
     }
 
-    private void Start()
+    private void Update()
     {
-        playerPos = Camera.main.transform.position;
-        rigidBody = GetComponent<Rigidbody>();
-        bossData = Managers.DataManager.bossDatas[0];
+        if(currentHP < 0)
+        {
+            GameManager.Instance.GameOver();
+            GameManager.Instance.gameClear = true;
+        }
     }
 
-
+    public override void GetDamage(int damage)
+    {
+        base.GetDamage(damage);
+    }
 }

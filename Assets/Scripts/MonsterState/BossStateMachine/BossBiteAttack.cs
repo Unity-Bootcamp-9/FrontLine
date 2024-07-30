@@ -11,7 +11,7 @@ public class BossBiteAttack : BossStateMachineBase
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
         float rotateDuration = 0.5f;
-        float moveDuration = 1.5f;
+        float moveDuration = 2f;
 
         targetPosition = MoveToPlayerBack(currentPosition, bossMonster.playerPos, 20f);
 
@@ -23,7 +23,7 @@ public class BossBiteAttack : BossStateMachineBase
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
         
-        if(timer > 4f)
+        if(timer > 3f)
         {
             animator.SetBool("BossIdle", true);
         }
@@ -36,9 +36,11 @@ public class BossBiteAttack : BossStateMachineBase
 
     Vector3 MoveToPlayerBack(Vector3 enemyPosition, Vector3 playerPosition, float distance)
     {
-        Vector3 direction = (playerPosition - enemyPosition).normalized;
+        Vector3 targetOffset = playerPosition + new Vector3(0, -5, 0);
+        
+        Vector3 direction = (targetOffset - enemyPosition).normalized;
 
-        Vector3 newPosition = playerPosition + direction * distance;
+        Vector3 newPosition = targetOffset + direction * distance;
 
         return newPosition;
     }

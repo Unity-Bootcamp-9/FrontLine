@@ -80,6 +80,7 @@ public struct WeaponData
 public struct StageData
 {
     public int stage;
+    public int bossIndex;
     public int[] monsterIndexs;
     public float[] spawnDelays;
 }

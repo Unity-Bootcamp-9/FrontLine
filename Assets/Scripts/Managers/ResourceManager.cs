@@ -6,8 +6,7 @@ using UnityEngine;
 public class ResourceManager
 {
 	public Dictionary<string, Sprite> _sprites = new Dictionary<string, Sprite>();
-	//public Dictionary<string, SkeletonDataAsset> _skeletons = new Dictionary<string, SkeletonDataAsset>();
-
+	
     public void Init()
     {
 	}
@@ -23,6 +22,7 @@ public class ResourceManager
 			_sprites.Add(path, sp);
 			return sp as T;
 		}
+
 		return Resources.Load<T>(path);
 	}
 
@@ -37,6 +37,19 @@ public class ResourceManager
 
 		return Instantiate(prefab, parent);
 	}
+
+	public GameObject Instantiate(string path, Vector3 position)
+	{
+        GameObject prefab = Load<GameObject>(path);
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to load prefab : {path}");
+            return null;
+        }
+		prefab.transform.position = position;
+
+        return Instantiate(prefab);
+    }
 
 	public GameObject Instantiate(GameObject prefab, Transform parent = null)
 	{

@@ -69,6 +69,7 @@ public class WeaponProjectile : MonoBehaviour
                 {
                     Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
                 }
+
                 Monster hitTarget = other.GetComponentInParent<Monster>();
                 hitTarget.GetDamage(attackDamage);
                 Destroy(gameObject);

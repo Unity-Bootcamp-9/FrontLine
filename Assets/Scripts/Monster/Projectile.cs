@@ -6,40 +6,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed;
-    public int damage { get; private set; }
-    private Vector3 targetPos;
-    private Vector3 startPos;
-    private float timeCount;
-    private float lerpT;
-
-
-    private void OnEnable()
-    {
-        timeCount = 0;
-    }
+    [SerializeField] public int damage { get; private set; }
+    [SerializeField] private Vector3 targetPos;
 
     public void SetDamage(int damage)
     {
         this.damage = damage;
     }
 
-    public void SetTarget(Vector3 _startPos, Vector3 target)
+    public void SetTarget(Vector3 _startPos, Vector3 target, float duration)
     {
-        startPos = _startPos;
+        gameObject.transform.position = _startPos;
         targetPos = target;
-        transform.DOMove(targetPos, 3f).SetEase(Ease.OutQuad);
-    }
-
-    private void Update()
-    {
-        lerpT = timeCount * speed;
-        transform.position = Vector3.Lerp(startPos, targetPos, lerpT);
-        timeCount += Time.deltaTime;
-        if (lerpT >= 1)
-        {
-            Destroy(gameObject);
-        }
+        transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +26,7 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.GetDamage(damage);
+            Destroy(gameObject);
         }
     }
 
