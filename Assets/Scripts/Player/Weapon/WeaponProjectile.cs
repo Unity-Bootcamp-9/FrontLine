@@ -53,13 +53,6 @@ public class WeaponProjectile : MonoBehaviour
                 Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
             }
 
-            //if (other.TryGetComponent<IMonster>(out IMonster hitMonster))
-            //{
-            //    Debug.Log(other.gameObject.name);
-            //    hitMonster.GetDamage(attackDamage);
-            //    pool.Release(this.gameObject);
-            //}
-
             if(other.CompareTag("Monster"))
             {
                 other.GetComponentInParent<IMonster>().GetDamage(attackDamage);
@@ -69,7 +62,6 @@ public class WeaponProjectile : MonoBehaviour
             if(other.TryGetComponent<Projectile>(out Projectile hitProjectile))
             {
                 Destroy(other.gameObject);
-                //pool.Release(this.gameObject);
             }
         }
 
