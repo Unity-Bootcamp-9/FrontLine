@@ -274,9 +274,9 @@ public class Weapon : MonoBehaviour
 
     private void DeactivateBullet(GameObject bullet)
     {
-        bullet.SetActive(false);
         bullet.transform.position = gunMuzzle.position;
         bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
+        bullet.SetActive(false);
     }
 
     private void DestroyBullet(GameObject bullet)

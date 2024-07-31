@@ -16,7 +16,7 @@ public class WeaponProjectile : MonoBehaviour
     Weapon.Method currentMethod;
     [SerializeField] public Collider[] enemycollider;
     [SerializeField] private LayerMask enemy;
-
+    private Tween moveTween;
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
@@ -39,7 +39,7 @@ public class WeaponProjectile : MonoBehaviour
         {
             case Weapon.Method.hitScan:
             case Weapon.Method.projectile:
-                transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
+                moveTween = transform.DOMove(shootDirection * 100, 2f).OnComplete(() => { pool.Release(this.gameObject); }); 
                 break;
             case Weapon.Method.AutoLazer:
                 break;
@@ -65,6 +65,7 @@ public class WeaponProjectile : MonoBehaviour
                     IMonster hitMonster = enemycollider[i].GetComponentInParent<IMonster>();
                     hitMonster.GetDamage(attackDamage);
                 }
+                moveTween.Kill();
 
                 pool.Release(this.gameObject);
             }
