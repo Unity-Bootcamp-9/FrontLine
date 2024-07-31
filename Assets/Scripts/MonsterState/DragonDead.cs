@@ -10,7 +10,7 @@ public class DragonDead : StateMachineBehaviour
         if(myMonster == null)
             myMonster = animator.GetComponent<Monster>();
 
-        Managers.EffectManager.GetEffect("MonsterDead", animator.transform.position, Quaternion.identity);
+        Managers.EffectManager.GetEffect("MonsterDead", animator.GetComponentInChildren<Collider>().transform.position, Quaternion.identity);
         animator.GetComponent<AudioSource>().PlayOneShot(Managers.SoundManager.GetAudioClip("MonsterDead"));
         foreach (Transform child in animator.transform)
         {
