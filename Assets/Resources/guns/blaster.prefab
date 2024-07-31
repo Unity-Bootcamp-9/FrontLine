@@ -616,6 +616,7 @@ MonoBehaviour:
     price: 0
     isOwn: 0
   currentMethod: 0
+  attackDamage: 0
   currentBulletsCount: 0
   gunMuzzle: {fileID: 984194233468105201}
   autoLazerTransform: {fileID: 0}
@@ -623,7 +624,14 @@ MonoBehaviour:
   player: {fileID: 0}
   animator: {fileID: 7453880565517695122}
   isReadyToFire: 1
+  isReloading: 0
   bulletPrefab: {fileID: 0}
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  monsterProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 128
   lineRendererParent: {fileID: 0}
   Enemy:
     serializedVersion: 2

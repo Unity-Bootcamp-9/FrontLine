@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IMonster
 {
     public Vector3 playerPos;
     private Animator animator;
@@ -65,7 +65,12 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public virtual void GetDamage(int damage)
+    private void OnCollisionEnter(Collision collision)
+    {
+        animator.SetBool("Chase", true);
+    }
+
+    public void GetDamage(int damage)
     {
         currentHP -= damage;
         if (currentHP <= 0)
@@ -73,10 +78,5 @@ public class Monster : MonoBehaviour
             animator.SetTrigger("Dead");
             GameManager.Instance.GetGold(monsterData.gold);
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        animator.SetBool("Chase", true);
     }
 }

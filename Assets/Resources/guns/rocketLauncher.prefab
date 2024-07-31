@@ -10338,6 +10338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData:
+    index: 0
     weaponName: 
     attackDamage: 0
     reloadTime: 0
@@ -10351,14 +10352,32 @@ MonoBehaviour:
     range: 0
     bulletVisualFX: 
     method: 0
+    info: 
+    price: 0
+    isOwn: 0
   currentMethod: 0
+  attackDamage: 0
   currentBulletsCount: 0
   gunMuzzle: {fileID: 63802535281577859}
+  autoLazerTransform: {fileID: 0}
+  range: 20
   player: {fileID: 0}
   animator: {fileID: 0}
   isReadyToFire: 1
+  isReloading: 0
   bulletPrefab: {fileID: 6338810516246564122, guid: 9f888b98e29ed8348b2a6d2b4cb73067,
     type: 3}
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  monsterProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  lineRendererParent: {fileID: 0}
+  Enemy:
+    serializedVersion: 2
+    m_Bits: 0
+  hitEnemies: []
 --- !u!1 &2239028816397044208
 GameObject:
   m_ObjectHideFlags: 0

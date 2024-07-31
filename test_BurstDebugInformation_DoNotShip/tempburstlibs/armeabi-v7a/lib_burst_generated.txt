@@ -11,12 +11,14 @@ Library: C:\Users\91710\FrontLine\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib
 --float-mode=Fast
 --assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
+--assembly-defines=DamageNumbersPro;
 --assembly-defines=DOTween;
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Database;
 --assembly-defines=Firebase.Platform;
 --assembly-defines=Firebase.TaskExtension;
 --assembly-defines=Google.MiniJson;
+--assembly-defines=IngameDebugConsole.Runtime;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=System.Configuration;
@@ -26,6 +28,7 @@ Library: C:\Users\91710\FrontLine\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.InputSystem;
 --assembly-defines=Unity.Mathematics;
+--assembly-defines=Unity.Postprocessing.Runtime;
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
@@ -65,12 +68,14 @@ Library: C:\Users\91710\FrontLine\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib
 --target-framework=NetFramework
 --assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
+--assembly-defines=DamageNumbersPro;
 --assembly-defines=DOTween;
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Database;
 --assembly-defines=Firebase.Platform;
 --assembly-defines=Firebase.TaskExtension;
 --assembly-defines=Google.MiniJson;
+--assembly-defines=IngameDebugConsole.Runtime;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=System.Configuration;
@@ -80,6 +85,7 @@ Library: C:\Users\91710\FrontLine\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.InputSystem;
 --assembly-defines=Unity.Mathematics;
+--assembly-defines=Unity.Postprocessing.Runtime;
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;

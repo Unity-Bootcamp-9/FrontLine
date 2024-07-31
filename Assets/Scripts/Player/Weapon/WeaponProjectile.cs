@@ -14,7 +14,6 @@ public class WeaponProjectile : MonoBehaviour
     private int attackDamage;
     private string vfxPath;
     Weapon.Method currentMethod;
-    AudioSource weaponProjectileAudio;
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
@@ -32,20 +31,13 @@ public class WeaponProjectile : MonoBehaviour
 
     public void ShootProjectile()
     {
-        if (weaponProjectileAudio == null)
-        {
-            weaponProjectileAudio = gameObject.AddComponent<AudioSource>();
-        }
-
         switch (currentMethod)
         {
             case Weapon.Method.hitScan:
                 transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
-                weaponProjectileAudio.PlayOneShot(Managers.SoundManager.GetAudioClip("pistol"));
                 break;
             case Weapon.Method.projectile:
                 transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
-                weaponProjectileAudio.PlayOneShot(Managers.SoundManager.GetAudioClip("misslelauncher"));
                 break;
             case Weapon.Method.AutoLazer:
                 break;
@@ -61,10 +53,17 @@ public class WeaponProjectile : MonoBehaviour
                 Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
             }
 
-            if (other.TryGetComponent<Monster>(out Monster hitMonster))
+            //if (other.TryGetComponent<IMonster>(out IMonster hitMonster))
+            //{
+            //    Debug.Log(other.gameObject.name);
+            //    hitMonster.GetDamage(attackDamage);
+            //    pool.Release(this.gameObject);
+            //}
+
+            if(other.CompareTag("Monster"))
             {
-                hitMonster.GetDamage(attackDamage);
-                pool.Release(this.gameObject);
+                other.GetComponentInParent<IMonster>().GetDamage(attackDamage);
+                Debug.Log(other.name);
             }
 
             if(other.TryGetComponent<Projectile>(out Projectile hitProjectile))
