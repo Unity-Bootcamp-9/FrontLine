@@ -38,8 +38,6 @@ public class WeaponProjectile : MonoBehaviour
         switch (currentMethod)
         {
             case Weapon.Method.hitScan:
-                transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
-                break;
             case Weapon.Method.projectile:
                 transform.DOMove(shootDirection * 100, 3f).OnComplete(() => { pool.Release(this.gameObject); });
                 break;
@@ -69,11 +67,6 @@ public class WeaponProjectile : MonoBehaviour
                 }
 
                 pool.Release(this.gameObject);
-            }
-
-            if (other.TryGetComponent<Projectile>(out Projectile hitProjectile))
-            {
-                Destroy(other.gameObject);
             }
         }
     }
