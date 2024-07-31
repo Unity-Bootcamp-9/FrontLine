@@ -76,6 +76,7 @@ public class Monster : MonoBehaviour, IMonster
     private void OnReturnedToPool(Projectile obj)
     {
         obj.gameObject.SetActive(false);
+        obj.transform.position = new Vector3(1000f, 1000f, 1000f);
     }
 
     private void OnDestroyPoolObject(Projectile obj)
