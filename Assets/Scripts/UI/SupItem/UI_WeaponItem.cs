@@ -76,6 +76,7 @@ public class UI_WeaponItem : UI_Base
             // ±¸¸Å
             weaponData.isOwn = true;
             Managers.DataManager.ExportGold(-weaponData.price);
+            Managers.DataManager.weaponDatas[weaponData.index] = weaponData;
             Managers.DataManager.ExportWeaponData(weaponData);
             Managers.UI.FindPopup<UI_WeaponSelectPopUp>().RefreshGold();
             RefreshUI();

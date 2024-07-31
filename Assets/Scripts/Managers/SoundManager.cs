@@ -11,7 +11,6 @@ public enum Sound
 
 public class SoundManager
 {
-    private AudioListener _audioListener;
     private AudioSource[] _audioSources = new AudioSource[(int)Sound.Max];
     private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
@@ -27,7 +26,7 @@ public class SoundManager
                 _soundRoot = new GameObject { name = "@SoundRoot" };
                 Object.DontDestroyOnLoad(_soundRoot);
 
-                _audioListener = _soundRoot.AddComponent<AudioListener>();
+                _soundRoot.AddComponent<AudioListener>();
 
                 string[] soundTypeNames = System.Enum.GetNames(typeof(Sound));
                 for (int count = 0; count < soundTypeNames.Length - 1; count++)
