@@ -42,7 +42,7 @@ public class UI_OptionPopUp : UI_Popup
         if (soundSlider != null)
         {
             soundSlider.interactable = true; // 슬라이더의 상호작용 비활성화
-            soundSlider.value = 1f; // 초기값 설정 (게임 사운드)
+            soundSlider.value = AudioListener.volume; // 초기값 설정 (게임 사운드)
             soundSlider.onValueChanged.AddListener(OnSoundSliderValueChanged);
         }
 
