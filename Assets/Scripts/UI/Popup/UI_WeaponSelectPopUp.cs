@@ -132,7 +132,7 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
         Managers.Instance.game = _game;
 
-        GameManager.Instance.player = GameObject.FindWithTag("Player").transform;
+        GameManager.Instance.player = Camera.main.transform.Find("playerOffset");
 
         GameManager.Instance.SetWeapon(currentWeapon);
         Managers.UI.ClosePopupUI(this);
