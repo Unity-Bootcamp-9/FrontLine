@@ -14,9 +14,8 @@ public class WeaponProjectile : MonoBehaviour
     private int attackDamage;
     private string vfxPath;
     Weapon.Method currentMethod;
-    AudioSource weaponProjectileAudio;
-    public Collider[] enemycollider;
-    private LayerMask Enemy;
+    [SerializeField] public Collider[] enemycollider;
+    [SerializeField] private LayerMask enemy;
 
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
@@ -59,29 +58,23 @@ public class WeaponProjectile : MonoBehaviour
             }
             if (other.CompareTag("Monster"))
             {
-                Vector3 sphere = gameObject.transform.position;
+                Vector3 spherePivot = gameObject.transform.position;
 
-                int enemyCount = Physics.OverlapSphereNonAlloc(sphere, 1, enemycollider, Enemy);
-                for(int i=0; i < enemyCount; i++)
+                int enemyCount = Physics.OverlapSphereNonAlloc(spherePivot, 100, enemycollider, enemy);
+
+                for (int i = 0; i < enemyCount; i++)
                 {
-                    Collider collider = enemycollider[i];
-                    Transform parentTransform = collider.transform;
-                    Monster monster = parentTransform.GetComponent<Monster>();
-                    monster.GetDamage(attackDamage);
+                    IMonster hitMonster = enemycollider[i].GetComponentInParent<IMonster>();
+                    hitMonster.GetDamage(attackDamage);
                 }
-                pool.Release(this.gameObject);
-                
-            //if(other.CompareTag("Monster"))
-            //{
-            //    other.GetComponentInParent<IMonster>().GetDamage(attackDamage);
-            //   Debug.Log(other.name);
-            //}
 
-            if(other.TryGetComponent<Projectile>(out Projectile hitProjectile))
+                pool.Release(this.gameObject);
+            }
+
+            if (other.TryGetComponent<Projectile>(out Projectile hitProjectile))
             {
                 Destroy(other.gameObject);
             }
         }
-
     }
 }

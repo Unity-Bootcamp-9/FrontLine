@@ -318,6 +318,4 @@ public class Weapon : MonoBehaviour
         Destroy(lineRenderer.gameObject);
     }
     #endregion
-
-    
 }
