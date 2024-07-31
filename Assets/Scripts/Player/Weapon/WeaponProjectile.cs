@@ -15,6 +15,8 @@ public class WeaponProjectile : MonoBehaviour
     private string vfxPath;
     Weapon.Method currentMethod;
     AudioSource weaponProjectileAudio;
+    public Collider[] enemycollider;
+    private LayerMask Enemy;
 
     public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
     {
@@ -23,6 +25,7 @@ public class WeaponProjectile : MonoBehaviour
         this.attackDamage = _attackDamage;
         this.vfxPath = _vfxPath;
         this.currentMethod = _method;
+        enemycollider = new Collider[5];
     }
 
     private void OnEnable()
@@ -61,9 +64,18 @@ public class WeaponProjectile : MonoBehaviour
                 Managers.EffectManager.GetEffect(vfxPath, transform.position, Quaternion.identity);
             }
 
-            if (other.TryGetComponent<Monster>(out Monster hitMonster))
+            if (other.CompareTag("Monster"))
             {
-                hitMonster.GetDamage(attackDamage);
+                Vector3 sphere = gameObject.transform.position;
+
+                int enemyCount = Physics.OverlapSphereNonAlloc(sphere, 1, enemycollider, Enemy);
+                for(int i=0; i < enemyCount; i++)
+                {
+                    Collider collider = enemycollider[i];
+                    Transform parentTransform = collider.transform;
+                    Monster monster = parentTransform.GetComponent<Monster>();
+                    monster.GetDamage(attackDamage);
+                }
                 pool.Release(this.gameObject);
             }
 
