@@ -16,21 +16,19 @@ public class Monster : MonoBehaviour, IMonster
     [SerializeField] private Transform firePos;
 
     private static Dictionary<string, IObjectPool<Projectile>> projectiles = new Dictionary<string, IObjectPool<Projectile>>();
-    public Projectile GetProjectiles(string path, Vector3 _startPos, Vector3 target, float duration)
+    private void GetProjectiles(string path, Vector3 _startPos, Vector3 target, float duration)
     {
         Projectile projectile = null;
         if (projectiles.ContainsKey(path))
         {
             projectile = projectiles[path].Get();
             projectile.SetTarget(_startPos, target, duration, path);
-            return projectile;
         }
 
         projectile = Managers.Resource.Load<Projectile>("MonsterProjectile/" + path);
         MakeObjectPool(projectile, path);
         projectile = projectiles[path].Get();
         projectile.SetTarget(_startPos, target, duration, path);
-        return projectile;
     }
 
     #region CreatePool
@@ -123,10 +121,6 @@ public class Monster : MonoBehaviour, IMonster
         if (monsterData.attackRange >= 20)
         {
             GetProjectiles(monsterData.projectile, firePos.position, playerPos, 3f);
-            //Projectile newProjectile = Instantiate(projectile);
-            //newProjectile.transform.parent = Managers.Instance.game.transform;
-            //newProjectile.SetTarget(firePos.position, playerPos, 3f);
-            //newProjectile.SetDamage(monsterData.attackDamage);
         }
         else
         {
