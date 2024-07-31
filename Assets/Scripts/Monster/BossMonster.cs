@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class BossMonster : MonoBehaviour, IMonster
     public Transform bigFireballOffset;
     public int currentHp;
     public GameObject fireball;
+    public Action<int> OnHpChanged;
 
     public void GetDamage(int _damage)
     {
@@ -18,13 +20,15 @@ public class BossMonster : MonoBehaviour, IMonster
         if (currentHp > 0)
         {
             currentHp -= _damage;
+            OnHpChanged(_damage);
         }
 
         else if (currentHp <= 0) 
         {
             GameManager.Instance.gameClear = true;
-            GameManager.Instance.GameOver();
+            Invoke(nameof(GameManager.Instance.GameOver), 2f);
         }
+
     }
 
     public void Initalize(BossData _bossData)

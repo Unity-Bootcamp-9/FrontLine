@@ -1,11 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.PostProcessing;
-using DG.Tweening;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public delegate void HPChanged(int currentHP);
     public event HPChanged OnHPChanged;
+
+    public Action OnBossMonsterAppear;
 
     private readonly int MaxHP = 100;
     private readonly int MaxPlayTime = 20;
@@ -85,7 +83,7 @@ public class GameManager : MonoBehaviour
                 Portal portal = new GameObject("Portal").AddComponent<Portal>();
                 portal.Initialize(currentStage.monsterIndexs, currentStage.spawnDelays);
                 portal.transform.parent = Managers.Instance.game.transform;
-                portal.transform.position = new Vector3(Random.Range(-MaxXZ, MaxXZ), yOffset, Random.Range(-MaxXZ, MaxXZ));
+                portal.transform.position = new Vector3(UnityEngine.Random.Range(-MaxXZ, MaxXZ), yOffset, UnityEngine.Random.Range(-MaxXZ, MaxXZ));
                 portals.Add(portal);
                 portalSpawnTimer = PortalSpawnTime;
             }
@@ -97,14 +95,17 @@ public class GameManager : MonoBehaviour
         GenerateBossMonster();
     }
 
+    public BossMonster currentBoss;
+
     public void GenerateBossMonster()
     {
         int bossIndex = currentStage.bossIndex;
         string name = Managers.DataManager.bossDatas[bossIndex].name;
-        GameObject bossMonster = Managers.Resource.Instantiate($"Monster/Boss/{name}");
-        bossMonster.transform.parent = Managers.Instance.game.transform;
-        BossMonster bossMonsterComponent = bossMonster.GetComponent<BossMonster>();
-        bossMonsterComponent.Initalize(Managers.DataManager.bossDatas[bossIndex]);        
+        GameObject bossObject = Managers.Resource.Instantiate($"Monster/Boss/{name}");
+        bossObject.transform.parent = Managers.Instance.game.transform;
+        currentBoss = bossObject.GetComponent<BossMonster>();
+        currentBoss.Initalize(Managers.DataManager.bossDatas[bossIndex]);
+        OnBossMonsterAppear?.Invoke();
     }
 
     public void SetWeapon(WeaponData weaponData)
@@ -136,10 +137,6 @@ public class GameManager : MonoBehaviour
     public Weapon GetCurrentWeapon()
     {
         return currentWeapon;
-    }
-
-    public void GenerateBoss()
-    {
     }
 
     public bool WeaponIsNotNull()
