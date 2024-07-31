@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
         int bossIndex = currentStage.bossIndex;
         string name = Managers.DataManager.bossDatas[bossIndex].name;
         GameObject bossMonster = Managers.Resource.Instantiate($"Monster/Boss/{name}");
-
+        bossMonster.transform.parent = Managers.Instance.game.transform;
         BossMonster bossMonsterComponent = bossMonster.GetComponent<BossMonster>();
-        bossMonsterComponent.Initalize(Managers.DataManager.bossDatas[bossIndex]);
+        bossMonsterComponent.Initalize(Managers.DataManager.bossDatas[bossIndex]);        
     }
 
     public void SetWeapon(WeaponData weaponData)
