@@ -30,12 +30,16 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.GetDamage(damage);
-
-            if (path != null)
-                Monster.ProjectileReturnToPool(path, this);
-            else
-                Destroy(gameObject);
+            HitTarget();
         }
+    }
+
+    public void HitTarget()
+    {
+        if (path != null)
+            Monster.ProjectileReturnToPool(path, this);
+        else
+            Destroy(gameObject);
     }
 
 }
