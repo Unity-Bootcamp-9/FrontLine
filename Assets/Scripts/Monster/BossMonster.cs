@@ -13,12 +13,16 @@ public class BossMonster : MonoBehaviour, IMonster
 
     public void GetDamage(int _damage)
     {
+        Debug.Log("hit");
+        Debug.Log(_damage);
         if (currentHp > 0)
         {
             currentHp -= _damage;
         }
+
         else if (currentHp <= 0) 
         {
+            GameManager.Instance.gameClear = true;
             GameManager.Instance.GameOver();
         }
     }

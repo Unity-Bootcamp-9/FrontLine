@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private WaitForSeconds waitForFireDelay;
     [SerializeField] private WaitForSeconds delayAfterReload;
     [SerializeField] private Method currentMethod;
+    [SerializeField] private int attackDamage;
     [SerializeField] private int currentBulletsCount;
     [SerializeField] private Transform gunMuzzle;
     [SerializeField] private Transform autoLazerTransform;
@@ -18,13 +19,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Animator animator;
     [SerializeField] private bool isReadyToFire = true;
+    [SerializeField] private bool isReloading = false;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ObjectPool<GameObject> bulletPool;
+
+    [SerializeField] private LayerMask monsterLayer;
+    [SerializeField] private LayerMask monsterProjectileLayer;
 
     private ObjectPool<LineRenderer> lineRendererPool;
     [SerializeField] private Transform lineRendererParent;
 
     private AudioSource weaponAudioSource;
+
+    int layerMask;
 
     public delegate void BulletChanged(int currentBulletsCount);
     public event BulletChanged OnBulletChanged;
@@ -47,6 +54,8 @@ public class Weapon : MonoBehaviour
         player = Camera.main.gameObject.transform;
         animator = GetComponent<Animator>();
         weaponAudioSource = gameObject.AddComponent<AudioSource>();
+        isReloading = false;
+        layerMask  = (1 << 6) | (1 << 7);
     }
 
     public void Initialize(WeaponData weapon)
@@ -87,6 +96,8 @@ public class Weapon : MonoBehaviour
         delayAfterReload = new WaitForSeconds(0.3f);
         currentMethod = (Method)weaponData.method;
         currentBulletsCount = weaponData.bulletCount;
+        attackDamage = weaponData.attackDamage;
+
     }
 
     public void Fire()
@@ -113,7 +124,10 @@ public class Weapon : MonoBehaviour
 
     public void ReloadButton()
     {
-        StartCoroutine(ReloadCoroutine());
+        if(!isReloading)
+        {
+            StartCoroutine(ReloadCoroutine());
+        }
     }
 
     private IEnumerator FireCoroutine()
@@ -127,19 +141,17 @@ public class Weapon : MonoBehaviour
             case Method.hitScan:
                 bulletPool.Get();
                 RaycastHit hit;
-                Physics.Raycast(player.position, player.forward, out hit, weaponData.range);
                 
-                Debug.Log(hit.transform.gameObject.name);
+                if(Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterLayer))
+                {
+                    hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
+                }
 
-                if (hit.transform.TryGetComponent<IMonster>(out IMonster hitTarget))
+                else if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterProjectileLayer))
                 {
-                    hitTarget.GetDamage(weaponData.attackDamage);
+                    Destroy(hit.transform.gameObject);
                 }
-                else if (hit.transform.TryGetComponent<Projectile>(out Projectile hitProjectile))
-                {
-                    Destroy(hitProjectile.gameObject);
-                }
-                weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip(""));
+              
                 break;
 
             case Method.projectile:
@@ -175,7 +187,7 @@ public class Weapon : MonoBehaviour
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);
-
+        weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip(weaponData.soundFX));
         yield return waitForFireDelay;
 
         isReadyToFire = true;
@@ -200,6 +212,7 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator ReloadCoroutine()
     {
+        isReloading = true;
         isReadyToFire = false;
 
         Debug.Log("isReloading");
@@ -235,6 +248,7 @@ public class Weapon : MonoBehaviour
         OnBulletChanged?.Invoke(currentBulletsCount);
 
         isReadyToFire = true;
+        isReloading = false;
     }
 
     #region bulletPool

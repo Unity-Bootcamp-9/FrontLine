@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IMonster
 {
     public void GetDamage(int _damage);
+
 }

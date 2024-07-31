@@ -1427,7 +1427,6 @@ GameObject:
   - component: {fileID: 1811436300413165154}
   - component: {fileID: 8453927852428168849}
   - component: {fileID: 3755515177243112351}
-  - component: {fileID: 8600786086900700137}
   m_Layer: 6
   m_Name: Boss1
   m_TagString: Monster
@@ -1529,27 +1528,6 @@ MonoBehaviour:
   bigFireballOffset: {fileID: 2809929187857096987}
   currentHp: 0
   fireball: {fileID: 0}
---- !u!65 &8600786086900700137
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6011634087199420425}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.68, y: 2.907874, z: 2.71}
-  m_Center: {x: -0, y: 1.52, z: 0}
 --- !u!1 &6060558774629566137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,6 +1898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3717030115997301847}
+  - component: {fileID: 5437236103849068877}
   m_Layer: 6
   m_Name: root
   m_TagString: Monster
@@ -1943,6 +1922,27 @@ Transform:
   - {fileID: 1224960458060560711}
   m_Father: {fileID: 5819757755620873576}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &5437236103849068877
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939820664590241241}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8146152885255033903
 GameObject:
   m_ObjectHideFlags: 0
