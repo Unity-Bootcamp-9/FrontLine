@@ -26,7 +26,14 @@ public class ResourceManager
 		return Resources.Load<T>(path);
 	}
 
-	public GameObject Instantiate(string path, Transform parent = null)
+    public T Instantiate<T>(T prefab) where T : MonoBehaviour
+    {
+        T go = Object.Instantiate(prefab);
+        go.name = prefab.name;
+        return go;
+    }
+
+    public GameObject Instantiate(string path, Transform parent = null)
 	{
 		GameObject prefab = Load<GameObject>(path);
 		if (prefab == null)
