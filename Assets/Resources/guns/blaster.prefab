@@ -628,7 +628,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   monsterProjectileLayer:
     serializedVersion: 2
     m_Bits: 128

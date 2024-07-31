@@ -15,7 +15,8 @@ public class UI_IngamePopUp : UI_Popup
     enum Sliders
     {
         PlayerHpSlider,
-        BulletCheckSlider
+        BulletCheckSlider,
+        BossHpSlider
     }
 
     enum Buttons

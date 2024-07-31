@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngineInternal;
 
 public class Weapon : MonoBehaviour
 {
@@ -24,14 +25,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ObjectPool<GameObject> bulletPool;
 
     [SerializeField] private LayerMask monsterLayer;
-    [SerializeField] private LayerMask monsterProjectileLayer;
-
+    
     private ObjectPool<LineRenderer> lineRendererPool;
     [SerializeField] private Transform lineRendererParent;
 
     private AudioSource weaponAudioSource;
-
-    int layerMask;
 
     public delegate void BulletChanged(int currentBulletsCount);
     public event BulletChanged OnBulletChanged;
@@ -55,7 +53,6 @@ public class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
         weaponAudioSource = gameObject.AddComponent<AudioSource>();
         isReloading = false;
-        layerMask  = (1 << 6) | (1 << 7);
     }
 
     public void Initialize(WeaponData weapon)
@@ -97,7 +94,6 @@ public class Weapon : MonoBehaviour
         currentMethod = (Method)weaponData.method;
         currentBulletsCount = weaponData.bulletCount;
         attackDamage = weaponData.attackDamage;
-
     }
 
     public void Fire()
@@ -144,13 +140,20 @@ public class Weapon : MonoBehaviour
                 
                 if(Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterLayer))
                 {
-                    hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
+                    if (hit.transform.CompareTag("Monster"))
+                    {
+                        hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
+                    }
+                    else if(hit.transform.CompareTag("MonsterProjectile"))
+                    {
+                        Destroy(hit.transform.gameObject);
+                    }
                 }
 
-                else if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterProjectileLayer))
-                {
-                    Destroy(hit.transform.gameObject);
-                }
+                //else if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterProjectileLayer))
+                //{
+                //    Destroy(hit.transform.gameObject);
+                //}
               
                 break;
 
@@ -165,7 +168,7 @@ public class Weapon : MonoBehaviour
                 Vector3 boxHalfExtents = new Vector3(13, 2, 2);
                 Quaternion boxOrientation = gunMuzzle.rotation;
 
-                int enemyCount = Physics.OverlapBoxNonAlloc(boxCenter, boxHalfExtents, hitEnemies, boxOrientation, Enemy);
+                int enemyCount = Physics.OverlapBoxNonAlloc(boxCenter, boxHalfExtents, hitEnemies, boxOrientation, monsterLayer);
 
                 // 적에게 전기 효과와 피해를 주기
                 for (int i = 0; i < enemyCount; i++)
@@ -179,7 +182,6 @@ public class Weapon : MonoBehaviour
                     monster.GetDamage(weaponData.attackDamage);
                     
                 }
-                weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip("lasergunSound"));
                 break;
         }
 
@@ -316,6 +318,4 @@ public class Weapon : MonoBehaviour
         Destroy(lineRenderer.gameObject);
     }
     #endregion
-
-    
 }

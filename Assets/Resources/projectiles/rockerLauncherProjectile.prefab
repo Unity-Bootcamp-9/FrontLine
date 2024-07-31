@@ -19600,6 +19600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b814580bf945c459433009de056849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemycollider: []
+  enemy:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!136 &516258294686178106
 CapsuleCollider:
   m_ObjectHideFlags: 0
