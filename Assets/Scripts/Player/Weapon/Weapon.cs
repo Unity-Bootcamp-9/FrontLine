@@ -67,31 +67,37 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        // Initialize Bullet Pool
-        bulletPool = new ObjectPool<GameObject>(
-            createFunc: CreateBullet,
-            actionOnGet: ActivateBullet,
-            actionOnRelease: DeactivateBullet,
-            actionOnDestroy: DestroyBullet,
-            collectionCheck: false,
-            defaultCapacity: 10,
-            maxSize: 20
-        );
+        currentMethod = (Method)weaponData.method;
+        switch (currentMethod)
+        {
+            case Method.AutoLazer:
+                 // Initialize LineRenderer Pool
+                lineRendererPool = new ObjectPool<LineRenderer>(
+                    createFunc: CreateLineRenderer,
+                    actionOnGet: ActivateLineRenderer,
+                    actionOnRelease: DeactivateLineRenderer,
+                    actionOnDestroy: DestroyLineRenderer,
+                    collectionCheck: false,
+                    defaultCapacity: maxEnemies,
+                    maxSize: maxEnemies);
+                break;
+            case Method.hitScan:
+            case Method.projectile:
+                // Initialize Bullet Pool
+                bulletPool = new ObjectPool<GameObject>(
+                    createFunc: CreateBullet,
+                    actionOnGet: ActivateBullet,
+                    actionOnRelease: DeactivateBullet,
+                    actionOnDestroy: DestroyBullet,
+                    collectionCheck: false,
+                    defaultCapacity: 10,
+                    maxSize: 20);
+                break;
+        }
 
-        // Initialize LineRenderer Pool
-        lineRendererPool = new ObjectPool<LineRenderer>(
-            createFunc: CreateLineRenderer,
-            actionOnGet: ActivateLineRenderer,
-            actionOnRelease: DeactivateLineRenderer,
-            actionOnDestroy: DestroyLineRenderer,
-            collectionCheck: false,
-            defaultCapacity: maxEnemies,
-            maxSize: maxEnemies
-        );
 
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
         delayAfterReload = new WaitForSeconds(0.3f);
-        currentMethod = (Method)weaponData.method;
         currentBulletsCount = weaponData.bulletCount;
         attackDamage = weaponData.attackDamage;
     }
@@ -149,18 +155,11 @@ public class Weapon : MonoBehaviour
                         Destroy(hit.transform.gameObject);
                     }
                 }
-
-                //else if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterProjectileLayer))
-                //{
-                //    Destroy(hit.transform.gameObject);
-                //}
-              
                 break;
 
             case Method.projectile:
                 bulletPool.Get();
                 //투사체 
-                
                 break;
 
             case Method.AutoLazer:
@@ -174,13 +173,16 @@ public class Weapon : MonoBehaviour
                 for (int i = 0; i < enemyCount; i++)
                 {
                     Collider collider = hitEnemies[i];
-                    Transform parentTransform = collider.transform.parent;
-                    IMonster monster = parentTransform.GetComponent<IMonster>();
-                    Vector3 monsterPosition = collider.transform.position;
-
-                    ShowElectricEffect(gunMuzzle.position, monsterPosition);
+                    if(collider.CompareTag("Monster"))
+                    {
+                    IMonster monster = collider.GetComponentInParent<IMonster>();
+                    ShowElectricEffect(gunMuzzle.position, collider.transform.position);
                     monster.GetDamage(weaponData.attackDamage);
-                    
+                    }
+                    else
+                    {
+                        Destroy(collider.gameObject);
+                    }
                 }
                 break;
         }
