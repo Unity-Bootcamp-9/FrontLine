@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using DG.Tweening;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public int currentHP;
     private float gameTimer;
+    private bool alive;
     public int currentStageGold {  get; private set; }
     public bool gameClear { get; set; }
 
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
         gameTimer = MaxPlayTime;
         currentStageGold = 0;
         gameClear = false;
+        alive = true;
         StopCoroutine(GameStart());
         StartCoroutine(GameStart());
     }
@@ -146,10 +150,12 @@ public class GameManager : MonoBehaviour
     public void GetDamage(int damage)
     {
         currentHP -= damage;
-        if (currentHP < 0)
-            GameOver();
         OnHPChanged?.Invoke(currentHP);
-        
+        if (currentHP < 0 && alive)
+        {
+            GameOver();
+            alive = false;
+        }
     }
 
     
@@ -176,5 +182,7 @@ public class GameManager : MonoBehaviour
         portals.Clear();
         StopAllCoroutines();
         Managers.UI.ClosePopupUI();
+        Managers.ARManager.SetARActive(false);
+        Monster.ClearPool();
     }
 }

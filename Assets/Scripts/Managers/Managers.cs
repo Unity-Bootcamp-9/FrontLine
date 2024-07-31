@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
     private static ResourceManager resource = new ResourceManager();
     private static EffectManager effectManager = new EffectManager();
     private static SoundManager soundManager = new SoundManager();
+    private static ARManager arManager = new ARManager();
 
     public GameObject game;
 
@@ -43,6 +44,7 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource { get { return resource; } }
     public static EffectManager EffectManager { get { return effectManager; } }
     public static SoundManager SoundManager { get { return soundManager; } }
+    public static ARManager ARManager { get { return arManager; } }
 
 
     private void Start()
