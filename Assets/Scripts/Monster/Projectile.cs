@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] public int damage { get; private set; }
     [SerializeField] private Vector3 targetPos;
     private string path;
+    private Tween moveTween;
 
     public void SetDamage(int damage)
     {
@@ -22,7 +23,7 @@ public class Projectile : MonoBehaviour
         this.path = path;
         gameObject.transform.position = _startPos;
         targetPos = target;
-        transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
+        moveTween = transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +38,10 @@ public class Projectile : MonoBehaviour
     public void HitTarget()
     {
         if (path != null)
+        {
             Monster.ProjectileReturnToPool(path, this);
+            moveTween.Kill();
+        }
         else
             Destroy(gameObject);
     }
