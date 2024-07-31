@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour, IMonster
     public Portal portal;
     protected int currentHP;
     public Rigidbody rigidBody;
+    private readonly float moveDuration = 5f;
     [SerializeField] private Transform firePos;
 
     private static Dictionary<string, IObjectPool<Projectile>> projectiles = new Dictionary<string, IObjectPool<Projectile>>();
@@ -121,7 +122,7 @@ public class Monster : MonoBehaviour, IMonster
     {
         if (monsterData.attackRange >= 20)
         {
-            GetProjectiles(monsterData.projectile, firePos.position, playerPos, 3f);
+            GetProjectiles(monsterData.projectile, firePos.position, playerPos, moveDuration);
         }
         else
         {
