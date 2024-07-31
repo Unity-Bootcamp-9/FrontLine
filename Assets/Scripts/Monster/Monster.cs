@@ -16,6 +16,7 @@ public class Monster : MonoBehaviour, IMonster
     private readonly float moveDuration = 5f;
     [SerializeField] private Transform firePos;
 
+    private static Dictionary<string, Transform> poolContainers = new Dictionary<string, Transform>();
     private static Dictionary<string, IObjectPool<Projectile>> projectiles = new Dictionary<string, IObjectPool<Projectile>>();
     private void GetProjectiles(string path, Vector3 _startPos, Vector3 target, float duration)
     {
@@ -65,7 +66,13 @@ public class Monster : MonoBehaviour, IMonster
     private Projectile CreateObject(Projectile prefab)
     {
         Projectile projectile = Managers.Resource.Instantiate(prefab);
-        projectile.transform.parent = Managers.Instance.game.transform;
+        if (!poolContainers.ContainsKey(monsterData.projectile))
+        {
+            GameObject newPool = new GameObject($"Monster[{monsterData.index}] ProjectilePool");
+            poolContainers.Add(monsterData.projectile, newPool.transform);
+            newPool.transform.parent = Managers.Instance.game.transform;
+        }
+        projectile.transform.SetParent(poolContainers[monsterData.projectile]);
         return projectile;
     }
 
@@ -145,6 +152,18 @@ public class Monster : MonoBehaviour, IMonster
         {
             animator.SetTrigger("Dead");
             GameManager.Instance.GetGold(monsterData.gold);
+        }
+    }
+
+    public static void ClearPool()
+    {
+        foreach(var value in projectiles)
+        {
+            value.Value.Clear();
+        }
+        foreach (var value in poolContainers)
+        {
+            Destroy(value.Value.gameObject);
         }
     }
 }

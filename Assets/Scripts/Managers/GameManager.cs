@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using DG.Tweening;
+using UnityEngine.XR.ARFoundation;
 
 public class GameManager : MonoBehaviour
 {
@@ -176,5 +177,7 @@ public class GameManager : MonoBehaviour
         portals.Clear();
         StopAllCoroutines();
         Managers.UI.ClosePopupUI();
+        Managers.ARManager.SetARActive(false);
+        Monster.ClearPool();
     }
 }
