@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 using static Define;
 
 public class UI_WeaponSelectPopUp : UI_Popup
@@ -115,22 +116,29 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
     void GameStart()
     {
-        GameObject _game = GameObject.Find("Game");
 
-        if(_game == null)
+        if (Managers.Instance.game == null)
         {
-            _game = new GameObject("Game");
+            GameObject _game = GameObject.Find("Game");
+            if (_game == null)
+            {
+                _game = new GameObject("Game");
+                Managers.Instance.game = _game;
+            }
         }
 
-        if(_game.transform.childCount == 0)
+        if (Managers.Instance.game.transform.childCount == 0)
         {
             GameObject arScene = Managers.Resource.Instantiate("AR/Game");
-            arScene.transform.parent = _game.transform;
+            arScene.transform.parent = Managers.Instance.game.transform;
+
+            ARCameraManager arCameraManager = arScene.GetComponentInChildren<ARCameraManager>();
+            ARSession arSession = arScene.GetComponentInChildren<ARSession>();
+            ARInputManager arInputManager = arScene.GetComponentInChildren<ARInputManager>();
+            Managers.ARManager.GetARFunction(arCameraManager, arSession, arInputManager);
         }
 
-        _game.transform.GetChild(0).gameObject.SetActive(true);
-
-        Managers.Instance.game = _game;
+        Managers.ARManager.SetARActive(true);
 
         GameManager.Instance.player = Camera.main.transform.Find("playerOffset");
 
