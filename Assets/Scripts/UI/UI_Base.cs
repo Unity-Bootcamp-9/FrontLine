@@ -21,7 +21,7 @@ public abstract class UI_Base : MonoBehaviour
         return _init = true;
     }
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }

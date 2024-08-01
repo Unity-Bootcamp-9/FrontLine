@@ -37,13 +37,20 @@ public class Projectile : MonoBehaviour
 
     public void HitTarget()
     {
+        moveTween.Kill();
         if (path != null)
         {
             Monster.ProjectileReturnToPool(path, this);
-            moveTween.Kill();
         }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
+
+    private void OnDestroy()
+    {
+        moveTween.Kill();
+    }
 }

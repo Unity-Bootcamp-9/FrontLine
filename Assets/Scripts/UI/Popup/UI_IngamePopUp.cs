@@ -11,6 +11,7 @@ using Slider = UnityEngine.UI.Slider;
 public class UI_IngamePopUp : UI_Popup
 {
     private Weapon weapon;
+    [SerializeField] private BossMonster bossMonster;
 
     enum Sliders
     {
@@ -28,6 +29,7 @@ public class UI_IngamePopUp : UI_Popup
 
     private Slider playerHpSlider;
     private Slider weaponBulletCheck;
+    [SerializeField] private BossHPSlider bossHPSlider;
 
     public override bool Init()
     {
@@ -35,6 +37,9 @@ public class UI_IngamePopUp : UI_Popup
             return false;
 
         weapon = GameManager.Instance.GetCurrentWeapon();
+        
+        bossHPSlider = GetComponentInChildren<BossHPSlider>();
+        bossHPSlider.gameObject.SetActive(false);
 
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
@@ -44,6 +49,7 @@ public class UI_IngamePopUp : UI_Popup
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(OptionPopup);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
+
         if (playerHpSlider != null)
         {
             playerHpSlider.interactable = false;
@@ -51,6 +57,7 @@ public class UI_IngamePopUp : UI_Popup
         }
 
         weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
+
         if (weaponBulletCheck != null)
         {
             weaponBulletCheck.interactable = false;
@@ -58,9 +65,20 @@ public class UI_IngamePopUp : UI_Popup
             weaponBulletCheck.value = weapon.CheckBulletLeft();
             weapon.OnBulletChanged += UpdateBulletLeft;
         }
+
         GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
 
+        GameManager.Instance.OnBossMonsterAppear -= OnBossAppear;
+        GameManager.Instance.OnBossMonsterAppear += OnBossAppear;
+
         return true;
+    }
+
+    private void OnBossAppear()
+    {
+        bossMonster = GameManager.Instance.currentBoss;
+        bossHPSlider.gameObject.SetActive(true);
+        bossMonster.OnHpChanged += bossHPSlider.ChangeSliderValue;
     }
 
     void OptionPopup()
