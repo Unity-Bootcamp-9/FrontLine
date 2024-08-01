@@ -30,7 +30,6 @@ public class UI_StageSelectPopUp : UI_Popup
         GetButton((int)Buttons.StageButton3).gameObject.BindEvent(() => SelectStage(Buttons.StageButton3));
         GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GoBack());
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
-
         return true;
     }
 
