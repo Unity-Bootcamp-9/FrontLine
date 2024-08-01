@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,13 +9,17 @@ using static Define;
 
 public class UI_StageSelectPopUp : UI_Popup
 {
+    List<UI_StageItem> stageItems = new List<UI_StageItem>();
+
     enum Buttons
     {
         OptionButton,
         BackButton,
-        StageButton1,
-        StageButton2,
-        StageButton3
+    }
+
+    enum GameObjects
+    {
+        StageContent
     }
 
     private Buttons _stage;
@@ -25,11 +30,12 @@ public class UI_StageSelectPopUp : UI_Popup
             return false;
 
         BindButton(typeof(Buttons));
-        GetButton((int)Buttons.StageButton1).gameObject.BindEvent(() => SelectStage(Buttons.StageButton1));
-        GetButton((int)Buttons.StageButton2).gameObject.BindEvent(() => SelectStage(Buttons.StageButton2));
-        GetButton((int)Buttons.StageButton3).gameObject.BindEvent(() => SelectStage(Buttons.StageButton3));
+        BindObject(typeof(GameObjects));
+
         GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => GoBack());
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(() => OptionPopup());
+
+        PopulateStage();
         return true;
     }
 
@@ -44,37 +50,29 @@ public class UI_StageSelectPopUp : UI_Popup
         Managers.UI.ShowPopupUI<UI_OptionPopUp>();
     }
 
-    void SelectStage(Buttons stage)
+    void PopulateStage()
     {
-        _stage = stage;
-        StageToWeapon();
-    }
+        stageItems.Clear();
 
-    void StageToWeapon()
-    {
-        switch (_stage)
+        var parent = GetObject((int)GameObjects.StageContent);
+        
+        foreach (Transform child in parent.transform)
+            Managers.Resource.Destroy(child.gameObject);
+
+        foreach (var stageData in Managers.DataManager.stageDatas)
         {
-            case Buttons.StageButton1:
-                Debug.Log("Stage 1 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_WeaponSelectPopUp>();
-                Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button9");
-                break;
-            case Buttons.StageButton2:
-                Debug.Log("Stage 2 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_WeaponSelectPopUp>();
-                Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button6");
-                break;
-            case Buttons.StageButton3:
-                Debug.Log("Stage 3 Selected");
-                Managers.UI.ClosePopupUI(this);
-                Managers.UI.ShowPopupUI<UI_WeaponSelectPopUp>();
-                Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button3");
-                break;
-            default:
-                Debug.LogWarning("Invalid Stage Selected");
-                break;
+            UI_StageItem item = Managers.UI.MakeSubItem<UI_StageItem>(parent.transform);
+            item.Init();
+            item.SetInfo(stageData);
+
+            stageItems.Add(item);
         }
+
+        UI_StageItem nullItem = Managers.UI.MakeSubItem<UI_StageItem>(parent.transform);
+        nullItem.Init();
+        nullItem.SetInfo(null);
+
+        stageItems.Add(nullItem);
+
     }
 }
