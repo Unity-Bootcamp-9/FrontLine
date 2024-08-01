@@ -30,14 +30,15 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.GetDamage(damage);
             HitTarget();
+            GameManager.Instance.GetDamage(damage);
         }
     }
 
     public void HitTarget()
     {
         moveTween.Kill();
+
         if (path != null)
         {
             Monster.ProjectileReturnToPool(path, this);

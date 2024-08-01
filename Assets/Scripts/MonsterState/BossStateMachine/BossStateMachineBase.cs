@@ -11,15 +11,21 @@ public class BossStateMachineBase : StateMachineBehaviour
     protected Vector3 currentPosition;
     protected Vector3 playerPosition;
     protected Vector3 targetPosition;
+    protected Tween moveTween;
     protected float timer;
     protected float distance;
     protected string animationName;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(bossMonster == null)
+        if(animator.TryGetComponent<BossMonster>(out BossMonster boss))
         {
-            bossMonster = animator.GetComponent<BossMonster>();
+            bossMonster = boss;
+        }
+
+        if (bossMonster == null)
+        {
+            return;
         }
 
         animationName = this.GetType().Name;
@@ -29,22 +35,31 @@ public class BossStateMachineBase : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(bossMonster.currentHp <= 1)
+        {
+            animator.SetBool("BossDie", true);
+        }
+
         timer += Time.deltaTime;
 
-        currentPosition = bossMonster.transform.position;
+        if(bossMonster != null)
+        {
+            currentPosition = bossMonster.transform.position;
+            distance = Vector3.Distance(currentPosition, bossMonster.playerPos);
+        }
 
-        distance = Vector3.Distance(currentPosition, bossMonster.playerPos);
-
-        float maxDistance = 50;
+        float maxDistance = 70;
 
         if(distance > maxDistance)
         {
             animator.SetBool("BossToPlayer", true);
         }
+
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        moveTween.Kill();
         animator.SetBool(animationName, false);
     }
 

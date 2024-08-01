@@ -14,8 +14,8 @@ public class BossShortMove : BossStateMachineBase
         float moveDuration = 2f;
 
         targetPosition = bossMonster.transform.position + randomDirection * moveDistance;
-        bossMonster.transform.DOMove(targetPosition, moveDuration);
         bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
+        moveTween = bossMonster.transform.DOMove(targetPosition, moveDuration);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

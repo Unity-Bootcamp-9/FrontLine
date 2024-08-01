@@ -14,8 +14,8 @@ public class BossToPlayer : BossStateMachineBase
 
         float duration = 3f;
 
-        bossMonster.transform.DOMove(targetPosition, duration);
         bossMonster.transform.DOLookAt(targetPosition, 0.2f);
+        moveTween = bossMonster.transform.DOMove(targetPosition, duration);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

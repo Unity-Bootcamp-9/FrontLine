@@ -25,25 +25,6 @@ public class BossHPSlider : MonoBehaviour
     private bool isLerping = false;
 
     public int backGroundIndex = 1;
-    //private void Start()
-    //{
-    //    backGroundIndex = 1;
-
-    //    valueSlider.maxValue = 100;
-    //    followSlider.maxValue = 100;
-    //    valueSlider.value = 100;
-    //    followSlider.value = 100;
-
-    //    backGroundImage.color = backgroundColors[backGroundIndex];
-    //    valueSliderImage.color = backgroundColors[backGroundIndex - 1];
-    //    Color followColor = backgroundColors[backGroundIndex - 1];
-    //    followColor.a = 0.5f;
-    //    followSliderImage.color = followColor;
-
-    //    Color color = followSliderImage.color;
-    //    color.a = 0.5f;
-    //}
-
     public void OnEnable()
     {
         backGroundIndex = 1;
@@ -88,6 +69,7 @@ public class BossHPSlider : MonoBehaviour
             followSliderImage.color = followColor;
 
             valueSlider.maxValue = 100;
+
             followSlider.maxValue = 100;
             valueSlider.value = 100;
             followSlider.value = 100;

@@ -178,7 +178,12 @@ public class GameManager : MonoBehaviour
             Destroy(portals[i].gameObject);
         }
         OnBossMonsterAppear = null;
-        Destroy(currentBoss);
+
+        if(currentBoss != null)
+        {
+            Destroy(currentBoss.gameObject);
+        }
+
         portals.Clear();
         StopAllCoroutines();
         Managers.UI.ClosePopupUI();

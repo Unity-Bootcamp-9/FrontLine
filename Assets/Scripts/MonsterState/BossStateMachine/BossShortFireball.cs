@@ -11,12 +11,9 @@ public class BossShortFireball : BossStateMachineBase
         
         targetPosition = Camera.main.transform.position;
 
-        bossMonster.transform.DOLookAt(targetPosition, 0.5f);
-
+        moveTween = bossMonster.transform.DOLookAt(targetPosition, 0.5f);
         GameObject fireball = Managers.Resource.Instantiate(bossMonster.fireball);
-        
         fireball.transform.position = bossMonster.fireballOffset.position;
-
         SetProjectile(fireball, bossMonster.bossData.attackDamage).SetTarget(bossMonster.fireballOffset.position, bossMonster.playerPos, 3f);
     }
 

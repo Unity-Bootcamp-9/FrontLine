@@ -16,8 +16,8 @@ public class BossBigFireball : BossStateMachineBase
         GameObject fireball = Managers.Resource.Instantiate(bossMonster.fireball);
 
         fireball.transform.position = bossMonster.bigFireballOffset.position;
-        
-        fireball.transform.DOScale(Vector3.one * 10f, 3f).OnComplete(() => {
+
+        moveTween = fireball.transform.DOScale(Vector3.one * 10f, 3f).OnComplete(() => {
             Debug.Log(fireball.gameObject.name);
             SetProjectile(fireball, bossMonster.bossData.attackDamage).SetTarget(fireball.transform.position, targetPosition, 2f);
         }

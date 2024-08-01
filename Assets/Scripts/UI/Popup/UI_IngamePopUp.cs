@@ -16,8 +16,7 @@ public class UI_IngamePopUp : UI_Popup
     enum Sliders
     {
         PlayerHpSlider,
-        BulletCheckSlider,
-        BossHpSlider
+        BulletCheckSlider
     }
 
     enum Buttons
@@ -29,7 +28,7 @@ public class UI_IngamePopUp : UI_Popup
 
     private Slider playerHpSlider;
     private Slider weaponBulletCheck;
-    [SerializeField] private BossHPSlider bossHPSlider;
+    private BossHPSlider bossHPSlider;
 
     public override bool Init()
     {
@@ -101,7 +100,6 @@ public class UI_IngamePopUp : UI_Popup
     {
         weaponBulletCheck.value = currentBulletsCount;
     }
-
 
     private void UpdatePlayerHpSlider(int currentHP)
     {

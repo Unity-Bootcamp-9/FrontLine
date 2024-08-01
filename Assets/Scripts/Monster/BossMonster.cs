@@ -27,9 +27,14 @@ public class BossMonster : MonoBehaviour, IMonster
         {
             GameManager.Instance.gameClear = true;
             GameManager.Instance.GameOver();
-            Destroy(this.gameObject);
+            Invoke(nameof(DestroyBoss), 2f);
         }
 
+    }
+
+    private void DestroyBoss()
+    {
+        Destroy(this.gameObject);
     }
 
     public void Initalize(BossData _bossData)

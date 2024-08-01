@@ -8,7 +8,7 @@ public class BossFireballAttack : BossStateMachineBase
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        bossMonster.transform.DOLookAt(bossMonster.playerPos, 1f);
+        moveTween = bossMonster.transform.DOLookAt(bossMonster.playerPos, 1f);
 
         GameObject fireball = Managers.Resource.Instantiate(bossMonster.fireball);
 

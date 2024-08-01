@@ -21,6 +21,7 @@ public class Monster : MonoBehaviour, IMonster
     private void GetProjectiles(string path, Vector3 _startPos, Vector3 target, float duration)
     {
         Projectile projectile = null;
+
         if (projectiles.ContainsKey(path))
         {
             projectile = projectiles[path].Get();
@@ -30,6 +31,7 @@ public class Monster : MonoBehaviour, IMonster
         projectile = Managers.Resource.Load<Projectile>("MonsterProjectile/" + path);
         MakeObjectPool(projectile, path);
         projectile = projectiles[path].Get();
+
         projectile.SetTarget(_startPos, target, duration, path);
     }
 
@@ -72,6 +74,7 @@ public class Monster : MonoBehaviour, IMonster
             poolContainers.Add(monsterData.projectile, newPool.transform);
             newPool.transform.parent = Managers.Instance.game.transform;
         }
+        projectile.SetDamage(monsterData.attackDamage);
         projectile.transform.SetParent(poolContainers[monsterData.projectile]);
         return projectile;
     }
@@ -157,13 +160,23 @@ public class Monster : MonoBehaviour, IMonster
 
     public static void ClearPool()
     {
-        foreach(var value in projectiles)
-        {
-            value.Value.Clear();
-        }
+        //foreach (var value in projectiles)
+        //{
+        //    value.Value.Clear();
+        //}
+
+        projectiles.Clear();
+
         foreach (var value in poolContainers)
         {
-            Destroy(value.Value.gameObject);
+            if (value.Value.gameObject != null)
+            {
+                Debug.Log("pool");
+                Destroy(value.Value.gameObject);
+            }
         }
+
+        poolContainers.Clear();
     }
 }
+
