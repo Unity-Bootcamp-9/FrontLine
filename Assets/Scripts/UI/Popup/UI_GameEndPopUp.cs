@@ -44,12 +44,14 @@ public class UI_GameEndPopUp : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_IngamePopUp>();
         GameManager.Instance.Initialize(GameManager.Instance.currentStage);
+        Managers.SoundManager.Play(Sound.Bgm, "Sound/IngameBackGroundSound");
     }
 
     void GoStageSelectPopupUI()
     {
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
+        Managers.SoundManager.Play(Sound.Bgm, "Sound/BackGroundMusic");
     }
 
 }

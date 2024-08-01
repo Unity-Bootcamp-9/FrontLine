@@ -77,7 +77,6 @@ public class UI_IngamePopUp : UI_Popup
     {
         weapon.ReloadButton();
         weaponBulletCheck.value = weapon.CheckBulletLeft();
-        Debug.Log("ÀåÀü");
     }
 
     private void UpdateBulletLeft(int currentBulletsCount)
