@@ -22,6 +22,7 @@ public class Managers : MonoBehaviour
     public List<StageData> stageDatas;
     public List<BossData> bossDatas;
 
+
     public static Managers Instance
     {
         get
