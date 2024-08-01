@@ -47,6 +47,7 @@ public class UI_StageItem : UI_Base
         {
             GetText((int)Texts.StageText).text = "Developing";
             GetButton((int)Buttons.StageSelectButton).interactable = false;
+            GetButton((int)Buttons.StageSelectButton).image.raycastTarget = false;
             GetButton((int)Buttons.StageSelectButton).image.sprite = Managers.Resource.Load<Sprite>("Stage/StageNull");
         }
     }
