@@ -43,7 +43,7 @@ public class UI_GameEndPopUp : UI_Popup
     {
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_IngamePopUp>();
-        GameManager.Instance.Initialize(GameManager.Instance.currentStage);
+        GameManager.Instance.Initialize();
         Managers.SoundManager.Play(Sound.Bgm, "Sound/IngameBackGroundSound");
     }
 

@@ -61,9 +61,8 @@ public class GameManager : MonoBehaviour
         portals = new List<Portal>();
     }
 
-    public void Initialize(StageData stageData)
+    public void Initialize()
     {
-        currentStage = stageData;
         currentHP = MaxHP;
         gameTimer = MaxPlayTime;
         currentStageGold = 0;
@@ -71,6 +70,11 @@ public class GameManager : MonoBehaviour
         alive = true;
         StopCoroutine(GameStart());
         StartCoroutine(GameStart());
+    }
+
+    public void SelectStage(StageData stageData)
+    {
+        currentStage = stageData;
     }
 
     IEnumerator GameStart()
