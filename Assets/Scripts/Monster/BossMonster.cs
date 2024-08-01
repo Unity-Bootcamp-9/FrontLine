@@ -26,7 +26,8 @@ public class BossMonster : MonoBehaviour, IMonster
         else if (currentHp <= 0) 
         {
             GameManager.Instance.gameClear = true;
-            Invoke(nameof(GameManager.Instance.GameOver), 2f);
+            GameManager.Instance.GameOver();
+            Destroy(this.gameObject);
         }
 
     }

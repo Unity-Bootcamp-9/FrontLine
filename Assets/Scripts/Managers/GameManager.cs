@@ -17,16 +17,16 @@ public class GameManager : MonoBehaviour
     public bool gameClear { get; set; }
 
     public delegate void HPChanged(int currentHP);
+    
     public event HPChanged OnHPChanged;
 
     public Action OnBossMonsterAppear;
 
     private readonly int MaxHP = 100;
-    private readonly int MaxPlayTime = 20;
+    private readonly int MaxPlayTime = 10;
     private readonly float PortalSpawnTime = 10f;
     private readonly float MaxXZ = 24f;
     private const float yOffset = -2f;
-
 
     private static GameManager _instance;
 
@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
         string name = Managers.DataManager.bossDatas[bossIndex].name;
         GameObject bossObject = Managers.Resource.Instantiate($"Monster/Boss/{name}");
         bossObject.transform.parent = Managers.Instance.game.transform;
+        
         currentBoss = bossObject.GetComponent<BossMonster>();
         currentBoss.Initalize(Managers.DataManager.bossDatas[bossIndex]);
         OnBossMonsterAppear?.Invoke();
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         ResetGame();
+        OnBossMonsterAppear = null;
         Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }
 

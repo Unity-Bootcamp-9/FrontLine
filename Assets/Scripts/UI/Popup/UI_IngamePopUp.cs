@@ -37,8 +37,7 @@ public class UI_IngamePopUp : UI_Popup
             return false;
 
         weapon = GameManager.Instance.GetCurrentWeapon();
-
-
+        
         bossHPSlider = GetComponentInChildren<BossHPSlider>();
         bossHPSlider.gameObject.SetActive(false);
 
@@ -66,7 +65,11 @@ public class UI_IngamePopUp : UI_Popup
         }
 
         GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
+
+        GameManager.Instance.OnBossMonsterAppear -= OnBossAppear;
         GameManager.Instance.OnBossMonsterAppear += OnBossAppear;
+
+        Debug.Log("Init");
 
         return true;
     }

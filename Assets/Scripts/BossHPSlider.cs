@@ -23,7 +23,7 @@ public class BossHPSlider : MonoBehaviour
     private bool isLerping = false;
 
     public int backGroundIndex = 1;
-    private void Awake()
+    private void Start()
     {
         backGroundIndex = 1;
 

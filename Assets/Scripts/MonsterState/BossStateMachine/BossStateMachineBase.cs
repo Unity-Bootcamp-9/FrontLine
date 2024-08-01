@@ -15,7 +15,7 @@ public class BossStateMachineBase : StateMachineBehaviour
     protected float distance;
     protected string animationName;
 
-    virtual public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(bossMonster == null)
         {
@@ -27,7 +27,7 @@ public class BossStateMachineBase : StateMachineBehaviour
         timer = 0f;
     }
 
-    virtual public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer += Time.deltaTime;
 
@@ -35,7 +35,7 @@ public class BossStateMachineBase : StateMachineBehaviour
 
         distance = Vector3.Distance(currentPosition, bossMonster.playerPos);
 
-        float maxDistance = 120;
+        float maxDistance = 50;
 
         if(distance > maxDistance)
         {
@@ -43,7 +43,7 @@ public class BossStateMachineBase : StateMachineBehaviour
         }
     }
 
-    virtual public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool(animationName, false);
     }
