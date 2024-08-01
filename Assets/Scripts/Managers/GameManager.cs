@@ -166,7 +166,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         ResetGame();
-        OnBossMonsterAppear = null;
         Managers.UI.ShowPopupUI<UI_GameEndPopUp>();
     }
 
@@ -178,6 +177,8 @@ public class GameManager : MonoBehaviour
             portals[i].ResetPools();
             Destroy(portals[i].gameObject);
         }
+        OnBossMonsterAppear = null;
+        Destroy(currentBoss);
         portals.Clear();
         StopAllCoroutines();
         Managers.UI.ClosePopupUI();

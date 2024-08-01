@@ -49,6 +49,7 @@ public class UI_IngamePopUp : UI_Popup
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(OptionPopup);
 
         playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
+
         if (playerHpSlider != null)
         {
             playerHpSlider.interactable = false;
@@ -56,6 +57,7 @@ public class UI_IngamePopUp : UI_Popup
         }
 
         weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
+
         if (weaponBulletCheck != null)
         {
             weaponBulletCheck.interactable = false;
@@ -69,15 +71,13 @@ public class UI_IngamePopUp : UI_Popup
         GameManager.Instance.OnBossMonsterAppear -= OnBossAppear;
         GameManager.Instance.OnBossMonsterAppear += OnBossAppear;
 
-        Debug.Log("Init");
-
         return true;
     }
 
     private void OnBossAppear()
     {
-        bossHPSlider.gameObject.SetActive(true);
         bossMonster = GameManager.Instance.currentBoss;
+        bossHPSlider.gameObject.SetActive(true);
         bossMonster.OnHpChanged += bossHPSlider.ChangeSliderValue;
     }
 
@@ -95,7 +95,6 @@ public class UI_IngamePopUp : UI_Popup
     {
         weapon.ReloadButton();
         weaponBulletCheck.value = weapon.CheckBulletLeft();
-        Debug.Log("ÀåÀü");
     }
 
     private void UpdateBulletLeft(int currentBulletsCount)

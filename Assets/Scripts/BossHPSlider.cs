@@ -8,12 +8,14 @@ public class BossHPSlider : MonoBehaviour
     [SerializeField] private Slider valueSlider;
     [SerializeField] private Slider followSlider;
     [SerializeField] private float lerpDuration = 5f;
-    [SerializeField] public TextMeshProUGUI nameText;
-    [SerializeField] public TextMeshProUGUI remaingHpText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI remaingHpText;
+    [SerializeField] private int bossHPsegment;
 
     [SerializeField] private Image backGroundImage;
     [SerializeField] private Image valueSliderImage;
     [SerializeField] private Image followSliderImage;
+
 
     [SerializeField] private float maxValue = 100f;
     [SerializeField] private float currentValue; 
@@ -23,9 +25,32 @@ public class BossHPSlider : MonoBehaviour
     private bool isLerping = false;
 
     public int backGroundIndex = 1;
-    private void Start()
+    //private void Start()
+    //{
+    //    backGroundIndex = 1;
+
+    //    valueSlider.maxValue = 100;
+    //    followSlider.maxValue = 100;
+    //    valueSlider.value = 100;
+    //    followSlider.value = 100;
+
+    //    backGroundImage.color = backgroundColors[backGroundIndex];
+    //    valueSliderImage.color = backgroundColors[backGroundIndex - 1];
+    //    Color followColor = backgroundColors[backGroundIndex - 1];
+    //    followColor.a = 0.5f;
+    //    followSliderImage.color = followColor;
+
+    //    Color color = followSliderImage.color;
+    //    color.a = 0.5f;
+    //}
+
+    public void OnEnable()
     {
         backGroundIndex = 1;
+
+        nameText.text = GameManager.Instance.currentBoss.bossData.name;
+        bossHPsegment = GameManager.Instance.currentBoss.bossData.hp / 100;
+        remaingHpText.text = $"X{bossHPsegment}";
 
         valueSlider.maxValue = 100;
         followSlider.maxValue = 100;
@@ -34,6 +59,7 @@ public class BossHPSlider : MonoBehaviour
 
         backGroundImage.color = backgroundColors[backGroundIndex];
         valueSliderImage.color = backgroundColors[backGroundIndex - 1];
+        
         Color followColor = backgroundColors[backGroundIndex - 1];
         followColor.a = 0.5f;
         followSliderImage.color = followColor;
@@ -65,6 +91,9 @@ public class BossHPSlider : MonoBehaviour
             followSlider.maxValue = 100;
             valueSlider.value = 100;
             followSlider.value = 100;
+
+            bossHPsegment--;
+            remaingHpText.text = $"X{bossHPsegment}";
         }
     }
 

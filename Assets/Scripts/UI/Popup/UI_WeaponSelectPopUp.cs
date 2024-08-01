@@ -144,8 +144,8 @@ public class UI_WeaponSelectPopUp : UI_Popup
 
         GameManager.Instance.SetWeapon(currentWeapon);
         Managers.UI.ClosePopupUI(this);
-        Managers.UI.ShowPopupUI<UI_IngamePopUp>();
         GameManager.Instance.Initialize(Managers.DataManager.stageDatas[0]);
+        Managers.UI.ShowPopupUI<UI_IngamePopUp>();
         Managers.SoundManager.Play(Sound.Bgm, "Sound/IngameBackGroundSound");
         Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button6");
     }
