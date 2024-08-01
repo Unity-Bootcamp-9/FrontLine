@@ -18,8 +18,11 @@ public class ARManager
 
     public void SetARActive(bool value)
     {
-        arCameraManager.enabled = value;
-        arSession.enabled = value;
-        arInputManager.enabled = value;
+        if (arCameraManager != null && arSession != null && arInputManager != null)
+        {
+            arCameraManager.enabled = value;
+            arSession.enabled = value;
+            arInputManager.enabled = value;
+        }
     }
 }
