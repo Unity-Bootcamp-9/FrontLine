@@ -17,6 +17,7 @@ public class BossBiteAttack : BossStateMachineBase
         targetPosition = PlayerBackVector3(currentPosition, bossMonster.playerPos, 20f);
         bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
         moveTween = bossMonster.transform.DOMove(targetPosition, moveDuration);
+        bossMonster.bossAudio.PlayOneShot(Managers.SoundManager.GetAudioClip(bossMonster.bossData.sound));
 
     }
 

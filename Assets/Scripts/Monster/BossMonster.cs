@@ -11,6 +11,8 @@ public class BossMonster : MonoBehaviour, IMonster
     public Transform bigFireballOffset;
     public int currentHp;
     public GameObject fireball;
+    private Animator animator;
+    public AudioSource bossAudio;
     public Action<int> OnHpChanged;
 
     public void GetDamage(int _damage)
@@ -37,10 +39,19 @@ public class BossMonster : MonoBehaviour, IMonster
         Destroy(this.gameObject);
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        animator.SetBool("BossToPlayer", true);
+    }
+
+
     public void Initalize(BossData _bossData)
     {
         bossData = _bossData;
+        animator = GetComponent<Animator>();
         currentHp = bossData.hp;
+        bossAudio = GetComponent<AudioSource>();
         fireball = Managers.Resource.Load<GameObject>($"MonsterProjectile/{bossData.projectile}");
         playerPos = Camera.main.transform.position;
         //gameObject.transform.parent = Managers.Instance.game.transform;

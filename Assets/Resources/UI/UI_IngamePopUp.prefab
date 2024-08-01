@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossMonster: {fileID: 0}
-  bossHPSlider: {fileID: 0}
 --- !u!1 &418292308778455771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,6 +2097,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossHpSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 2470279873819947558, guid: 1179c9a5b3341234992d457ce6fda413,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 338b87ec800b74d4786573b1fdd14c13,
+        type: 2}
+    - target: {fileID: 2470279873819947558, guid: 1179c9a5b3341234992d457ce6fda413,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4687939059374929122, guid: 338b87ec800b74d4786573b1fdd14c13,
+        type: 2}
+    - target: {fileID: 2470279873819947558, guid: 1179c9a5b3341234992d457ce6fda413,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2628703721047157954, guid: 1179c9a5b3341234992d457ce6fda413,
         type: 3}
       propertyPath: lerpDuration
@@ -2206,6 +2222,23 @@ PrefabInstance:
     - target: {fileID: 4964336324654656469, guid: 1179c9a5b3341234992d457ce6fda413,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867871214405251488, guid: 1179c9a5b3341234992d457ce6fda413,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a2dd927002d687045967512541ec5c71,
+        type: 2}
+    - target: {fileID: 6867871214405251488, guid: 1179c9a5b3341234992d457ce6fda413,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4200798139453797082, guid: a2dd927002d687045967512541ec5c71,
+        type: 2}
+    - target: {fileID: 6867871214405251488, guid: 1179c9a5b3341234992d457ce6fda413,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8615023001563133255, guid: 1179c9a5b3341234992d457ce6fda413,

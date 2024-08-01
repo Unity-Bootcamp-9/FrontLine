@@ -14,7 +14,6 @@ public class UI_GameEndPopUp : UI_Popup
 
     enum Buttons
     {
-        RePlayButton,
         GameEndButton2
     }
 
@@ -31,20 +30,11 @@ public class UI_GameEndPopUp : UI_Popup
         GetText((int)Texts.CurrentStageGoldHoldText).text = "Gold : " + GameManager.Instance.currentStageGold.ToString();
         GetText((int)Texts.TotalGoldHoldText).text = "Total Gold : " + (Managers.DataManager.goldData.gold + GameManager.Instance.currentStageGold).ToString();
 
-        GetButton((int)Buttons.RePlayButton).gameObject.BindEvent(ReplayGame);
         GetButton((int)Buttons.GameEndButton2).gameObject.BindEvent(GoStageSelectPopupUI);
 
         Managers.DataManager.ExportGold(GameManager.Instance.currentStageGold);
 
         return true;
-    }
-
-    void ReplayGame()
-    {
-        Managers.UI.ClosePopupUI(this);
-        Managers.UI.ShowPopupUI<UI_IngamePopUp>();
-        GameManager.Instance.Initialize();
-        Managers.SoundManager.Play(Sound.Bgm, "Sound/IngameBackGroundSound");
     }
 
     void GoStageSelectPopupUI()

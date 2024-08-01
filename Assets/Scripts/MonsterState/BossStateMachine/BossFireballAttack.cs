@@ -12,6 +12,7 @@ public class BossFireballAttack : BossStateMachineBase
 
         GameObject fireball = Managers.Resource.Instantiate(bossMonster.fireball);
 
+        bossMonster.bossAudio.PlayOneShot(Managers.SoundManager.GetAudioClip(bossMonster.bossData.sound));
         SetProjectile(fireball, bossMonster.bossData.attackDamage).SetTarget(bossMonster.fireballOffset.position, bossMonster.playerPos, 3f);
     }
 
