@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 6277177982895560513}
   m_Layer: 6
   m_Name: Skorptere_ Pelvis
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2093,7 +2093,7 @@ GameObject:
   - component: {fileID: 1224960458060560711}
   m_Layer: 6
   m_Name: Skorptere_
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
