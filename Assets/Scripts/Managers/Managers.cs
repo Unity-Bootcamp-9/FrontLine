@@ -79,12 +79,5 @@ public class Managers : MonoBehaviour
         soundManager.Init();
         Debug.Log("Init");
     }
-
-    public static bool muteVibration = false; // 기본값 설정
     
-    public static void SetVibrationONOFF(bool value)
-    {
-        muteVibration = value;
-    }
-
 }

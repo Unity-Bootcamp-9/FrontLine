@@ -55,7 +55,7 @@ public class UI_OptionPopUp : UI_Popup
 
         if (GetToggle((int)Toggles.ControllerVibration) != null)
         {
-            GetToggle((int)Toggles.ControllerVibration).isOn = Managers.muteVibration;
+            GetToggle((int)Toggles.ControllerVibration).isOn = GameManager.muteVibration;
             GetToggle((int)Toggles.ControllerVibration).onValueChanged.AddListener(SetVibrationONOFF);
         }
 
@@ -65,7 +65,7 @@ public class UI_OptionPopUp : UI_Popup
 
     void SetVibrationONOFF(bool value)
     {
-        Managers.muteVibration = value;
+        GameManager.muteVibration = value;
     }
 
     void GoStageSelectPopupUI()
