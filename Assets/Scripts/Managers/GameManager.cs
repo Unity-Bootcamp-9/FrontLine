@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public Action OnBossMonsterAppear;
 
     private readonly int MaxHP = 100;
-    private readonly int MaxPlayTime = 10;
+    private readonly int MaxPlayTime = 60;
     private readonly float PortalSpawnTime = 10f;
     private readonly float MaxXZ = 24f;
     private const float yOffset = -2f;
@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
     {
         currentHP -= damage;
         OnHPChanged?.Invoke(currentHP);
+
         if (currentHP < 0 && alive)
         {
             GameOver();
