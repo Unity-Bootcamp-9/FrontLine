@@ -24,10 +24,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private bool isReloading = false;
     [SerializeField] private GameObject bulletPrefab;
-    private ObjectPool<GameObject> bulletPool;
-
+    [SerializeField] private ObjectPool<GameObject> bulletPool;
     [SerializeField] private LayerMask monsterLayer;
-    
+    [SerializeField] private VisualEffect[] weaponEffects;
+
+
     private ObjectPool<LineRenderer> lineRendererPool;
     [SerializeField] private Transform lineRendererParent;
 
@@ -39,7 +40,7 @@ public class Weapon : MonoBehaviour
 
     public LayerMask Enemy;
     public Collider[] hitEnemies;
-    private int maxEnemies = 10;
+    private int maxEnemies = 5;
     private AudioClip audioClip;
 
     private bool Vibrate;
@@ -61,7 +62,6 @@ public class Weapon : MonoBehaviour
 
     public void Initialize(WeaponData weapon)
     {
-        hitEnemies = new Collider[maxEnemies];
         weaponData = weapon;
         bulletPrefab = Resources.Load<GameObject>(weaponData.bulletPrefab);
         dmgNumb = Managers.Resource.Load<DamageNumber>("DmgNumb/DmgNumb");
@@ -76,7 +76,8 @@ public class Weapon : MonoBehaviour
         switch (currentMethod)
         {
             case Method.AutoLazer:
-                 // Initialize LineRenderer Pool
+                // Initialize LineRenderer Pool
+                hitEnemies = new Collider[maxEnemies];
                 lineRendererPool = new ObjectPool<LineRenderer>(
                     createFunc: CreateLineRenderer,
                     actionOnGet: ActivateLineRenderer,
@@ -131,7 +132,7 @@ public class Weapon : MonoBehaviour
 
     public void ReloadButton()
     {
-        if(!isReloading)
+        if (!isReloading)
         {
             StartCoroutine(ReloadCoroutine());
         }
@@ -148,15 +149,15 @@ public class Weapon : MonoBehaviour
             case Method.hitScan:
                 bulletPool.Get();
                 RaycastHit hit;
-                
-                if(Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterLayer))
+
+                if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterLayer))
                 {
                     if (hit.transform.CompareTag("Monster"))
                     {
                         hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
                         DamageNumber dmg = dmgNumb.Spawn(hit.transform.position, attackDamage);
                     }
-                    else if(hit.transform.CompareTag("MonsterProjectile"))
+                    else if (hit.transform.CompareTag("MonsterProjectile"))
                     {
                         Destroy(hit.transform.gameObject);
                     }
@@ -179,13 +180,16 @@ public class Weapon : MonoBehaviour
                 for (int i = 0; i < enemyCount; i++)
                 {
                     Collider collider = hitEnemies[i];
-                    if(collider.CompareTag("Monster"))
+
+                    weaponEffects[i].Play();
+                    weaponEffects[i].transform.GetChild(0).position = collider.transform.position;
+
+                    if (collider.CompareTag("Monster"))
                     {
                         IMonster monster = collider.GetComponentInParent<IMonster>();
-                        ShowElectricEffect(gunMuzzle.position, collider.transform.position);
+                        //ShowElectricEffect(gunMuzzle.position, collider.transform.position);
                         monster.GetDamage(attackDamage);
                         DamageNumber dmg = dmgNumb.Spawn(collider.transform.position, attackDamage);
-
                     }
                     else
                     {
@@ -194,7 +198,7 @@ public class Weapon : MonoBehaviour
                 }
                 break;
         }
-        
+
         if (!GameManager.muteVibration)
         {
             Handheld.Vibrate();
@@ -204,6 +208,11 @@ public class Weapon : MonoBehaviour
         OnBulletChanged?.Invoke(currentBulletsCount);
         weaponAudioSource.PlayOneShot(Managers.SoundManager.GetAudioClip(weaponData.soundFX));
         yield return waitForFireDelay;
+
+        foreach (var effect in weaponEffects)
+        {
+            effect.Stop();
+        }
 
         isReadyToFire = true;
     }
@@ -216,7 +225,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(AutoOffElectricEffect(lineRenderer, 0.05f));
     }
 
-    
+
     private IEnumerator AutoOffElectricEffect(LineRenderer lineRenderer, float delay)
     {
         lineRenderer.enabled = true;
