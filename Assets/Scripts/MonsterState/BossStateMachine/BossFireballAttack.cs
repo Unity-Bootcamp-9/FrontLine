@@ -27,7 +27,7 @@ public class BossFireballAttack : BossStateMachineBase
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if (timer > 6f)
+        if (timer > 4f)
         {
             animator.SetBool("BossIdle", true);
         }

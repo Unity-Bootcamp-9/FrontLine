@@ -29,6 +29,7 @@ public class BossStateMachineBase : StateMachineBehaviour
         }
 
         animationName = this.GetType().Name;
+        currentPosition = bossMonster.transform.position;
         playerPosition = bossMonster.playerPos;
         timer = 0f;
     }
@@ -41,20 +42,6 @@ public class BossStateMachineBase : StateMachineBehaviour
         }
 
         timer += Time.deltaTime;
-
-        if(bossMonster != null)
-        {
-            currentPosition = bossMonster.transform.position;
-            distance = Vector3.Distance(currentPosition, bossMonster.playerPos);
-        }
-
-        float maxDistance = 70;
-
-        if(distance > maxDistance)
-        {
-            animator.SetBool("BossToPlayer", true);
-        }
-
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

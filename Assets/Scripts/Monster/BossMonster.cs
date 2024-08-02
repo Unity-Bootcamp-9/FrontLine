@@ -42,7 +42,10 @@ public class BossMonster : MonoBehaviour, IMonster
 
     private void OnCollisionEnter(Collision collision)
     {
-        animator.SetBool("BossToPlayer", true);
+        if(collision.transform.CompareTag("OuterLimit"))
+        {
+            animator.SetBool("BossToPlayer", true);
+        }
     }
 
 
