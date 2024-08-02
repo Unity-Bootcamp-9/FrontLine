@@ -67,7 +67,7 @@ public class WeaponProjectile : MonoBehaviour
                 {
                     IMonster hitMonster = enemycollider[i].GetComponentInParent<IMonster>();
                     hitMonster.GetDamage(attackDamage);
-                    DamageNumber dmg = dmgNumb.Spawn(enemycollider[i].transform.position + new Vector3(0, 2, 0), attackDamage);
+                    DamageNumber dmg = dmgNumb.Spawn(enemycollider[i].transform.position, attackDamage);
                 }
                 moveTween.Kill();
 

@@ -152,7 +152,7 @@ public class Weapon : MonoBehaviour
                     if (hit.transform.CompareTag("Monster"))
                     {
                         hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
-                        DamageNumber dmg = dmgNumb.Spawn(hit.transform.position + new Vector3(0, 2, 0), attackDamage);
+                        DamageNumber dmg = dmgNumb.Spawn(hit.transform.position, attackDamage);
                     }
                     else if(hit.transform.CompareTag("MonsterProjectile"))
                     {
@@ -181,7 +181,9 @@ public class Weapon : MonoBehaviour
                     {
                         IMonster monster = collider.GetComponentInParent<IMonster>();
                         ShowElectricEffect(gunMuzzle.position, collider.transform.position);
-                        monster.GetDamage(weaponData.attackDamage);
+                        monster.GetDamage(attackDamage);
+                        DamageNumber dmg = dmgNumb.Spawn(collider.transform.position, attackDamage);
+
                     }
                     else
                     {
