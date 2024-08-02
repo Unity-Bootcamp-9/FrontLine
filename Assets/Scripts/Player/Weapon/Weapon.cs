@@ -189,7 +189,7 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
-        if(Managers.GlobalSettings.isVibrateEnabled)
+        if (Managers.muteVibration == false)
         {
             Handheld.Vibrate();
             Debug.Log("진동울리는중");

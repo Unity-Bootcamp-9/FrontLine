@@ -55,12 +55,17 @@ public class UI_OptionPopUp : UI_Popup
 
         if (GetToggle((int)Toggles.ControllerVibration) != null)
         {
-            GetToggle((int)Toggles.ControllerVibration).isOn = !Managers.GlobalSettings.isVibrateEnabled;
-            GetToggle((int)Toggles.ControllerVibration).onValueChanged.AddListener(Managers.SetVibrationONOFF);
+            GetToggle((int)Toggles.ControllerVibration).isOn = Managers.muteVibration;
+            GetToggle((int)Toggles.ControllerVibration).onValueChanged.AddListener(SetVibrationONOFF);
         }
 
 
         return true;
+    }
+
+    void SetVibrationONOFF(bool value)
+    {
+        Managers.muteVibration = value;
     }
 
     void GoStageSelectPopupUI()
