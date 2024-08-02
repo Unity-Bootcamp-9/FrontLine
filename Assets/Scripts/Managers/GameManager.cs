@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private readonly float MaxXZ = 24f;
     private const float yOffset = -2f;
 
+    public static bool muteVibration = false; // 기본값 설정
+
     private static GameManager _instance;
 
     public static GameManager Instance

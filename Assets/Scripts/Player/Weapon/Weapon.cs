@@ -188,15 +188,10 @@ public class Weapon : MonoBehaviour
                 }
                 break;
         }
-
-        if(Managers.GlobalSettings.isVibrateEnabled)
+        
+        if (!GameManager.muteVibration)
         {
             Handheld.Vibrate();
-            Debug.Log("진동울리는중");
-        }
-        else
-        {
-            Debug.Log("진동꺼졋음");
         }
 
         currentBulletsCount--;
