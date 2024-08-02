@@ -19,6 +19,7 @@ public class UI_StartPopUp : UI_Popup
 
         BindButton(typeof(Buttons));
         GetButton((int)Buttons.GameStartButton).gameObject.BindEvent(OnClickStartButton);
+        GetButton((int)Buttons.GameStartButton).gameObject.SetActive(false);
 
         return true;
     }
@@ -28,5 +29,10 @@ public class UI_StartPopUp : UI_Popup
         Managers.UI.ClosePopupUI(this); // UI_TitlePopup
         Managers.UI.ShowPopupUI<UI_StageSelectPopUp>();
         Managers.SoundManager.Play(Sound.UIEffect, "Sound/Button3");
+    }
+
+    public void ActiveStartButton()
+    {
+        GetButton((int)Buttons.GameStartButton).gameObject.SetActive(true);
     }
 }
