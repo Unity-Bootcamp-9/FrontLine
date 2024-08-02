@@ -6,10 +6,11 @@ TagManager:
   tags:
   - Monster
   - MonsterProjectile
-  - Stage
   - Game
-  - Wall
   - PlayerProjectile
+  - InnerLimit
+  - OuterLimit
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - PlayerProjectile
   - Player
   - MiniMap
-  - 
-  - 
+  - InnerLimit
+  - OuterLimit
   - 
   - 
   - 

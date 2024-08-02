@@ -29,7 +29,7 @@ public class ResourceManager
     public T Instantiate<T>(T prefab) where T : MonoBehaviour
     {
         T go = Object.Instantiate(prefab);
-        go.name = prefab.name;
+        go.name = prefab.name;	
         return go;
     }
 

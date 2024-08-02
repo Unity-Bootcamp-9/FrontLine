@@ -71,11 +71,15 @@ public class BossHPSlider : MonoBehaviour
             valueSlider.maxValue = 100;
 
             followSlider.maxValue = 100;
+
             valueSlider.value = 100;
             followSlider.value = 100;
+            valueSlider.value -= overflowValue;
 
             bossHPsegment--;
             remaingHpText.text = $"X{bossHPsegment}";
+
+            overflowValue = 0;
         }
     }
 
@@ -105,8 +109,17 @@ public class BossHPSlider : MonoBehaviour
         ChangeSlider();
     }
 
-    public void ChangeSliderValue(int value)
+    private int overflowValue;
+    public void ChangeSliderValue(int _value)
     {
-        valueSlider.value -= value;
+        if(_value < valueSlider.value)
+        {
+            valueSlider.value -= _value;
+        }
+        else
+        {
+            overflowValue = _value - (int)valueSlider.value;
+            valueSlider.value -= _value;
+        }
     }
 }

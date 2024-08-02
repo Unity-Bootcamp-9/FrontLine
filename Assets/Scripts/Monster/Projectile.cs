@@ -45,6 +45,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
+            Managers.Resource.Instantiate("MonsterProjectile/FireballExplosion");
             Destroy(gameObject);
         }
     }

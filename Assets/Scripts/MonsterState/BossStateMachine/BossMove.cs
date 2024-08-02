@@ -10,26 +10,22 @@ public class BossMove : BossStateMachineBase
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Vector3 randomDirection = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.1f, 0.1f), Random.Range(-0.3f, 0.3f)).normalized;
-        float moveDistance = 40f;
+        float moveDistance = 10f;
         float rotateDuration = 0.2f;
-        float moveDuration = 3f;
+        float moveDuration = 1.5f;
 
         nextMove = Random.Range(1, 5);
 
 
         targetPosition = bossMonster.transform.position + randomDirection * moveDistance;
         bossMonster.transform.DOLookAt(targetPosition, rotateDuration);
-        bossMonster.transform.DOMove(targetPosition, moveDuration);
-
+        moveTween = bossMonster.transform.DOMove(targetPosition, moveDuration);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
-
-        float distance = Vector3.Distance(playerPosition, currentPosition);
-
-        if (timer > 3f)
+        if (timer > 1.5f)
         {
             switch (nextMove)
             {

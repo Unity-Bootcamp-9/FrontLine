@@ -46,8 +46,8 @@ public class UI_OptionPopUp : UI_Popup
 
         if (GetSlider((int)Sliders.SoundSlider) != null)
         {
-            GetSlider((int)Sliders.SoundSlider).interactable = true; // ½½¶óÀÌ´õÀÇ »óÈ£ÀÛ¿ë ºñÈ°¼ºÈ­
-            GetSlider((int)Sliders.SoundSlider).value = AudioListener.volume; // ÃÊ±â°ª ¼³Á¤ (°ÔÀÓ »ç¿îµå)
+            GetSlider((int)Sliders.SoundSlider).interactable = true; // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
+            GetSlider((int)Sliders.SoundSlider).value = AudioListener.volume; // ï¿½Ê±â°ª ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
             GetSlider((int)Sliders.SoundSlider).onValueChanged.AddListener(SetSoundSliderValue);
         }
 
@@ -58,7 +58,6 @@ public class UI_OptionPopUp : UI_Popup
             GetToggle((int)Toggles.ControllerVibration).isOn = GameManager.muteVibration;
             GetToggle((int)Toggles.ControllerVibration).onValueChanged.AddListener(SetVibrationONOFF);
         }
-
 
         return true;
     }

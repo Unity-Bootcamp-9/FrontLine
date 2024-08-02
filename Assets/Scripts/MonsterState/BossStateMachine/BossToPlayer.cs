@@ -22,7 +22,7 @@ public class BossToPlayer : BossStateMachineBase
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if(distance < 10f)
+        if(timer > 1)
         {
             animator.SetBool("BossToPlayer", false);
         }
