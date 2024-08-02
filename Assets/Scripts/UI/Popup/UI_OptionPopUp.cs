@@ -46,9 +46,10 @@ public class UI_OptionPopUp : UI_Popup
             soundSlider.onValueChanged.AddListener(SetSoundSliderValue);
         }
 
-
         return true;
     }
+
+    
 
     void GoStageSelectPopupUI()
     {

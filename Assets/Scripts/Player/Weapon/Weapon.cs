@@ -1,13 +1,15 @@
+using DamageNumbersPro;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.VFX;
 using UnityEngineInternal;
 
 public class Weapon : MonoBehaviour
 {
     [Header("DataField")]
     [SerializeField] private WeaponData weaponData;
-
+    [SerializeField] private DamageNumber dmgNumb;
     [SerializeField] private WaitForSeconds waitForFireDelay;
     [SerializeField] private WaitForSeconds delayAfterReload;
     [SerializeField] private Method currentMethod;
@@ -22,7 +24,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private bool isReloading = false;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private ObjectPool<GameObject> bulletPool;
+    private ObjectPool<GameObject> bulletPool;
 
     [SerializeField] private LayerMask monsterLayer;
     
@@ -60,6 +62,7 @@ public class Weapon : MonoBehaviour
         hitEnemies = new Collider[maxEnemies];
         weaponData = weapon;
         bulletPrefab = Resources.Load<GameObject>(weaponData.bulletPrefab);
+        dmgNumb = Managers.Resource.Load<DamageNumber>("DmgNumb/DmgNumb");
 
         if (bulletPrefab == null)
         {
@@ -149,6 +152,7 @@ public class Weapon : MonoBehaviour
                     if (hit.transform.CompareTag("Monster"))
                     {
                         hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
+                        DamageNumber dmg = dmgNumb.Spawn(hit.transform.position + new Vector3(0, 2, 0), attackDamage);
                     }
                     else if(hit.transform.CompareTag("MonsterProjectile"))
                     {
@@ -175,9 +179,9 @@ public class Weapon : MonoBehaviour
                     Collider collider = hitEnemies[i];
                     if(collider.CompareTag("Monster"))
                     {
-                    IMonster monster = collider.GetComponentInParent<IMonster>();
-                    ShowElectricEffect(gunMuzzle.position, collider.transform.position);
-                    monster.GetDamage(weaponData.attackDamage);
+                        IMonster monster = collider.GetComponentInParent<IMonster>();
+                        ShowElectricEffect(gunMuzzle.position, collider.transform.position);
+                        monster.GetDamage(weaponData.attackDamage);
                     }
                     else
                     {
@@ -205,6 +209,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(AutoOffElectricEffect(lineRenderer, 0.05f));
     }
 
+    
     private IEnumerator AutoOffElectricEffect(LineRenderer lineRenderer, float delay)
     {
         lineRenderer.enabled = true;
@@ -212,8 +217,6 @@ public class Weapon : MonoBehaviour
         lineRenderer.enabled = false;
         lineRendererPool.Release(lineRenderer);
     }
-
-
     private IEnumerator ReloadCoroutine()
     {
         isReloading = true;
@@ -259,7 +262,7 @@ public class Weapon : MonoBehaviour
     private GameObject CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod, weaponData.bulletVisualFX);
+        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod, dmgNumb, weaponData.bulletVisualFX);
         bullet.transform.parent = Managers.Instance.game.transform;
         return bullet;
     }

@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class WeaponProjectile : MonoBehaviour
 {
     private float bulletSpeed;
     private Vector3 shootDirection;
+    private DamageNumber dmgNumb;
     private ObjectPool<GameObject> pool;
     private int attackDamage;
     private string vfxPath;
@@ -18,13 +20,14 @@ public class WeaponProjectile : MonoBehaviour
     [SerializeField] private LayerMask enemy;
     private Tween moveTween;
 
-    public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, string _vfxPath = "")
+    public void Initialize(ObjectPool<GameObject> _pool, float _bulletSpeed, int _attackDamage, Weapon.Method _method, DamageNumber _dmgNum, string _vfxPath = "")
     {
         this.pool = _pool;
         this.bulletSpeed = _bulletSpeed;
         this.attackDamage = _attackDamage;
         this.vfxPath = _vfxPath;
         this.currentMethod = _method;
+        dmgNumb = _dmgNum;
         enemycollider = new Collider[5];
     }
 
@@ -64,6 +67,7 @@ public class WeaponProjectile : MonoBehaviour
                 {
                     IMonster hitMonster = enemycollider[i].GetComponentInParent<IMonster>();
                     hitMonster.GetDamage(attackDamage);
+                    DamageNumber dmg = dmgNumb.Spawn(enemycollider[i].transform.position + new Vector3(0, 2, 0), attackDamage);
                 }
                 moveTween.Kill();
 
