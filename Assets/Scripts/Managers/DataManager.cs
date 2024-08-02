@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -11,7 +12,15 @@ public class DataManager
     public List<BossData> bossDatas;
     public GoldData goldData;
 
-    public void Initialize()
+    public async void Initialize()
+    {
+        var task = Task.Run(() => Init());
+        await task;
+
+        Managers.UI.FindPopup<UI_StartPopUp>().ActiveStartButton();
+    }
+
+    private void Init()
     {
         goldData.userName = "Default";
         Managers.FirebaseManager.ImportDataFromTable("Monster", LoadData<MonsterData>);
