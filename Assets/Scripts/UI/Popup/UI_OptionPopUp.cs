@@ -21,35 +21,51 @@ public class UI_OptionPopUp : UI_Popup
         BrightSlider
     }
 
-    private Slider soundSlider;
-    private Slider brightslider;
+    enum Toggles
+    {
+        ControllerVibration
+    }
 
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
+        
+
         Time.timeScale = 0f;
 
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
+        BindToggle(typeof(Toggles));
 
         GetButton((int)Buttons.BackButton).gameObject.BindEvent(GoBack);
         GetButton((int)Buttons.GameEndButton).gameObject.BindEvent(GoStageSelectPopupUI);
 
-        soundSlider = GetSlider((int)Sliders.SoundSlider);
+        GetSlider((int)Sliders.SoundSlider);
 
-        if (soundSlider != null)
+        if (GetSlider((int)Sliders.SoundSlider) != null)
         {
-            soundSlider.interactable = true; // ½½¶óÀÌ´õÀÇ »óÈ£ÀÛ¿ë ºñÈ°¼ºÈ­
-            soundSlider.value = AudioListener.volume; // ÃÊ±â°ª ¼³Á¤ (°ÔÀÓ »ç¿îµå)
-            soundSlider.onValueChanged.AddListener(SetSoundSliderValue);
+            GetSlider((int)Sliders.SoundSlider).interactable = true; // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
+            GetSlider((int)Sliders.SoundSlider).value = AudioListener.volume; // ï¿½Ê±â°ª ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+            GetSlider((int)Sliders.SoundSlider).onValueChanged.AddListener(SetSoundSliderValue);
+        }
+
+        GetToggle((int)Toggles.ControllerVibration);
+
+        if (GetToggle((int)Toggles.ControllerVibration) != null)
+        {
+            GetToggle((int)Toggles.ControllerVibration).isOn = GameManager.muteVibration;
+            GetToggle((int)Toggles.ControllerVibration).onValueChanged.AddListener(SetVibrationONOFF);
         }
 
         return true;
     }
 
-    
+    void SetVibrationONOFF(bool value)
+    {
+        GameManager.muteVibration = value;
+    }
 
     void GoStageSelectPopupUI()
     {
@@ -71,6 +87,6 @@ public class UI_OptionPopUp : UI_Popup
         Managers.SoundManager.ChangedAudioListener(value);
     }
 
-
+    
 }
 

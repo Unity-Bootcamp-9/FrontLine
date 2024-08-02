@@ -26,8 +26,12 @@ public class UI_IngamePopUp : UI_Popup
         OptionButton
     }
 
-    private Slider playerHpSlider;
-    private Slider weaponBulletCheck;
+    enum Texts
+    {
+        PlayerHPText,
+        BulletCheckText
+    }
+
     private BossHPSlider bossHPSlider;
 
     public override bool Init()
@@ -42,31 +46,34 @@ public class UI_IngamePopUp : UI_Popup
 
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
+        BindText(typeof(Texts));
+
+        GetText((int)Texts.PlayerHPText).text = $"{GameManager.Instance.currentHP}";
+        GetText((int)Texts.BulletCheckText).text = $"{GameManager.Instance.GetCurrentWeapon().CheckBulletLeft()}";
 
         GetButton((int)Buttons.AttackButton).gameObject.BindEvent(OnClickShootWeapon,UIEvent.Pressed);
         GetButton((int)Buttons.ReloadButton).gameObject.BindEvent(onReloadWeapon, UIEvent.Click);
         GetButton((int)Buttons.OptionButton).gameObject.BindEvent(OptionPopup);
 
-        playerHpSlider = GetSlider((int)Sliders.PlayerHpSlider);
+        GetSlider((int)Sliders.PlayerHpSlider);
 
-        if (playerHpSlider != null)
+        if (GetSlider((int)Sliders.PlayerHpSlider) != null)
         {
-            playerHpSlider.interactable = false;
-            playerHpSlider.value = GameManager.Instance.currentHP;
+            GetSlider((int)Sliders.PlayerHpSlider).interactable = false;
+            GetSlider((int)Sliders.PlayerHpSlider).value = GameManager.Instance.currentHP;
         }
 
-        weaponBulletCheck = GetSlider((int)Sliders.BulletCheckSlider);
+        GetSlider((int)Sliders.BulletCheckSlider);
 
-        if (weaponBulletCheck != null)
+        if (GetSlider((int)Sliders.BulletCheckSlider) != null)
         {
-            weaponBulletCheck.interactable = false;
-            weaponBulletCheck.maxValue = weapon.CheckBulletLeft();
-            weaponBulletCheck.value = weapon.CheckBulletLeft();
+            GetSlider((int)Sliders.BulletCheckSlider).interactable = false;
+            GetSlider((int)Sliders.BulletCheckSlider).maxValue = weapon.CheckBulletLeft();
+            GetSlider((int)Sliders.BulletCheckSlider).value = weapon.CheckBulletLeft();
             weapon.OnBulletChanged += UpdateBulletLeft;
         }
 
         GameManager.Instance.OnHPChanged += UpdatePlayerHpSlider;
-
         GameManager.Instance.OnBossMonsterAppear -= OnBossAppear;
         GameManager.Instance.OnBossMonsterAppear += OnBossAppear;
 
@@ -93,19 +100,21 @@ public class UI_IngamePopUp : UI_Popup
     void onReloadWeapon()
     {
         weapon.ReloadButton();
-        weaponBulletCheck.value = weapon.CheckBulletLeft();
+        GetSlider((int)Sliders.BulletCheckSlider).value = weapon.CheckBulletLeft();
     }
 
     private void UpdateBulletLeft(int currentBulletsCount)
     {
-        weaponBulletCheck.value = currentBulletsCount;
+        GetSlider((int)Sliders.BulletCheckSlider).value = currentBulletsCount;
+        GetText((int)Texts.BulletCheckText).text = $"{currentBulletsCount}";
     }
 
     private void UpdatePlayerHpSlider(int currentHP)
     {
-        if (playerHpSlider != null)
+        if (GetSlider((int)Sliders.PlayerHpSlider) != null)
         {
-            playerHpSlider.value = currentHP;
+            GetSlider((int)Sliders.PlayerHpSlider).value = currentHP;
+            GetText((int)Texts.PlayerHPText).text = $"{currentHP}";
         }
     }
 

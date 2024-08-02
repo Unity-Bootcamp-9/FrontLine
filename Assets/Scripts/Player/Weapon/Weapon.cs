@@ -42,6 +42,8 @@ public class Weapon : MonoBehaviour
     private int maxEnemies = 10;
     private AudioClip audioClip;
 
+    private bool Vibrate;
+
     public enum Method
     {
         hitScan = 1,
@@ -192,8 +194,11 @@ public class Weapon : MonoBehaviour
                 }
                 break;
         }
-
-        Handheld.Vibrate();
+        
+        if (!GameManager.muteVibration)
+        {
+            Handheld.Vibrate();
+        }
 
         currentBulletsCount--;
         OnBulletChanged?.Invoke(currentBulletsCount);
