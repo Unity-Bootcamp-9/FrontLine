@@ -141,8 +141,8 @@ public class UIManager
     }
 
     public void Clear()
-      {
-          CloseAllPopupUI();
+    {
+        CloseAllPopupUI();
         SceneUI = null;
     }
 
