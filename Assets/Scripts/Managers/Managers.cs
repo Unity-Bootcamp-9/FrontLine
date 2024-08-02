@@ -79,4 +79,19 @@ public class Managers : MonoBehaviour
         soundManager.Init();
         Debug.Log("Init");
     }
+    public static class GlobalSettings
+    {
+        public static bool isVibrateEnabled = true; // 기본값 설정
+    }
+
+    public static void SetVibrationONOFF(bool value)
+    {
+        if (value)
+        {
+            GlobalSettings.isVibrateEnabled = false;
+        }
+        else
+            GlobalSettings.isVibrateEnabled = true;
+    }
+
 }
