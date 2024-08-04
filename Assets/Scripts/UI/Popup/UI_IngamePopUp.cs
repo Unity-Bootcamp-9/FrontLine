@@ -60,6 +60,7 @@ public class UI_IngamePopUp : UI_Popup
         if (GetSlider((int)Sliders.PlayerHpSlider) != null)
         {
             GetSlider((int)Sliders.PlayerHpSlider).interactable = false;
+            GetSlider((int)Sliders.PlayerHpSlider).maxValue = GameManager.Instance.currentHP;
             GetSlider((int)Sliders.PlayerHpSlider).value = GameManager.Instance.currentHP;
         }
 
@@ -117,5 +118,4 @@ public class UI_IngamePopUp : UI_Popup
             GetText((int)Texts.PlayerHPText).text = $"{currentHP}";
         }
     }
-
 }

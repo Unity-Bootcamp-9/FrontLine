@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
     {
         currentHP -= damage;
         OnHPChanged?.Invoke(currentHP);
+
         if (currentHP < 0 && alive)
         {
             GameOver();
