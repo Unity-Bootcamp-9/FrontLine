@@ -108,8 +108,8 @@ public class Portal : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(delay);
             Spawn(transform.position, transform.rotation, index).portal = this;
+            yield return new WaitForSeconds(delay);
         }
     }
 
