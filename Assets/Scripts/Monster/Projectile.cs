@@ -45,7 +45,8 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Managers.Resource.Instantiate("MonsterProjectile/FireballExplosion");
+            GameObject effect = Managers.Resource.Instantiate("MonsterProjectile/FireballExplosion");
+            effect.transform.SetParent(Managers.Instance.game.transform);
             Destroy(gameObject);
         }
     }

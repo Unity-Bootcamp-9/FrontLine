@@ -1,5 +1,7 @@
 using DamageNumbersPro;
+using DigitalRuby.LightningBolt;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.VFX;
@@ -24,10 +26,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isReadyToFire = true;
     [SerializeField] private bool isReloading = false;
     [SerializeField] private GameObject bulletPrefab;
-    private ObjectPool<GameObject> bulletPool;
-
+    [SerializeField] private ObjectPool<GameObject> bulletPool;
     [SerializeField] private LayerMask monsterLayer;
-    
+    [SerializeField] private VisualEffect[] weaponEffects;
+    [SerializeField] private GameObject projectileContainer;
+
     private ObjectPool<LineRenderer> lineRendererPool;
     [SerializeField] private Transform lineRendererParent;
 
@@ -39,7 +42,7 @@ public class Weapon : MonoBehaviour
 
     public LayerMask Enemy;
     public Collider[] hitEnemies;
-    private int maxEnemies = 10;
+    private int maxEnemies = 5;
     private AudioClip audioClip;
 
     private bool Vibrate;
@@ -57,11 +60,11 @@ public class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
         weaponAudioSource = gameObject.AddComponent<AudioSource>();
         isReloading = false;
+        projectileContainer = Managers.Instance.game.transform.Find("Game").transform.Find("Projectile").gameObject;
     }
 
     public void Initialize(WeaponData weapon)
     {
-        hitEnemies = new Collider[maxEnemies];
         weaponData = weapon;
         bulletPrefab = Resources.Load<GameObject>(weaponData.bulletPrefab);
         dmgNumb = Managers.Resource.Load<DamageNumber>("DmgNumb/DmgNumb");
@@ -76,19 +79,18 @@ public class Weapon : MonoBehaviour
         switch (currentMethod)
         {
             case Method.AutoLazer:
-                 // Initialize LineRenderer Pool
-                lineRendererPool = new ObjectPool<LineRenderer>(
-                    createFunc: CreateLineRenderer,
-                    actionOnGet: ActivateLineRenderer,
-                    actionOnRelease: DeactivateLineRenderer,
-                    actionOnDestroy: DestroyLineRenderer,
-                    collectionCheck: false,
-                    defaultCapacity: maxEnemies,
-                    maxSize: maxEnemies);
+                hitEnemies = new Collider[maxEnemies];
+                bulletPool = new ObjectPool<GameObject>(
+                   createFunc: CreateBullet,
+                   actionOnGet: ActivateBullet,
+                   actionOnRelease: DeactivateBullet,
+                   actionOnDestroy: DestroyBullet,
+                   collectionCheck: false,
+                   defaultCapacity: 10,
+                   maxSize: 20);
                 break;
             case Method.hitScan:
             case Method.projectile:
-                // Initialize Bullet Pool
                 bulletPool = new ObjectPool<GameObject>(
                     createFunc: CreateBullet,
                     actionOnGet: ActivateBullet,
@@ -99,7 +101,6 @@ public class Weapon : MonoBehaviour
                     maxSize: 20);
                 break;
         }
-
 
         waitForFireDelay = new WaitForSeconds(weaponData.fireDelay);
         delayAfterReload = new WaitForSeconds(0.3f);
@@ -131,7 +132,7 @@ public class Weapon : MonoBehaviour
 
     public void ReloadButton()
     {
-        if(!isReloading)
+        if (!isReloading)
         {
             StartCoroutine(ReloadCoroutine());
         }
@@ -143,20 +144,22 @@ public class Weapon : MonoBehaviour
 
         animator.Play("Shot", 0, 0);
 
+        LightningBoltScript lightning;
+
         switch (currentMethod)
         {
             case Method.hitScan:
                 bulletPool.Get();
                 RaycastHit hit;
-                
-                if(Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterLayer))
+
+                if (Physics.Raycast(player.position, player.forward, out hit, weaponData.range, monsterLayer))
                 {
                     if (hit.transform.CompareTag("Monster"))
                     {
                         hit.transform.GetComponentInParent<IMonster>().GetDamage(attackDamage);
                         DamageNumber dmg = dmgNumb.Spawn(hit.transform.position, attackDamage);
                     }
-                    else if(hit.transform.CompareTag("MonsterProjectile"))
+                    else if (hit.transform.CompareTag("MonsterProjectile"))
                     {
                         Destroy(hit.transform.gameObject);
                     }
@@ -172,20 +175,24 @@ public class Weapon : MonoBehaviour
                 Vector3 boxCenter = autoLazerTransform.position;
                 Vector3 boxHalfExtents = new Vector3(13, 2, 2);
                 Quaternion boxOrientation = gunMuzzle.rotation;
-
+                
                 int enemyCount = Physics.OverlapBoxNonAlloc(boxCenter, boxHalfExtents, hitEnemies, boxOrientation, monsterLayer);
 
-                // 적에게 전기 효과와 피해를 주기
                 for (int i = 0; i < enemyCount; i++)
                 {
                     Collider collider = hitEnemies[i];
-                    if(collider.CompareTag("Monster"))
+
+                    if (collider.CompareTag("Monster"))
                     {
                         IMonster monster = collider.GetComponentInParent<IMonster>();
-                        ShowElectricEffect(gunMuzzle.position, collider.transform.position);
-                        monster.GetDamage(attackDamage);
-                        DamageNumber dmg = dmgNumb.Spawn(collider.transform.position, attackDamage);
 
+                        monster.GetDamage(attackDamage);
+
+                        lightning = bulletPool.Get().GetComponent<LightningBoltScript>();
+
+                        lightning.EndObject = collider.gameObject;
+
+                        DamageNumber dmg = dmgNumb.Spawn(collider.transform.position, attackDamage);
                     }
                     else
                     {
@@ -194,7 +201,7 @@ public class Weapon : MonoBehaviour
                 }
                 break;
         }
-        
+
         if (!GameManager.muteVibration)
         {
             Handheld.Vibrate();
@@ -216,7 +223,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(AutoOffElectricEffect(lineRenderer, 0.05f));
     }
 
-    
+
     private IEnumerator AutoOffElectricEffect(LineRenderer lineRenderer, float delay)
     {
         lineRenderer.enabled = true;
@@ -269,17 +276,33 @@ public class Weapon : MonoBehaviour
     private GameObject CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<WeaponProjectile>().Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod, dmgNumb, weaponData.bulletVisualFX);
-        bullet.transform.parent = Managers.Instance.game.transform;
+        
+        if(bullet.TryGetComponent<WeaponProjectile>(out WeaponProjectile projectile))
+        {
+            projectile.Initialize(bulletPool, weaponData.bulletSpeed, weaponData.attackDamage, currentMethod, dmgNumb, weaponData.bulletVisualFX);
+        }
+
+        bullet.transform.parent = projectileContainer.transform;
+        
         return bullet;
     }
 
     private void ActivateBullet(GameObject bullet)
     {
         bullet.SetActive(true);
-        bullet.transform.position = gunMuzzle.position; // 총알 Get할 때 위치 설정 
-        bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
-        bullet.GetComponent<WeaponProjectile>().ShootProjectile();
+
+        if (bullet.TryGetComponent<WeaponProjectile>(out WeaponProjectile projectile))
+        { 
+            bullet.transform.position = gunMuzzle.position; // 총알 Get할 때 위치 설정 
+            bullet.transform.rotation = Quaternion.LookRotation(gunMuzzle.forward); // 총알 Get할 때 방향 설정
+            bullet.GetComponent<WeaponProjectile>().ShootProjectile();
+        }
+
+        else if (bullet.TryGetComponent<LightningBoltScript>(out LightningBoltScript lightning))
+        {
+            lightning.Initialize(bulletPool);
+            lightning.StartObject = gunMuzzle.gameObject;
+        }
     }
 
     private void DeactivateBullet(GameObject bullet)
@@ -292,42 +315,6 @@ public class Weapon : MonoBehaviour
     private void DestroyBullet(GameObject bullet)
     {
         Destroy(bullet);
-    }
-    #endregion
-
-    #region lineRendererPool
-    private LineRenderer CreateLineRenderer()
-    {
-        GameObject lineObj = new GameObject("LineRenderer");
-        LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
-        lineObj.transform.SetParent(lineRendererParent);
-
-        lineRenderer.startWidth = 0.08f;
-        lineRenderer.endWidth = 0.08f;
-        lineRenderer.startColor = Color.white;
-        lineRenderer.endColor = Color.blue;
-        lineRenderer.positionCount = 2;
-
-        Material lineMaterial = new Material(Shader.Find("Sprites/Default"));
-        lineMaterial.color = Color.blue;
-        lineRenderer.material = lineMaterial;
-
-        return lineRenderer;
-    }
-
-    private void ActivateLineRenderer(LineRenderer lineRenderer)
-    {
-        lineRenderer.enabled = true;
-    }
-
-    private void DeactivateLineRenderer(LineRenderer lineRenderer)
-    {
-        lineRenderer.enabled = false;
-    }
-
-    private void DestroyLineRenderer(LineRenderer lineRenderer)
-    {
-        Destroy(lineRenderer.gameObject);
     }
     #endregion
 }
